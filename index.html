@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>RakthSetu - Smart Blood Donor Network Kerala</title>
+<meta name="description" content="RakthSetu - Smart blood donor matching for Kerala. Privacy-first, zero-literacy friendly.">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--p:#E53935;--pl:#FFEBEE;--pm:#EF9A9A;--pd:#C62828;--s:#FF7043;--ok:#43A047;--okl:#E8F5E9;--em:#B71C1C;--bg:#FFF5F5;--t:#212121;--tm:#555;--tl:#9E9E9E;--b:#FFCDD2;--sh:0 4px 24px rgba(229,57,53,.10);--sm:0 2px 10px rgba(0,0,0,.07);--r:20px;--rs:12px}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;overflow-x:hidden;font-size:16px}
+
+/* ── Screen switching ── */
+.sc{display:none;min-height:100vh}
+.sc.on{display:block}
+@keyframes fi{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.sc.on{animation:fi .28s ease}
+#sl{flex-direction:column;align-items:center;padding:0 20px 40px;background:linear-gradient(160deg,#FFEBEE 0%,#FFF8F8 55%,#FFF3E0 100%)}
+#sl.on{display:flex !important}
+#sotp{flex-direction:column;align-items:center;justify-content:center;padding:20px;background:linear-gradient(160deg,#FFEBEE,#FFF8F8);min-height:100vh}
+#sotp.on{display:flex !important}
+#se.on{display:block}
+#sm.on{display:block}
+#sgps.on{display:block}
+
+/* ── Login ── */
+.lh{text-align:center;margin-top:40px}
+.dw{width:100px;height:124px;margin:0 auto 10px;filter:drop-shadow(0 8px 20px rgba(229,57,53,.3))}
+.dw svg{width:100%;height:100%}
+.at{font-size:2rem;font-weight:900;color:var(--pd);letter-spacing:-.5px}
+.as{font-size:.9rem;color:var(--tm);font-weight:600;margin-top:2px;margin-bottom:20px}
+.rt{display:flex;background:#fff;border-radius:50px;padding:5px;box-shadow:var(--sm);margin-bottom:16px;width:100%;max-width:360px}
+.rtb{flex:1;padding:10px 0;border:none;background:transparent;border-radius:50px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:700;color:var(--tm);cursor:pointer;transition:.2s;display:flex;flex-direction:column;align-items:center;gap:3px}
+.rtb.on{background:var(--p);color:#fff;box-shadow:0 3px 10px rgba(229,57,53,.3)}
+.lcard{background:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--sh);width:100%;max-width:360px}
+.lcard h3{font-size:1rem;font-weight:800;margin-bottom:14px;color:var(--pd)}
+.ig{margin-bottom:12px}
+.ig label{display:block;font-size:.8rem;font-weight:700;color:var(--tm);margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
+.inf{width:100%;padding:13px 15px;border:2px solid var(--b);border-radius:var(--rs);font-family:'Nunito',sans-serif;font-size:1rem;font-weight:600;outline:none;transition:.2s;background:#fff}
+.inf:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(229,57,53,.1)}
+.sf{appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat calc(100% - 12px) 50%;width:100%;padding:13px 36px 13px 15px;border:2px solid var(--b);border-radius:var(--rs);font-family:'Nunito',sans-serif;font-size:1rem;font-weight:600;outline:none;cursor:pointer}
+.sf:focus{border-color:var(--p)}
+.btn{display:block;width:100%;padding:14px;border:none;border-radius:50px;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:.18s;text-align:center}
+.bp{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;box-shadow:0 4px 16px rgba(229,57,53,.35)}
+.bp:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(229,57,53,.4)}
+.bsec{background:#fff;color:var(--p);border:2px solid var(--p)}
+.bgh{background:transparent;color:var(--tm);font-size:.88rem;padding:10px}
+.bsu{background:linear-gradient(135deg,#43A047,#2E7D32);color:#fff;box-shadow:0 4px 14px rgba(67,160,71,.3)}
+.bd2{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff}
+.be{background:linear-gradient(135deg,#B71C1C,#7B0000);color:#fff;animation:ep 1.8s ease-in-out infinite;box-shadow:0 6px 22px rgba(183,28,28,.5);font-size:1.05rem;padding:18px}
+@keyframes ep{0%,100%{box-shadow:0 6px 22px rgba(183,28,28,.5)}50%{box-shadow:0 6px 32px rgba(183,28,28,.75),0 0 0 8px rgba(183,28,28,.12)}}
+.edv{display:flex;align-items:center;gap:10px;margin:16px 0;color:var(--tl);font-size:.82rem;font-weight:700}
+.edv::before,.edv::after{content:'';flex:1;height:1px;background:var(--b)}
+
+/* ── Sign up ── */
+#ssignup{flex-direction:column;align-items:center;padding:24px 16px 50px;background:linear-gradient(160deg,#FFEBEE 0%,#FFF8F8 55%,#FFF3E0 100%)}
+#ssignup.on{display:flex !important}
+.signup-card{background:#fff;border-radius:var(--r);padding:22px;box-shadow:var(--sh);width:100%;max-width:560px}
+.signup-card h2{font-size:1.35rem;font-weight:900;color:var(--pd);text-align:center;margin-bottom:4px}
+.signup-sub{text-align:center;color:var(--tm);font-size:.78rem;font-weight:600;margin-bottom:17px}
+.signup-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 12px}
+.signup-grid .full{grid-column:1/-1}
+.signup-note{background:#FFF8E1;border:1px solid #FFE082;color:#7A5A00;border-radius:10px;padding:9px 11px;font-size:.72rem;font-weight:700;margin:2px 0 13px}
+.signup-link{display:block;text-align:center;margin-top:11px;color:var(--p);font-size:.82rem;font-weight:800;text-decoration:none;cursor:pointer}
+.signup-role{background:var(--pl);border-radius:10px;padding:9px 11px;margin-bottom:13px;font-size:.78rem;font-weight:800;color:var(--pd)}
+@media(max-width:520px){.signup-grid{grid-template-columns:1fr}.signup-grid .full{grid-column:auto}}
+
+/* ── OTP ── */
+.oc{background:#fff;border-radius:var(--r);padding:28px 22px;box-shadow:var(--sh);width:100%;max-width:340px;text-align:center}
+.oc h2{font-size:1.3rem;font-weight:900;margin:10px 0 6px}
+.oc p{color:var(--tm);font-size:.87rem;margin-bottom:20px;font-weight:600}
+.ods{display:flex;gap:8px;justify-content:center;margin-bottom:18px}
+.od{width:48px;height:54px;border:2px solid var(--b);border-radius:11px;text-align:center;font-size:1.5rem;font-weight:900;font-family:'Nunito',sans-serif;outline:none;color:var(--pd)}
+.od:focus{border-color:var(--p);box-shadow:0 0 0 3px rgba(229,57,53,.15)}
+.oh{font-size:.78rem;color:var(--tl);margin-top:8px}.oh strong{color:var(--p)}
+
+/* ── Top header bar ── */
+.topbar{background:#fff;padding:13px 16px;box-shadow:0 2px 8px rgba(0,0,0,.06);position:sticky;top:0;z-index:300;display:flex;align-items:center;gap:10px}
+.topbar .tlogo{font-size:1.12rem;font-weight:900;color:var(--pd);flex:1;letter-spacing:-.01em}
+.topbar .tlogosub{font-size:.72rem;font-weight:900;color:var(--tm)}.top-user-name,.top-blood-group,.top-user-role,.top-user-place{font-weight:900;color:var(--tm)}
+.topbar .tbk{width:38px;height:38px;border:none;background:var(--pl);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1.1rem;flex-shrink:0}
+.topbar .tnb{width:38px;height:38px;border:none;background:var(--pl);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;position:relative;flex-shrink:0}
+.nbg{position:absolute;top:-3px;right:-3px;background:var(--p);color:#fff;border-radius:50%;width:16px;height:16px;font-size:.6rem;font-weight:900;display:flex;align-items:center;justify-content:center}
+
+/* ── Hamburger menu ── */
+.hmb{width:38px;height:38px;border:none;background:var(--pl);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;flex-shrink:0;transition:.2s}
+.hmb span{display:block;width:16px;height:2px;background:var(--pd);border-radius:2px;transition:.2s}
+#mmov{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:998;display:none}
+#mmov.on{display:block}
+#mmpanel{position:fixed;top:0;right:0;bottom:0;width:min(280px,80vw);background:#fff;z-index:999;transform:translateX(100%);transition:.3s cubic-bezier(.4,0,.2,1);box-shadow:-8px 0 32px rgba(0,0,0,.15);display:flex;flex-direction:column}
+#mmpanel.on{transform:translateX(0)}
+.mmhdr{background:linear-gradient(135deg,var(--p),var(--pd));padding:28px 18px 18px;color:#fff}
+.mmav{width:56px;height:56px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:8px;border:2px solid rgba(255,255,255,.4)}
+.mmn{font-size:1.05rem;font-weight:900}
+.mms{font-size:.78rem;opacity:.85;font-weight:600;margin-top:2px}
+.mmitems{flex:1;overflow-y:auto;padding:12px 0}
+.mmi{display:flex;align-items:center;gap:13px;padding:14px 18px;cursor:pointer;transition:.15s;border:none;background:transparent;font-family:'Nunito',sans-serif;width:100%;text-align:left}
+.mmi:hover{background:#FFF5F5}
+.mmi .mmii{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.mmi .mmif{flex:1}
+.mmi .mmin{font-size:.92rem;font-weight:800}
+.mmi .mmis{font-size:.73rem;color:var(--tl);font-weight:600}
+.mmi.mma{background:var(--pl)}
+.mmi.mma .mmin{color:var(--pd)}
+.mmdiv{height:1px;background:#f0f0f0;margin:5px 18px}
+.mmlogout{display:flex;align-items:center;gap:13px;padding:16px 18px;cursor:pointer;border:none;background:#FFF5F5;font-family:'Nunito',sans-serif;width:100%;text-align:left;border-top:1px solid #f0f0f0}
+.mmlogout .mli{font-size:1.2rem}
+.mmlogout .mlt{font-size:.92rem;font-weight:800;color:var(--em)}
+
+/* ── Page content ── */
+.pc{padding:14px 14px 80px}
+
+/* ── Cards & components ── */
+.bg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.bc{background:#fff;border-radius:var(--r);padding:18px 12px;box-shadow:var(--sm);cursor:pointer;transition:.2s;text-align:center;border:2px solid transparent}
+.bc:hover,.bc:active{transform:scale(.97);border-color:var(--b)}
+.bc .bci{font-size:2.4rem;margin-bottom:6px}
+.bc .bct{font-size:.88rem;font-weight:800;line-height:1.2}
+.bc .bcs{font-size:.73rem;font-weight:600;color:var(--tl);margin-top:3px}
+.bc .bcn{font-size:1.8rem;font-weight:900;color:var(--p);margin-top:3px}
+.bminiwrap{display:grid;grid-template-columns:1fr 1fr;gap:7px;min-width:0}
+.bcmini{background:#fff;border-radius:12px;padding:10px 5px;box-shadow:var(--sm);cursor:pointer;transition:.2s;text-align:center;border:2px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:92px}
+.bcmini:hover,.bcmini:active{transform:scale(.97);border-color:var(--b)}
+.bcmini .bci{font-size:1.45rem;margin-bottom:4px}
+.bcmini .bct{font-size:.66rem;font-weight:800;line-height:1.15}
+.bcmini .bcs{font-size:.58rem;font-weight:600;color:var(--tl);margin-top:3px;line-height:1.1}
+.sr{display:flex;gap:10px;margin-bottom:14px}
+.sc2{flex:1;background:#fff;border-radius:var(--rs);padding:12px 8px;box-shadow:var(--sm);text-align:center}
+.sc2 .sv{font-size:1.45rem;font-weight:900;color:var(--p)}
+.sc2 .sl{font-size:.68rem;font-weight:700;color:var(--tl);margin-top:2px}
+.stit{font-size:.95rem;font-weight:900;margin-bottom:9px;display:flex;align-items:center;gap:6px}
+.lc2{background:#fff;border-radius:var(--r);box-shadow:var(--sm);margin-bottom:9px;overflow:hidden}
+.bdg{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:50px;font-size:.7rem;font-weight:800}
+.be2{background:#FFEBEE;color:var(--em);border:1.5px solid #FFCDD2}
+.bh{background:#FFF3E0;color:#E65100;border:1.5px solid #FFE0B2}
+.bn2{background:#E8F5E9;color:#2E7D32;border:1.5px solid #C8E6C9}
+.bp2{background:#E3F2FD;color:#1565C0;border:1.5px solid #BBDEFB}
+.bac{background:#E8F5E9;color:#2E7D32;border:1.5px solid #C8E6C9}
+.bff{background:#EDE7F6;color:#4527A0;border:1.5px solid #D1C4E9}
+.btb{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;font-size:.88rem;font-weight:900;flex-shrink:0}
+.bOp{background:#FFEBEE;color:#C62828;border:2px solid #EF9A9A}
+.bOm{background:#B71C1C;color:#fff;border:2px solid #7B0000}
+.bAp{background:#FF6F00;color:#fff;border:2px solid #E65100}
+.bAm{background:#FFF3E0;color:#E65100;border:2px solid #FFCC80}
+.bBp{background:#880E4F;color:#fff;border:2px solid #560027}
+.bBm{background:#FCE4EC;color:#880E4F;border:2px solid #F48FB1}
+.bABp{background:#4A148C;color:#fff;border:2px solid #12005E}
+.bABm{background:#EDE7F6;color:#4A148C;border:2px solid #B39DDB}
+.ii{display:flex;align-items:center;gap:12px;padding:14px;cursor:pointer;border-bottom:1px solid #f5f5f5;transition:.15s}
+.ii:last-child{border-bottom:none}
+.ii:hover{background:#fafafa}
+.ii.eme{background:#FFF5F5;border-left:4px solid var(--em)}
+.ii .iii{flex:1}
+.ii .iit{font-size:.9rem;font-weight:800;margin-bottom:3px}
+.ii .iis{font-size:.76rem;color:var(--tm);font-weight:600}
+.ii .iia{color:var(--tl);font-size:1.1rem}
+.dbn{background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;padding:24px 18px;text-align:center;border-radius:0 0 26px 26px;margin-bottom:-14px}
+.dbn .dbb{font-size:2.6rem;font-weight:900;letter-spacing:-1px}
+.dbn .dbl{font-size:.8rem;opacity:.85;font-weight:600}
+.dic{background:#fff;border-radius:var(--r);padding:16px;margin:0 14px 11px;box-shadow:var(--sh)}
+.dr{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid #f5f5f5}
+.dr:last-child{border-bottom:none}
+.dr .dri{font-size:1.25rem;width:28px;text-align:center}
+.dr .drf{flex:1}
+.dr .drl{font-size:.7rem;font-weight:700;color:var(--tl)}
+.dr .drv{font-size:.9rem;font-weight:700}
+.pn{background:#FFF3E0;border-radius:var(--rs);padding:13px 15px;margin:0 14px 11px;display:flex;gap:9px;align-items:flex-start}
+.pn .pi{font-size:1.25rem}
+.pn p{font-size:.78rem;font-weight:700;color:#E65100}
+.pbn{background:linear-gradient(135deg,#FF7043,var(--p));padding:26px 18px 44px;text-align:center;color:#fff}
+.pav{width:70px;height:70px;background:rgba(255,255,255,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.2rem;margin:0 auto 9px;border:3px solid rgba(255,255,255,.45)}
+.pnm{font-size:1.2rem;font-weight:900}
+.psb{font-size:.8rem;opacity:.85;font-weight:600}
+.pcd{background:#fff;border-radius:var(--r);padding:18px;margin:0 14px 13px;box-shadow:var(--sh);margin-top:-20px}
+.elb{border-radius:var(--rs);padding:13px 15px;display:flex;align-items:center;gap:11px;margin:0 14px 13px}
+.ely{background:var(--okl);border:1.5px solid #A5D6A7}
+.eln{background:#FFEBEE;border:1.5px solid var(--pm)}
+.elb .ebi{font-size:1.8rem}
+.elb .ebtt{font-size:.9rem;font-weight:800}
+.elb .ebts{font-size:.73rem;font-weight:600;color:var(--tm)}
+.ckg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cki{display:flex;align-items:center;gap:7px;padding:9px;background:#fafafa;border-radius:10px;cursor:pointer}
+.cki input[type=checkbox]{width:17px;height:17px;accent-color:var(--p);cursor:pointer}
+.cki label{font-size:.8rem;font-weight:700;cursor:pointer}
+.gm{background:linear-gradient(135deg,#E8F5E9,#E3F2FD 50%,#F3E5F5);border-radius:var(--r);height:260px;position:relative;overflow:hidden;margin-bottom:14px;box-shadow:var(--sm)}
+.grd{position:absolute;bottom:40%;left:5%;right:5%;height:5px;background:rgba(0,0,0,.07);border-radius:3px}
+.grdv{position:absolute;top:10%;bottom:40%;left:50%;width:5px;background:rgba(0,0,0,.07);border-radius:3px}
+.gdt{position:absolute;bottom:38%;left:10%;width:20px;height:20px;background:var(--p);border-radius:50%;border:3px solid #fff;box-shadow:0 2px 10px rgba(229,57,53,.4);animation:dm 25s linear forwards,dp2 1.2s ease-in-out infinite;z-index:5}
+@keyframes dm{0%{left:10%;bottom:38%}30%{left:50%;bottom:38%}60%{left:50%;bottom:58%}100%{left:50%;bottom:58%}}
+@keyframes dp2{0%,100%{box-shadow:0 2px 10px rgba(229,57,53,.4),0 0 0 0 rgba(229,57,53,.25)}50%{box-shadow:0 2px 10px rgba(229,57,53,.4),0 0 0 10px rgba(229,57,53,0)}}
+.ghp{position:absolute;left:43%;bottom:52%;z-index:4}
+.ghpin{width:32px;height:32px;background:var(--p);border-radius:50% 50% 50% 0;transform:rotate(-45deg);display:flex;align-items:center;justify-content:center;box-shadow:0 3px 10px rgba(229,57,53,.4)}
+.ghpin span{transform:rotate(45deg);font-size:.95rem}
+.gpa{position:absolute;bottom:40%;left:10%;right:46%;height:3px;background:repeating-linear-gradient(90deg,var(--p) 0,var(--p) 8px,transparent 8px,transparent 16px);border-radius:2px;animation:pa2 1s linear infinite}
+@keyframes pa2{0%{background-position:0 0}100%{background-position:16px 0}}
+.gpav{position:absolute;left:50%;bottom:40%;top:42%;width:3px;background:repeating-linear-gradient(180deg,var(--p) 0,var(--p) 8px,transparent 8px,transparent 16px)}
+.getw{position:absolute;top:10px;left:10px;background:#fff;border-radius:var(--rs);padding:7px 12px;box-shadow:var(--sm)}
+.getw .gt{font-size:1.3rem;font-weight:900;color:var(--p)}
+.getw .gl{font-size:.68rem;font-weight:700;color:var(--tl)}
+.gpw{background:#fff;border-radius:var(--r);padding:15px;box-shadow:var(--sm);margin-bottom:11px}
+.pbw{background:#f5f5f5;border-radius:50px;height:9px;margin:8px 0;overflow:hidden}
+.pb{height:100%;border-radius:50px;background:linear-gradient(90deg,var(--p),var(--s));animation:pf 25s linear forwards}
+@keyframes pf{0%{width:5%}100%{width:95%}}
+.hsg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.hs{background:#fff;border-radius:var(--rs);padding:13px 9px;box-shadow:var(--sm);text-align:center}
+.hs .hsv{font-size:1.5rem;font-weight:900;color:var(--p)}
+.hs .hsl{font-size:.65rem;font-weight:700;color:var(--tl);margin-top:2px}
+.big4{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.bic{background:#fff;border-radius:var(--rs);padding:10px 5px;box-shadow:var(--sm);text-align:center}
+.bic .bit{font-size:.8rem;font-weight:900;color:var(--pd)}
+.bic .biu{font-size:1.35rem;font-weight:900}
+.bic .bil{font-size:.6rem;font-weight:700;color:var(--tl)}
+.bic.low{border:2px solid #FFCDD2;background:#FFF5F5}
+.bic.crit{border:2px solid var(--p);background:#FFEBEE;animation:cb 1.5s ease-in-out infinite}
+@keyframes cb{0%,100%{background:#FFEBEE}50%{background:#FFCDD2}}
+.pi2{display:flex;align-items:center;gap:11px;padding:13px 14px;border-bottom:1px solid #f5f5f5;cursor:pointer;transition:.15s}
+.pi2:hover{background:#fafafa}
+.pi2 .pio{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.pi2 .pif{flex:1}
+.pi2 .pin{font-size:.9rem;font-weight:800}
+.pi2 .pis{font-size:.73rem;color:var(--tm);font-weight:600}
+.dli{display:flex;align-items:center;gap:11px;padding:12px 14px;border-bottom:1px solid #f5f5f5}
+.dli .dlic{width:34px;height:34px;background:var(--pl);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.dli .dlif{flex:1}
+.dli .dln{font-size:.87rem;font-weight:800}
+.dli .dls{font-size:.73rem;color:var(--tm);font-weight:600}
+.dli .dld{font-size:.7rem;color:var(--tl);font-weight:700}
+.fsc{background:#fff;border-radius:var(--r);padding:18px;box-shadow:var(--sm);margin-bottom:13px}
+.fsc h3{font-size:.93rem;font-weight:900;margin-bottom:13px;display:flex;align-items:center;gap:7px;color:var(--pd)}
+.priority-options{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:7px 0 13px}.priority-card{appearance:none;border:2px solid var(--b);background:#FFF5F5;border-radius:13px;padding:13px 7px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;font-family:'Nunito',sans-serif;min-height:92px;transition:.18s;color:var(--t)}.priority-card:hover{transform:translateY(-1px);border-color:var(--p)}.priority-card.selected{border-color:var(--p);background:#FFEBEE;box-shadow:0 3px 10px rgba(229,57,53,.10)}.priority-icon{font-size:1.4rem;line-height:1}.priority-name{font-size:.78rem;font-weight:900}.priority-help{font-size:.65rem;color:var(--tl);font-weight:700}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.wb{background:linear-gradient(135deg,var(--p),var(--pd));border-radius:var(--r);padding:17px;margin-bottom:14px;color:#fff;display:flex;align-items:center;gap:12px}
+.wb .wbi{font-size:2rem}
+.wb .wbt h3{font-size:.93rem;font-weight:900}
+.wb .wbt p{font-size:.77rem;opacity:.85;font-weight:600;margin-top:2px}
+.hbn{background:linear-gradient(135deg,#1976D2,#0D47A1);border-radius:var(--r);padding:17px;margin-bottom:14px;color:#fff}
+.hbn h3{font-size:.93rem;font-weight:900;margin-bottom:4px}
+.hbn p{font-size:.77rem;opacity:.85;font-weight:600}
+.rss{display:flex;margin:13px 0}
+.rss .rs{flex:1;text-align:center;position:relative}
+.rss .rs::before{content:'';position:absolute;top:14px;left:50%;right:-50%;height:2px;background:#f0f0f0;z-index:0}
+.rss .rs:last-child::before{display:none}
+.rss .rs .rsd{width:30px;height:30px;border-radius:50%;margin:0 auto 5px;display:flex;align-items:center;justify-content:center;font-size:.85rem;position:relative;z-index:1}
+.rss .rs.done .rsd{background:var(--ok);color:#fff}
+.rss .rs.act .rsd{background:var(--p);color:#fff}
+.rss .rs.pend .rsd{background:#f0f0f0;color:var(--tl)}
+.rss .rs .rsl{font-size:.65rem;font-weight:700;color:var(--tl)}
+.rss .rs.done .rsl{color:var(--ok)}
+.rss .rs.act .rsl{color:var(--p)}
+.ci{background:#fff;border-radius:var(--rs);padding:13px;box-shadow:var(--sm);margin-bottom:9px;display:flex;gap:11px;align-items:center}
+.ci .cii{font-size:1.8rem}
+.ci .cif{flex:1}
+.ci .cif h4{font-size:.9rem;font-weight:800}
+.ci .cif p{font-size:.75rem;color:var(--tm);font-weight:600}
+.ci .cid{font-size:.73rem;font-weight:800;color:var(--p);flex-shrink:0}
+.rcd{background:#fff9d9;border:1px solid #f0d45a;border-radius:10px;padding:8px 10px;margin-bottom:8px;color:var(--tm);box-shadow:none}
+.rcd h3{font-size:.78rem;font-weight:800;margin-bottom:2px;color:#7a5b00}
+.rcd p{font-size:.64rem;opacity:.78;font-weight:600;margin-bottom:6px}
+.rcb{background:#fff1a8;border-radius:7px;padding:5px 8px;display:flex;align-items:center;justify-content:space-between}
+.rcd .rcc{font-size:.82rem;font-weight:800;letter-spacing:1.3px}
+.rcd button{font-size:.7rem!important;padding:5px 9px!important}
+.rcc{font-size:1.15rem;font-weight:900;letter-spacing:2px}
+.es{text-align:center;padding:40px 18px;color:var(--tl)}
+.es .esi{font-size:3.2rem;margin-bottom:11px}
+.es p{font-size:.86rem;font-weight:700}
+
+/* ── Emergency screen ── */
+#se{background:linear-gradient(160deg,#FFEBEE,#FFF5F5);min-height:100vh;padding:20px 20px 40px}
+.eh{text-align:center;padding:26px 0 18px}
+.eh .ei{font-size:3.6rem;animation:ep 1.5s ease-in-out infinite}
+.eh h1{font-size:1.65rem;font-weight:900;color:var(--em);margin-top:8px}
+.eh p{color:var(--tm);font-weight:600;margin-top:4px}
+.ef{background:#fff;border-radius:var(--r);padding:20px;box-shadow:var(--sh);max-width:420px;margin:0 auto}
+
+/* ── GPS screen ── */
+#sgps{min-height:100vh;background:var(--bg)}
+
+/* ── Emergency overlay ── */
+#aov{position:fixed;inset:0;background:rgba(183,28,28,.95);z-index:5000;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;animation:fi .3s ease}
+#aov.on{display:flex}
+.aoi{font-size:4.5rem;animation:ab .5s ease-in-out infinite alternate}
+@keyframes ab{from{transform:scale(1)}to{transform:scale(1.15)}}
+.aot{font-size:1.8rem;font-weight:900;color:#fff;margin:12px 0 7px}
+.aos{font-size:.92rem;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:26px}
+.aobt{font-size:2.7rem;font-weight:900;color:#fff;background:rgba(255,255,255,.2);border-radius:16px;padding:10px 20px;margin-bottom:20px}
+
+/* ── Donation completion celebration ── */
+.life-pop{position:fixed;inset:0;z-index:6000;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:lifeFade 2.2s ease forwards}
+.life-card{position:relative;background:#fff;border:1px solid #d9f0df;border-radius:20px;padding:18px 26px;text-align:center;box-shadow:0 12px 45px rgba(0,0,0,.18);animation:lifeCard .55s cubic-bezier(.2,1.5,.4,1) both}
+.life-heart{font-size:2rem;animation:lifeBeat .75s ease-in-out infinite alternate}
+.life-title{font-size:1.18rem;font-weight:950;color:#237a3b;margin-top:5px}
+.life-sub{font-size:.72rem;font-weight:700;color:#64748b;margin-top:3px}
+.life-conf{position:absolute;top:50%;left:50%;width:8px;height:13px;border-radius:2px;animation:confetti 1.15s ease-out forwards}
+@keyframes lifeCard{from{transform:scale(.65) translateY(18px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
+@keyframes lifeBeat{from{transform:scale(1)}to{transform:scale(1.18)}}
+@keyframes confetti{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(var(--x),var(--y)) rotate(420deg);opacity:0}}
+@keyframes lifeFade{0%,72%{opacity:1}100%{opacity:0}}
+
+/* ── Demo panel ── */
+#dfab{position:fixed;bottom:22px;right:16px;width:48px;height:48px;background:linear-gradient(135deg,#7C4DFF,#3D5AFE);color:#fff;border:none;border-radius:50%;font-size:1.2rem;cursor:pointer;box-shadow:0 5px 18px rgba(124,77,255,.4);z-index:1000;display:flex;align-items:center;justify-content:center;transition:.2s}
+#dfab:hover{transform:scale(1.08)}
+#dfab.hid{display:none}
+#dp{position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:26px 26px 0 0;box-shadow:0 -8px 40px rgba(0,0,0,.18);z-index:2000;transform:translateY(100%);transition:.35s cubic-bezier(.4,0,.2,1);max-height:88vh;overflow-y:auto;padding:20px 18px 36px}
+#dp.on{transform:translateY(0)}
+.dh{width:36px;height:4px;background:#ddd;border-radius:2px;margin:0 auto 16px}
+.dpt{font-size:1.1rem;font-weight:900;margin-bottom:14px;display:flex;align-items:center;gap:7px}
+.dps{background:#fafafa;border-radius:var(--rs);padding:13px;margin-bottom:12px}
+.dps h4{font-size:.85rem;font-weight:800;margin-bottom:8px;color:var(--tm)}
+.dpc2{display:flex;flex-wrap:wrap;gap:7px}
+.dpc{background:#fff;border:1.5px solid var(--b);border-radius:50px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:pointer;transition:.15s;font-family:'Nunito',sans-serif}
+.dpc:hover{background:var(--pl);border-color:var(--pm);color:var(--pd)}
+#pov{position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:1999;display:none}
+#pov.on{display:block}
+
+/* ── Toast ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#323232;color:#fff;padding:10px 20px;border-radius:50px;font-size:.84rem;font-weight:700;z-index:9999;animation:ti .3s ease,to2 .3s ease 2.5s forwards;white-space:nowrap;max-width:90vw;text-align:center}
+@keyframes ti{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+@keyframes to2{to{opacity:0;transform:translateX(-50%) translateY(16px)}}
+
+.page-back{display:block;width:100%;margin:12px 0;padding:11px 14px;background:var(--p);color:#fff;border:0;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;text-align:left}
+
+.hid{display:none!important}.page-back{display:inline-flex!important;width:auto!important;min-width:92px!important;align-items:center!important;justify-content:flex-start!important;background:#fff!important;color:var(--pd)!important;border:2px solid var(--b)!important;border-radius:12px!important;box-shadow:var(--sm);text-align:left!important;margin:0 0 12px!important;padding:10px 15px!important;align-self:flex-start!important;cursor:pointer!important}.gpsmap{height:300px;border-radius:var(--r);overflow:hidden;margin-bottom:12px;box-shadow:var(--sm);border:1px solid #eee;background:#e8f5e9}.gps-live-card{background:#fff;border-radius:var(--r);padding:14px;box-shadow:var(--sm);margin-bottom:11px}.gps-live-row{display:flex;align-items:center;gap:10px}.gps-dot{width:12px;height:12px;border-radius:50%;background:#2E7D32;box-shadow:0 0 0 7px rgba(46,125,50,.12);flex-shrink:0}.gps-dot.wait{background:#FF9800;box-shadow:0 0 0 7px rgba(255,152,0,.12)}.gps-coords{font-size:.7rem;color:var(--tl);font-weight:700;margin-top:4px}.gps-note{font-size:.75rem;color:var(--tm);font-weight:600;line-height:1.35;margin-top:9px}.gps-privacy{background:var(--pl);border:1px solid var(--b);border-radius:12px;padding:10px 12px;font-size:.72rem;color:var(--pd);font-weight:700;margin-top:10px}.leaflet-container{font-family:'Nunito',sans-serif}
+
+/* ── Landing information ── */
+.landing-sections{width:100%;max-width:760px;margin:18px auto 0;display:flex;flex-direction:column;gap:16px}
+.page-info-card{background:#fff;border:1.5px solid #ffcdd2;border-radius:20px;box-shadow:var(--sm);padding:18px}
+.page-info-title{font-size:1.15rem;font-weight:900;color:var(--pd);margin-bottom:13px}
+.how-card{padding-bottom:20px}
+.about-intro{background:#fff5f5;border:1px solid #ffcdd2;border-radius:15px;padding:14px;font-size:.83rem;line-height:1.55;color:var(--tm);font-weight:600;margin-bottom:16px}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.feature-item{border:1px solid var(--b);border-radius:13px;padding:11px;background:#fff}
+.feature-item .fi{font-size:1.2rem}.feature-item .ft{font-size:.8rem;font-weight:900;color:var(--pd);margin-top:4px}.feature-item .fs{font-size:.69rem;color:var(--tm);font-weight:600;line-height:1.35;margin-top:2px}
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:8px}
+.flow-step{width:100%;display:flex;align-items:center;gap:12px;border:1.5px solid #ffcdd2;background:#fffafa;border-radius:16px;padding:12px 13px}
+.flow-num{width:34px;height:34px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
+.flow-icon{font-size:1.35rem;flex-shrink:0}.flow-text{flex:1}.flow-title{font-size:.86rem;font-weight:900;color:var(--pd)}.flow-sub{font-size:.7rem;color:var(--tm);font-weight:600;line-height:1.35;margin-top:2px}
+.flow-arrow{font-size:1.35rem;color:var(--p);font-weight:900;height:25px;display:flex;align-items:center}
+@media(max-width:480px){.feature-grid{grid-template-columns:1fr}.page-info-card{padding:15px}.landing-sections{margin-top:15px}}
+
+
+/* ── Global offline language switcher ── */
+#globalLangBtn{position:fixed;right:62px;top:12px;z-index:1200;width:42px;height:42px;border:1.5px solid var(--b);border-radius:50%;background:#fff;color:var(--pd);font-size:1.2rem;cursor:pointer;box-shadow:0 3px 12px rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center}
+#globalLangPanel{position:fixed;right:62px;top:60px;z-index:1201;width:225px;background:#fff;border:1px solid var(--b);border-radius:16px;padding:13px;box-shadow:0 12px 30px rgba(0,0,0,.16);display:none}
+#globalLangPanel.on{display:block;animation:fi .18s ease}
+.gl-title{font-size:.82rem;font-weight:900;color:var(--pd);margin-bottom:8px}
+.gl-select{width:100%;padding:10px 12px;border:1.5px solid var(--b);border-radius:10px;background:#fff;font:700 .9rem 'Nunito',sans-serif;color:var(--t);outline:none}
+.gl-note{font-size:.65rem;color:var(--tl);font-weight:700;margin-top:7px;line-height:1.35}
+@media(max-width:480px){#globalLangBtn{right:58px;top:7px;width:39px;height:39px}#globalLangPanel{right:58px;top:54px;width:205px}}
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+</head>
+<body>
+<!-- GLOBAL OFFLINE LANGUAGE SWITCHER: available on login, signup, OTP and every role dashboard -->
+<button id="globalLangBtn" type="button" aria-label="Change language" title="Change language" onclick="toggleGlobalLanguage(event)">🌐</button>
+<div id="globalLangPanel" role="dialog" aria-label="Language selection">
+  <div class="gl-title">🌐 Language / ഭാഷ / भाषा</div>
+  <select id="globalLangSelect" class="gl-select" onchange="setGlobalLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="ml">മലയാളം</option>
+    <option value="hi">हिन्दी</option>
+    <option value="ta">தமிழ்</option>
+  </select>
+  <div class="gl-note">Works offline. Your choice is remembered on this device.</div>
+</div>
+
+<!-- LOGIN -->
+<div id="sl" class="sc on">
+<div class="lh">
+<div class="dw"><svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+<defs><clipPath id="dc"><path d="M50,8 C30,36 10,62 10,80 C10,102 28,120 50,120 C72,120 90,102 90,80 C90,62 70,36 50,8 Z"/></clipPath></defs>
+<path d="M50,8 C30,36 10,62 10,80 C10,102 28,120 50,120 C72,120 90,102 90,80 C90,62 70,36 50,8 Z" fill="#FFEBEE"/>
+<g clip-path="url(#dc)">
+<rect x="0" y="130" width="100" height="130" fill="#E53935"><animate attributeName="y" from="130" to="0" dur="2.8s" fill="freeze"/></rect>
+<path d="M-10,85 Q10,78 30,85 Q50,92 70,85 Q90,78 110,85 L110,130 L-10,130 Z" fill="#C62828" opacity="0.55"><animateTransform attributeName="transform" type="translate" values="-30,0;30,0;-30,0" dur="2s" repeatCount="indefinite"/></path>
+</g>
+<ellipse cx="36" cy="68" rx="7" ry="13" fill="rgba(255,255,255,0.28)" clip-path="url(#dc)"/>
+<path d="M50,8 C30,36 10,62 10,80 C10,102 28,120 50,120 C72,120 90,102 90,80 C90,62 70,36 50,8 Z" fill="none" stroke="#C62828" stroke-width="2.5"/>
+</svg></div>
+<h1 class="at">RakthSetu</h1>
+<p class="as">&#x1FA78; Kerala Smart Blood Network</p>
+</div>
+<div class="rt">
+<button class="rtb on" onclick="selR('donor',this)"><span>🤝</span>Donor</button>
+<button class="rtb" onclick="selR('requester',this)"><span>&#x1F3E0;</span>Requester</button>
+<button class="rtb" onclick="selR('hospital',this)"><span>&#x1F3E5;</span>Hospital</button>
+</div>
+<div class="lcard">
+<h3 id="ltit">Login as Donor</h3>
+<div class="ig">
+<label>Mobile Number</label>
+<div class="demo-login-row" style="display:flex;align-items:center;gap:9px;position:relative;">
+  <input class="inf" id="lph" type="tel" placeholder="+91 00000 00000" maxlength="15" style="flex:1;min-width:0;">
+  <button type="button" id="demoInfoBtn" aria-label="Show demo login details" title="Demo login details" onclick="toggleDemoInfo(event)" style="width:36px;height:36px;flex:0 0 36px;border:1.5px solid #CBD5E1;border-radius:50%;background:#F8FAFC;color:#475569;font-family:Georgia,serif;font-size:18px;font-weight:700;font-style:italic;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.08);">i</button>
+</div>
+<div id="demoInfo" style="display:none;margin-top:8px;padding:9px 11px;border:1px solid rgba(15,23,42,.12);border-radius:9px;background:#F8FAFC;text-align:left;font-size:12px;line-height:1.5;color:#334155;">
+  <div id="demoInfoText"></div>
+</div>
+</div>
+<div class="ig" id="hng" style="display:none"><label>Hospital</label><select class="inf sf" id="lhsp"><option value="">-- Select Hospital --</option></select></div>
+<button class="btn bp" onclick="sendOTP()" style="margin-top:4px">Send OTP &#x1F4F2;</button>
+<a class="signup-link" onclick="openSignup()">New to RakthSetu? <strong>Sign Up</strong></a>
+<div class="edv">OR</div>
+<button class="btn be" onclick="goEmg()">&#x1F6A8; EMERGENCY &mdash; Need Blood NOW!</button>
+<p style="text-align:center;font-size:.73rem;color:var(--tl);margin-top:10px;font-weight:600">Emergency skips login</p>
+</div>
+</div>
+
+<!-- SIGN UP -->
+<div id="ssignup" class="sc">
+  <div class="signup-card">
+    <div style="text-align:center;font-size:2rem;margin-bottom:4px">&#x1F91D;</div>
+    <h2>Create RakthSetu Account</h2>
+    <p class="signup-sub">Register with your real details. Mobile number will be verified by OTP.</p>
+    <div class="signup-role">Signing up as: <span id="signupRoleLabel">Donor</span></div>
+    <div class="signup-note">&#x1F512; Aadhaar is used only for unique-account checking in this prototype. It is not verified against UIDAI.</div>
+    <div class="signup-grid">
+      <div class="ig"><label>Full Name</label><input class="inf" id="snm" type="text" placeholder="Your full name" autocomplete="name"></div>
+      <div class="ig"><label>Age</label><input class="inf" id="sage" type="number" min="1" max="120" placeholder="Age"></div>
+      <div class="ig"><label>Date of Birth</label><input class="inf" id="sdob" type="date"></div>
+      <div class="ig"><label>Blood Group</label><select class="inf sf" id="sbt"><option value="">-- Select --</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
+      <div class="ig full"><label>Email</label><input class="inf" id="semail" type="email" placeholder="name@example.com" autocomplete="email"></div>
+      <div class="ig"><label>State</label><select class="inf sf" id="sstate"><option value="Kerala" selected>Kerala</option></select></div>
+      <div class="ig"><label>District</label><select class="inf sf" id="sdist" onchange="signupDistrictChanged()"><option value="">-- Select District --</option></select></div>
+      <div class="ig"><label>City / Town / Locality</label><select class="inf sf" id="scity" disabled><option value="">-- Select District First --</option></select></div>
+      <div class="ig"><label>Pincode</label><input class="inf" id="spin" type="tel" inputmode="numeric" maxlength="6" placeholder="6-digit pincode"></div>
+      <div class="ig"><label>Mobile Number</label><input class="inf" id="sphone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile" autocomplete="tel"></div>
+      <div class="ig"><label>Aadhaar Number</label><input class="inf" id="saadhaar" type="tel" inputmode="numeric" maxlength="12" placeholder="12-digit Aadhaar" autocomplete="off"></div>
+    </div>
+    <button class="btn bp" type="button" onclick="signupSendOTP()" style="margin-top:5px">Send OTP &amp; Create Account &#x1F4F2;</button>
+    <button class="btn bgh" type="button" onclick="ssc('sl')" style="margin-top:6px">&#8592; Back to Login</button>
+  </div>
+</div>
+
+<!-- OTP VERIFICATION -->
+<div id="sotp" class="sc">
+  <div class="oc">
+    <div style="font-size:2.4rem">&#x1F4F2;</div>
+    <h2>Verify Mobile Number</h2>
+    <p id="osub">Enter the 6-digit OTP sent to your mobile number.</p>
+    <div class="ods" aria-label="One-time password">
+      <input class="od" id="d1" inputmode="numeric" maxlength="1" autocomplete="one-time-code" oninput="oN(this,'d2');oV()" onkeydown="oB(event,this,null)">
+      <input class="od" id="d2" inputmode="numeric" maxlength="1" oninput="oN(this,'d3');oV()" onkeydown="oB(event,this,'d1')">
+      <input class="od" id="d3" inputmode="numeric" maxlength="1" oninput="oN(this,'d4');oV()" onkeydown="oB(event,this,'d2')">
+      <input class="od" id="d4" inputmode="numeric" maxlength="1" oninput="oN(this,'d5');oV()" onkeydown="oB(event,this,'d3')">
+      <input class="od" id="d5" inputmode="numeric" maxlength="1" oninput="oN(this,'d6');oV()" onkeydown="oB(event,this,'d4')">
+      <input class="od" id="d6" inputmode="numeric" maxlength="1" oninput="oV()" onkeydown="oB(event,this,'d5')">
+    </div>
+    <button class="btn bp" type="button" onclick="verOTP()">Verify OTP</button>
+    <button class="btn bgh" type="button" onclick="ssc('sl')" style="margin-top:6px">&#8592; Back to Login</button>
+    <div class="oh">Prototype OTP: <strong>123456</strong></div>
+  </div>
+</div>
+
+<!-- EMERGENCY -->
+<div id="se" class="sc">
+<div class="eh"><div class="ei">&#x1F6A8;</div><h1>Emergency Blood Request</h1><p>No login needed &mdash; donors alerted immediately</p></div>
+<div class="ef">
+<div class="ig"><label>Your Name</label><input class="inf" id="en" type="text" placeholder="Your full name"></div>
+<div class="ig"><label>Your Mobile</label><input class="inf" id="ep" type="tel" placeholder="+91 00000 00000"></div>
+<div class="ig"><label>Blood Type Needed</label><select class="inf sf" id="eb"><option value="">-- Select --</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
+<div class="ig"><label>District</label><select class="inf sf" id="ed"><option value="">-- Select District --</option></select></div>
+<div class="ig"><label>Hospital</label><select class="inf sf" id="eh2"><option value="">-- Select Hospital --</option></select></div>
+<div class="ig"><label>Units Needed</label><input class="inf" id="eu" type="number" placeholder="1" min="1" max="10"></div>
+<button class="btn be" onclick="subEmg()" style="margin-top:7px">&#x1F6A8; SEND EMERGENCY REQUEST</button>
+<button class="btn bgh" onclick="ssc('sl')" style="margin-top:10px">&#8592; Back to Login</button>
+</div>
+</div>
+
+<!-- MAIN APP -->
+<div id="sm" class="sc">
+<div class="topbar" id="topbar">
+<div style="flex:1"><div class="tlogo">RakthSetu &#x1FA78;</div><div class="tlogosub" id="tsub">Loading...</div></div>
+<button class="hmb" onclick="opMM()" id="hmbtn"><span></span><span></span><span></span></button>
+</div>
+<div id="pc"></div>
+</div>
+
+<!-- GPS -->
+<div id="sgps" class="sc"><div class="topbar"><button class="tbk" onclick="stpG();goBack()">&#8592;</button><div style="flex:1"><div class="tlogo" id="gpsTitle">GPS Navigation</div><div class="tlogosub" id="gpsSub">Live location sharing</div></div></div><div class="pc"><div id="gpsMap" class="gpsmap"></div><div class="gps-live-card"><div class="gps-live-row"><span class="gps-dot wait" id="gpsDot"></span><div style="flex:1"><div style="font-size:.9rem;font-weight:900" id="gpsStatusTitle">Preparing live GPS...</div><div class="gps-coords" id="gpsCoords">Waiting for location permission</div></div><span class="bdg bp2" id="gpsFresh">Starting</span></div><div class="gps-note" id="gpsStatusNote">Your live location is shared with the requester only after the donor accepts and starts GPS.</div><div class="gps-privacy">&#x1F512; Only the requester linked to this accepted request can see the donor's live location.</div></div><div class="gpw"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span style="font-size:.82rem;font-weight:800">&#x1F697; En Route</span><span style="font-size:.73rem;font-weight:700;color:var(--tl)" id="gkm">GPS active</span></div><div class="pbw"><div class="pb" id="gpsProgress"></div></div></div><div style="background:#fff;border-radius:var(--r);padding:15px;margin-bottom:11px;box-shadow:var(--sm)" id="ghi"></div><button class="btn bsu" id="openRouteBtn" style="margin-bottom:9px" onclick="openExternalRoute()">&#x1F5FA;&#xFE0F; Open Route</button><button class="btn bd2" onclick="stpG();goBack()">Stop Sharing &amp; Go Back</button></div></div>
+
+<!-- EMERGENCY OVERLAY -->
+<div id="aov">
+<div class="aoi">&#x1F6A8;</div>
+<div class="aot">EMERGENCY ALERT!</div>
+<div class="aobt" id="abt">O-</div>
+<div class="aos" id="asb">Critical need at hospital</div>
+<button class="btn bsec" onclick="clA();sp('donor-inbox')" style="margin-top:9px;background:#fff;color:var(--em);border:2px solid #fff;max-width:260px">View Request &#8250;</button>
+<button class="btn bgh" onclick="clA()" style="color:rgba(255,255,255,.7);margin-top:7px">Dismiss</button>
+</div>
+
+<!-- MENU OVERLAY -->
+<div id="mmov" onclick="clMM()"></div>
+<div id="mmpanel">
+<div class="mmhdr"><div class="mmav" id="mmavt">&#x1F464;</div><div class="mmn" id="mmnt">...</div><div class="mms" id="mmst">...</div></div>
+<div class="mmitems" id="mmitems"></div>
+<button class="mmlogout" onclick="logout()"><span class="mli">&#x1F6AA;</span><div><div class="mlt">Logout</div><div style="font-size:.7rem;color:var(--tl);font-weight:600">Back to login screen</div></div></button>
+</div>
+
+<!-- DEMO FAB -->
+<button id="dfab" class="hid" onclick="opD()">&#9881;</button>
+<div id="pov" onclick="clD()"></div>
+<div id="dp">
+<div class="dh"></div>
+<div class="dpt">&#9881; Admin / Demo Panel <span style="font-size:.75rem;color:var(--tl);font-weight:600">(For Judges)</span></div><div style="margin:0 16px 10px;padding:9px 11px;background:#fff8e1;border:1px solid #f3df9a;border-radius:10px;font-size:.7rem;line-height:1.45;color:#6d5a1a;font-weight:700">Prototype note: This panel is only for the prototype. The original system would have a different login and administration system.</div>
+<div class="dps"><h4>Quick Login as Demo User</h4><div class="dpc2" id="duc"></div></div>
+<div class="dps"><h4>Trigger Demo Scenarios</h4><div class="dpc2">
+<button class="dpc" onclick="trEmg()">&#x1F6A8; Emergency Alert</button>
+<button class="dpc" onclick="trReq()">&#x1F4EC; New Blood Request</button>
+<button class="dpc" onclick="trDon()">&#x2705; Mark Donation Done</button>
+<button class="dpc" onclick="trRef()">&#x1F381; +50 Referral Points</button>
+</div></div>
+<div class="dps"><h4>Add New Demo Donor</h4>
+<div class="ig" style="margin-bottom:7px"><input class="inf" id="dnn" placeholder="Full Name" style="padding:11px 14px"></div>
+<div class="fr" style="margin-bottom:7px">
+<div><select class="inf sf" id="dnb" style="padding:11px 14px"><option value="">Blood Type</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>O+</option><option>O-</option><option>AB+</option><option>AB-</option></select></div>
+<div><select class="inf sf" id="dnd" style="padding:11px 14px"><option value="">District</option></select></div>
+</div>
+<button class="btn bp" onclick="addDU()" style="padding:11px">Add Donor</button>
+</div>
+<div class="dps"><h4>Live Database Stats</h4><div id="dbs" style="display:flex;gap:7px;flex-wrap:wrap"></div></div>
+<button class="btn bgh" onclick="clD()" style="margin-top:4px">Close Panel</button>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+const KD=['Alappuzha','Ernakulam','Idukki','Kannur','Kasaragod','Kollam','Kottayam','Kozhikode','Malappuram','Palakkad','Pathanamthitta','Thrissur','Thiruvananthapuram','Wayanad'];
+const KH=[
+{n:'Government Medical College Hospital',d:'Thiruvananthapuram'},
+{n:'Sree Chitra Tirunal Institute for Medical Sciences and Technology (SCTIMST)',d:'Thiruvananthapuram'},
+{n:'Sree Avittom Thirunal (SAT) Hospital',d:'Thiruvananthapuram'},
+{n:'KIMSHEALTH Trivandrum',d:'Thiruvananthapuram'},
+{n:'Ananthapuri Hospitals and Research Institute',d:'Thiruvananthapuram'},
+{n:'PRS Hospital',d:'Thiruvananthapuram'},
+{n:'SP Medifort Hospital',d:'Thiruvananthapuram'},
+{n:'NIMS Medicity',d:'Thiruvananthapuram'},
+{n:'Neyyar Medcity',d:'Thiruvananthapuram'},
+{n:'District Hospital Nedumangad',d:'Thiruvananthapuram'},
+{n:'District Model Hospital Peroorkada',d:'Thiruvananthapuram'},
+{n:'Government Medical College Kollam',d:'Kollam'},
+{n:'A.A. Rahim Memorial District Hospital Kollam',d:'Kollam'},
+{n:'Travancore Medical College Hospital',d:'Kollam'},
+{n:'Bishop Benziger Hospital',d:'Kollam'},
+{n:'N.S. Memorial Institute of Medical Sciences',d:'Kollam'},
+{n:'Upasana Hospital',d:'Kollam'},
+{n:'Holy Cross Hospital Kottiyam',d:'Kollam'},
+{n:'KIMS Hospital Kollam',d:'Kollam'},
+{n:'District Hospital Karunagappally',d:'Kollam'},
+{n:'Government Medical College Konni',d:'Pathanamthitta'},
+{n:'District Hospital Kozhencherry',d:'Pathanamthitta'},
+{n:'Pushpagiri Medical College Hospital',d:'Pathanamthitta'},
+{n:'Believers Church Medical College Hospital',d:'Pathanamthitta'},
+{n:'Muthoot Hospital Pathanamthitta',d:'Pathanamthitta'},
+{n:'General Hospital Adoor',d:'Pathanamthitta'},
+{n:'St. Luke’s Hospital Pathanamthitta',d:'Pathanamthitta'},
+{n:'Muthoot Hospitals Kozhencherry',d:'Pathanamthitta'},
+{n:'Government T.D. Medical College Hospital Alappuzha',d:'Alappuzha'},
+{n:'District Hospital Alappuzha',d:'Alappuzha'},
+{n:'Government Women and Children Hospital Alappuzha',d:'Alappuzha'},
+{n:'Sahrudaya Hospital Alappuzha',d:'Alappuzha'},
+{n:'V.S.M. Hospital Kayamkulam',d:'Alappuzha'},
+{n:'Sanjeevanam Ayurveda Hospital Alappuzha',d:'Alappuzha'},
+{n:'K.C.M. Hospital Cherthala',d:'Alappuzha'},
+{n:'Carmel Hospital Alappuzha',d:'Alappuzha'},
+{n:'Government Medical College Kottayam',d:'Kottayam'},
+{n:'Caritas Hospital',d:'Kottayam'},
+{n:'Kottayam Medical College Hospital',d:'Kottayam'},
+{n:'Bharath Hospital',d:'Kottayam'},
+{n:'Matha Hospital',d:'Kottayam'},
+{n:'S.H. Medical Centre',d:'Kottayam'},
+{n:'Caritas Cancer Institute',d:'Kottayam'},
+{n:'General Hospital Kottayam',d:'Kottayam'},
+{n:'District Hospital Pala',d:'Kottayam'},
+{n:'Government Medical College Idukki',d:'Idukki'},
+{n:'District Hospital Idukki',d:'Idukki'},
+{n:'Tata Tea General Hospital Munnar',d:'Idukki'},
+{n:'St. John’s Hospital Kattappana',d:'Idukki'},
+{n:'Holy Family Hospital Munnar',d:'Idukki'},
+{n:'Al-Azhar Medical College and Super Speciality Hospital',d:'Idukki'},
+{n:'St. Joseph’s Hospital Painavu',d:'Idukki'},
+{n:'Government Medical College Ernakulam',d:'Ernakulam'},
+{n:'Amrita Institute of Medical Sciences',d:'Ernakulam'},
+{n:'Aster Medcity',d:'Ernakulam'},
+{n:'Lakeshore Hospital',d:'Ernakulam'},
+{n:'Medical Trust Hospital',d:'Ernakulam'},
+{n:'Rajagiri Hospital',d:'Ernakulam'},
+{n:'Lisie Hospital',d:'Ernakulam'},
+{n:'Lourdes Hospital',d:'Ernakulam'},
+{n:'VPS Lakeshore Hospital',d:'Ernakulam'},
+{n:'Apollo Adlux Hospital',d:'Ernakulam'},
+{n:'Kinder Hospitals Kochi',d:'Ernakulam'},
+{n:'General Hospital Ernakulam',d:'Ernakulam'},
+{n:'District Hospital Aluva',d:'Ernakulam'},
+{n:'Government Medical College Thrissur',d:'Thrissur'},
+{n:'Jubilee Mission Medical College and Research Institute',d:'Thrissur'},
+{n:'Amala Institute of Medical Sciences',d:'Thrissur'},
+{n:'Daya General Hospital',d:'Thrissur'},
+{n:'Elite Mission Hospital',d:'Thrissur'},
+{n:'Mother Hospital',d:'Thrissur'},
+{n:'Westfort Hospital',d:'Thrissur'},
+{n:'Aswini Hospital',d:'Thrissur'},
+{n:'District Hospital Wadakkanchery',d:'Thrissur'},
+{n:'Government Medical College Palakkad',d:'Palakkad'},
+{n:'District Hospital Palakkad',d:'Palakkad'},
+{n:'Ahalia Hospital',d:'Palakkad'},
+{n:'Palana Institute of Medical Sciences',d:'Palakkad'},
+{n:'Rajiv Gandhi Cooperative Hospital',d:'Palakkad'},
+{n:'Lakshmi Hospital Palakkad',d:'Palakkad'},
+{n:'Thangam Hospital of PMF',d:'Palakkad'},
+{n:'Seventh Day Adventist Hospital Palakkad',d:'Palakkad'},
+{n:'Government Medical College Manjeri',d:'Malappuram'},
+{n:'District Hospital Perinthalmanna',d:'Malappuram'},
+{n:'MIMS Hospital',d:'Malappuram'},
+{n:'KIMS Al Shifa Hospital',d:'Malappuram'},
+{n:'MES Medical College Hospital',d:'Malappuram'},
+{n:'Aster MIMS Kottakkal',d:'Malappuram'},
+{n:'Almadeena Institute of Medical Sciences',d:'Malappuram'},
+{n:'Vailathur Hospital',d:'Malappuram'},
+{n:'District Hospital Tirur',d:'Malappuram'},
+{n:'Government Taluk Hospital Nilambur',d:'Malappuram'},
+{n:'Government Medical College Kozhikode',d:'Kozhikode'},
+{n:'Baby Memorial Hospital',d:'Kozhikode'},
+{n:'Aster MIMS Hospital Kozhikode',d:'Kozhikode'},
+{n:'IQRAA Hospital',d:'Kozhikode'},
+{n:'Meitra Hospital',d:'Kozhikode'},
+{n:'National Hospital Kozhikode',d:'Kozhikode'},
+{n:'Malabar Institute of Medical Sciences',d:'Kozhikode'},
+{n:'PVS Memorial Hospital',d:'Kozhikode'},
+{n:'District Hospital Vadakara',d:'Kozhikode'},
+{n:'Koyili Hospital',d:'Kozhikode'},
+{n:'Government Medical College Hospital Wayanad',d:'Wayanad'},
+{n:'District Hospital Mananthavady',d:'Wayanad'},
+{n:'D.M. Wayanad Institute of Medical Sciences',d:'Wayanad'},
+{n:'Leo Hospital Kalpetta',d:'Wayanad'},
+{n:'Assumption Hospital Bathery',d:'Wayanad'},
+{n:'Wayanad Institute of Medical Sciences Hospital',d:'Wayanad'},
+{n:'Taluk Hospital Vythiri',d:'Wayanad'},
+{n:'Government Medical College Kannur, Pariyaram',d:'Kannur'},
+{n:'District Hospital Kannur',d:'Kannur'},
+{n:'Aster MIMS Kannur',d:'Kannur'},
+{n:'Baby Memorial Hospital Kannur',d:'Kannur'},
+{n:'Kannur Medical College',d:'Kannur'},
+{n:'AKG Memorial Cooperative Hospital',d:'Kannur'},
+{n:'Koyili Hospital Kannur',d:'Kannur'},
+{n:'Malabar Cancer Centre',d:'Kannur'},
+{n:'Lourdes Hospital Kannur',d:'Kannur'},
+{n:'Government Medical College Kasaragod',d:'Kasaragod'},
+{n:'District Hospital Kanhangad',d:'Kasaragod'},
+{n:'General Hospital Kasaragod',d:'Kasaragod'},
+{n:'KIMS Kasaragod',d:'Kasaragod'},
+{n:'Malik Deenar Charitable Hospital',d:'Kasaragod'},
+{n:'Aramana Hospital',d:'Kasaragod'},
+{n:'Lions Hospital Kasaragod',d:'Kasaragod'},
+{n:'Taluk Hospital Hosdurg',d:'Kasaragod'}
+];
+const BT=['A+','A-','B+','B-','O+','O-','AB+','AB-'];
+const COMPAT={'O-':['O-','O+','A-','A+','B-','B+','AB-','AB+'],'O+':['O+','A+','B+','AB+'],'A-':['A-','A+','AB-','AB+'],'A+':['A+','AB+'],'B-':['B-','B+','AB-','AB+'],'B+':['B+','AB+'],'AB-':['AB-','AB+'],'AB+':['AB+']};
+const CAMPS=[
+{n:'Kozhikode Blood Camp',org:'Lions Club',d:'Kozhikode',dt:'2026-09-22',tm:'9AM-4PM',v:'Town Hall, Kozhikode'},
+{n:'Red Cross Mega Camp',org:'Kerala Red Cross',d:'Ernakulam',dt:'2026-09-25',tm:'8AM-5PM',v:'Maharajas College Grounds'},
+{n:'Youth Donation Drive',org:'NSS Kerala',d:'Thiruvananthapuram',dt:'2026-09-28',tm:'10AM-3PM',v:'University College, TVM'},
+{n:'Rotary Donation Camp',org:'Rotary Club Thrissur',d:'Thrissur',dt:'2026-10-02',tm:'9AM-2PM',v:'Swaraj Round'},
+{n:'Kannur District Camp',org:'DMO Kannur',d:'Kannur',dt:'2026-10-05',tm:'8AM-4PM',v:'Civil Station, Kannur'}
+];
+let DB={
+donors:[
+{id:'D1',name:'Arjun Menon',phone:'1234567891',bt:'O+',dist:'Kozhikode',age:28,ld:'2026-05-10',med:[],tat:false,dons:4,rc:'ARJUN100',rp:150,role:'donor'},
+{id:'D2',name:'Priya Nair',phone:'1234567892',bt:'A-',dist:'Ernakulam',age:24,ld:'2026-06-15',med:['Diabetic'],tat:false,dons:2,rc:'PRIYA100',rp:50,role:'donor'},
+{id:'D3',name:'Sreejith Kumar',phone:'1234567893',bt:'B+',dist:'Thrissur',age:32,ld:'2026-04-01',med:[],tat:false,dons:7,rc:'SREE100',rp:300,role:'donor'},
+{id:'D4',name:'Deepa Krishnan',phone:'1234567894',bt:'AB-',dist:'Kozhikode',age:27,ld:'2025-11-20',med:[],tat:false,dons:3,rc:'DEEPA100',rp:100,role:'donor'},
+{id:'D5',name:'Rahul Varma',phone:'1234567895',bt:'O-',dist:'Thiruvananthapuram',age:35,ld:'2026-06-01',med:[],tat:false,dons:12,rc:'RAHUL100',rp:500,role:'donor'}
+],
+requesters:[
+{id:'R1',name:'Suresh Pillai',phone:'1234567896',dist:'Kozhikode',role:'requester',rc:'SURESH100',rp:50},
+{id:'R2',name:'Meera Thomas',phone:'1234567897',dist:'Ernakulam',role:'requester',rc:'MEERA100',rp:0}
+],
+hospitals:[
+{id:'H1',name:'Govt Medical College Kozhikode',phone:'9900001111',dist:'Kozhikode',role:'hospital',staff:'Dr. Anand Raj',
+pts:[{id:'P1',nm:'Rajan P.',age:55,bt:'O+',nu:2,nf:0,ward:'ICU',st:'critical',ad:'2026-09-17'},{id:'P2',nm:'Sheela M.',age:40,bt:'A+',nu:1,nf:1,ward:'Surgery',st:'stable',ad:'2026-09-15'},{id:'P3',nm:'Sunil K.',age:28,bt:'B+',nu:3,nf:3,ward:'General',st:'fulfilled',ad:'2026-09-10'}],
+inv:{'A+':4,'A-':2,'B+':6,'B-':1,'O+':3,'O-':0,'AB+':5,'AB-':1},
+dons:[{dn:'Sreejith Kumar',bt:'B+',dt:'2026-09-16',u:1,fp:'Sunil K.'},{dn:'Arjun Menon',bt:'O+',dt:'2026-09-14',u:1,fp:'Rajan P.'}]},
+{id:'H2',name:'Aster Medcity',phone:'9900002222',dist:'Ernakulam',role:'hospital',staff:'Dr. Lakshmi V.',
+pts:[{id:'P4',nm:'Latha S.',age:35,bt:'A-',nu:1,nf:0,ward:'Maternity',st:'pending',ad:'2026-09-17'}],
+inv:{'A+':8,'A-':0,'B+':5,'B-':2,'O+':4,'O-':1,'AB+':3,'AB-':2},dons:[]}
+],
+reqs:[
+{id:'Q1',rid:'R1',pc:'Patient Alpha',bt:'O+',dist:'Kozhikode',hosp:'Govt Medical College Kozhikode',u:2,pr:'emergency',ud:'2026-09-18',st:'pending',ts:Date.now()-3600000,ab:null,pn:'Rajan P. (Private)',pp:'Via App Only'},
+{id:'Q2',rid:'R2',pc:'Patient Beta',bt:'A-',dist:'Ernakulam',hosp:'Aster Medcity',u:1,pr:'high',ud:'2026-09-20',st:'pending',ts:Date.now()-7200000,ab:null,pn:'Latha S. (Private)',pp:'Via App Only'},
+{id:'Q3',rid:'R1',pc:'Patient Gamma',bt:'B+',dist:'Kozhikode',hosp:'Baby Memorial Hospital',u:3,pr:'normal',ud:'2026-09-25',st:'accepted',ts:Date.now()-86400000,ab:'D3',pn:'Mohanan K.',pp:'Via App Only'}
+],
+notifs:[],
+dons:[{id:'DN1',did:'D3',qid:'Q3',hosp:'Baby Memorial Hospital',dt:'2026-09-16',u:1,st:'completed'}]
+};
+const RDB_KEY='raktsetu_database_v1';
+function saveDB(){try{localStorage.setItem(RDB_KEY,JSON.stringify(DB));}catch(e){console.warn('RakthSetu: could not save local data',e)}}
+function loadDB(){try{const raw=localStorage.getItem(RDB_KEY);if(!raw)return;const saved=JSON.parse(raw);if(saved&&typeof saved==='object'){['donors','requesters','hospitals','reqs','notifs','deletedAccounts','dons'].forEach(k=>{if(Array.isArray(saved[k]))DB[k]=saved[k]})}}catch(e){console.warn('RakthSetu: could not load saved data',e)}}
+loadDB();
+// Demo-account phone migration: restore built-in demo accounts unless permanently deleted.
+const DEMO_LOGIN_PHONES={D1:'1234567891',D2:'1234567892',D3:'1234567893',D4:'1234567894',D5:'1234567895',R1:'1234567896',R2:'1234567897'};
+const DEMO_REQUESTERS={R1:{id:'R1',name:'Suresh Pillai',phone:'1234567896',dist:'Kozhikode',role:'requester',rc:'SURESH100',rp:50},R2:{id:'R2',name:'Meera Thomas',phone:'1234567897',dist:'Ernakulam',role:'requester',rc:'MEERA100',rp:0}};
+const DEMO_DONORS=[
+{id:'D1',name:'Arjun Menon',phone:'1234567891',bt:'O+',dist:'Kozhikode',age:28,ld:'2026-05-10',med:[],tat:false,dons:4,rc:'ARJUN100',rp:150,role:'donor'},
+{id:'D2',name:'Priya Nair',phone:'1234567892',bt:'A-',dist:'Ernakulam',age:24,ld:'2026-06-15',med:['Diabetic'],tat:false,dons:2,rc:'PRIYA100',rp:50,role:'donor'},
+{id:'D3',name:'Sreejith Kumar',phone:'1234567893',bt:'B+',dist:'Thrissur',age:32,ld:'2026-04-01',med:[],tat:false,dons:7,rc:'SREE100',rp:300,role:'donor'},
+{id:'D4',name:'Deepa Krishnan',phone:'1234567894',bt:'AB-',dist:'Kozhikode',age:27,ld:'2025-11-20',med:[],tat:false,dons:3,rc:'DEEPA100',rp:100,role:'donor'},
+{id:'D5',name:'Rahul Varma',phone:'1234567895',bt:'O-',dist:'Thiruvananthapuram',age:35,ld:'2026-06-01',med:[],tat:false,dons:12,rc:'RAHUL100',rp:500,role:'donor'}
+];
+DB.deletedAccounts=Array.isArray(DB.deletedAccounts)?DB.deletedAccounts:[];
+let deletedLedger=[];
+try{deletedLedger=JSON.parse(localStorage.getItem('raktsetu_deleted_accounts_v3')||'[]');if(!Array.isArray(deletedLedger))deletedLedger=[];}catch(e){deletedLedger=[]}
+const deletedKeys=new Set(deletedLedger.map(x=>String(x.role||'')+'::'+String(x.id||'')));
+const deletedIds=new Set(deletedLedger.map(x=>String(x.id||'')));
+const isDemoDeleted=(id,role)=>deletedKeys.has(String(role)+'::'+String(id));
+DEMO_DONORS.forEach(d=>{if(isDemoDeleted(d.id,'donor'))return;if(!DB.donors.some(x=>String(x.id)===d.id)){DB.donors.push(JSON.parse(JSON.stringify(d)));}});
+Object.entries(DEMO_LOGIN_PHONES).forEach(([id,phone])=>{if(isDemoDeleted(id,id.startsWith('D')?'donor':'requester'))return;let u=[...DB.donors,...DB.requesters].find(x=>String(x.id)===id);if(u)u.phone=phone;});
+Object.entries(DEMO_REQUESTERS).forEach(([id,demo])=>{if(isDemoDeleted(id,'requester'))return;let u=DB.requesters.find(x=>String(x.id)===id);if(!u){DB.requesters.push({...demo});u=DB.requesters[DB.requesters.length-1];}u.name=demo.name;u.phone=demo.phone;u.dist=demo.dist;u.role='requester';u.rc=u.rc||demo.rc;u.rp=Number.isFinite(u.rp)?u.rp:demo.rp;});
+const reservedPhones=new Set(Object.values(DEMO_LOGIN_PHONES).map(normalizePhone));
+DB.donors=DB.donors.filter(u=>isDemoDeleted(u.id,'donor')?false:(!reservedPhones.has(normalizePhone(u.phone))||/^D[1-5]$/.test(String(u.id))));
+DB.requesters=DB.requesters.filter(u=>isDemoDeleted(u.id,'requester')?false:(!reservedPhones.has(normalizePhone(u.phone))||/^R[12]$/.test(String(u.id))));
+saveDB();
+// Keep the two prototype hospital accounts available even if an older localStorage
+// snapshot was created before hospital login was added.
+const DEMO_HOSPITALS=[
+  {id:'H1',name:'Govt Medical College Kozhikode',phone:'9900001111',dist:'Kozhikode',role:'hospital',staff:'Dr. Anand Raj',inv:{'A+':8,'A-':0,'B+':5,'B-':2,'O+':4,'O-':1,'AB+':3,'AB-':2},dons:[],pts:[]},
+  {id:'H2',name:'Aster Medcity',phone:'9900002222',dist:'Ernakulam',role:'hospital',staff:'Dr. Lakshmi V.',inv:{'A+':5,'A-':1,'B+':4,'B-':1,'O+':6,'O-':1,'AB+':2,'AB-':1},dons:[],pts:[]}
+];
+if(!Array.isArray(DB.hospitals))DB.hospitals=[];
+DEMO_HOSPITALS.forEach(d=>{if(isDemoDeleted(d.id,'hospital'))return;if(!DB.hospitals.some(h=>String(h.id)===String(d.id)||h.name===d.name)){DB.hospitals.push(JSON.parse(JSON.stringify(d)));}});
+(DB.reqs||[]).forEach(r=>{r.donorDone=!!r.donorDone;r.requesterDone=!!r.requesterDone;if(r.st==='fulfilled'){r.donorDone=true;r.requesterDone=true;}});
+const S={u:null,role:null,lrole:'donor',curPage:'',giv:null,geta:12,navStack:[],gpsWatch:null,gpsQid:null,gpsMap:null,gpsMarker:null,gpsDestMarker:null,gpsRefresh:null};
+const g=id=>document.getElementById(id);
+function ssc(id){
+const screen=g(id);if(!screen){console.error('RakthSetu: unknown screen',id);return false}
+document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));screen.classList.add('on');window.scrollTo({top:0,behavior:'auto'});return true
+}
+function goBack(){if(!S.u){ssc('sl');return}const home=S.role==='donor'?'donor-home':S.role==='requester'?'req-home':'hosp-home';if(S.navStack.length>1)S.navStack.pop();const target=S.navStack.length?S.navStack[S.navStack.length-1]:home;sp(target,{fromBack:true})}
+function campBack(){if(!S.u){ssc('sl');return}S.navStack=['donor-home'];S.curPage='donor-home';sp('donor-home',{fromBack:true})}
+function pushNav(p,fromBack){if(!fromBack&&S.curPage!==p){S.navStack.push(p);if(S.navStack.length>12)S.navStack.shift()}}
+function fdt(d){return d?new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'Never'}
+function dsi(d){return d?Math.floor((Date.now()-new Date(d))/86400000):9999}
+function elig(d){
+if((d.med||[]).some(m=>['HIV','Hepatitis B','Hepatitis C','Diabetic'].includes(m)))return false;
+if(d.tat&&d.tatDt&&dsi(d.tatDt)<180)return false;
+if(dsi(d.ld)<90)return false;
+if(d.feverRecent&&d.feverRecent!=='more4')return false;
+if(d.vaxRecent&&d.vaxRecent!=='more3')return false;
+return true;
+}
+function markAccountDeleted(u,role){
+  try{
+    const key='raktsetu_deleted_accounts_v3';
+    const arr=JSON.parse(localStorage.getItem(key)||'[]');
+    const entry={id:String(u.id),role:String(role||''),phone:normalizePhone(u.phone||''),deletedAt:Date.now()};
+    if(!arr.some(x=>String(x.id)===entry.id&&String(x.role)===entry.role))arr.push(entry);
+    localStorage.setItem(key,JSON.stringify(arr));
+  }catch(e){console.warn('RakthSetu: could not persist deletion',e)}
+}
+function isAccountDeleted(ph,role,id){
+  try{
+    const arr=JSON.parse(localStorage.getItem('raktsetu_deleted_accounts_v3')||'[]');
+    const n=normalizePhone(ph||'');
+    return arr.some(x=>String(x.role||'')===String(role||'') && (String(x.id)===String(id||'') || (n && normalizePhone(x.phone||'')===n)));
+  }catch(e){return false}
+}
+function deleteAccount(e){
+  if(e){e.preventDefault();e.stopPropagation();}
+  const u=S.u;
+  const role=S.role;
+  if(!u||!role){
+    toast('No active account found. Please log in again.');
+    return false;
+  }
+
+  const accountName=u.name||u.staff||u.phone||'this account';
+  const ok=window.confirm('Delete '+accountName+'?\n\nOnce deleted, this account cannot be regained or recovered. This action is permanent.');
+  if(!ok)return false;
+
+  // Permanently remember the deletion separately from the editable demo database.
+  const deletionKey='raktsetu_deleted_accounts_v3';
+  try{
+    const deleted=JSON.parse(localStorage.getItem(deletionKey)||'[]');
+    const entry={id:String(u.id),role:String(role),phone:normalizePhone(u.phone||''),deletedAt:Date.now()};
+    if(!deleted.some(x=>String(x.id)===entry.id&&String(x.role)===entry.role))deleted.push(entry);
+    localStorage.setItem(deletionKey,JSON.stringify(deleted));
+  }catch(err){
+    toast('Could not save account deletion. Please try again.');
+    return false;
+  }
+
+  DB.deletedAccounts=Array.isArray(DB.deletedAccounts)?DB.deletedAccounts:[];
+  if(!DB.deletedAccounts.some(x=>String(typeof x==='string'?x:x.id)===String(u.id)&&String(typeof x==='string'?'':x.role||'')===String(role))){
+    DB.deletedAccounts.push({id:String(u.id),role:String(role),phone:u.phone||'',deletedAt:Date.now()});
+  }
+
+  if(role==='donor'){
+    DB.donors=DB.donors.filter(d=>String(d.id)!==String(u.id));
+    DB.reqs=DB.reqs.filter(r=>String(r.ab)!==String(u.id));
+  }else if(role==='requester'){
+    DB.requesters=DB.requesters.filter(r=>String(r.id)!==String(u.id));
+    DB.reqs=DB.reqs.filter(r=>String(r.rid)!==String(u.id));
+  }else if(role==='hospital'){
+    DB.hospitals=DB.hospitals.filter(h=>String(h.id)!==String(u.id));
+    DB.reqs=DB.reqs.filter(r=>r.hosp!==u.name);
+  }
+
+  saveDB();
+  try{stpG();}catch(err){}
+  try{clMM();}catch(err){}
+  try{clD();}catch(err){}
+  try{clA();}catch(err){}
+
+  S.u=null;S.role=null;S.curPage='';S.navStack=[];S.selQ=null;S.gpsQid=null;
+  const fab=g('dfab');if(fab)fab.classList.add('hid');
+  ssc('sl');
+  window.scrollTo({top:0,behavior:'auto'});
+  setTimeout(()=>toast('Account deleted permanently.'),50);
+  return false;
+}
+window.deleteAccount=deleteAccount;
+
+function btcls(bt){return'b'+bt.replace('+','p').replace('-','m')}
+function pbdg(p){const m={emergency:'&#x1F6A8; Emergency',high:'&#x1F534; High',normal:'&#x1F7E2; Normal'};const c={emergency:'be2',high:'bh',normal:'bn2'};return`<span class="bdg ${c[p]||'bn2'}">${m[p]||p}</span>`}
+function sbdg(s){const m={pending:'Pending',accepted:'Accepted',fulfilled:'Fulfilled'};const c={pending:'bp2',accepted:'bac',fulfilled:'bff'};return`<span class="bdg ${c[s]||'bp2'}">${m[s]||s}</span>`}
+function gid(){return'X'+Date.now()+Math.random().toString(36).slice(2,5).toUpperCase()}
+async function copyText(text){
+try{
+if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);
+else{
+const ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();
+}
+toast('Copied: '+text);
+}catch(e){toast('Code: '+text)}
+}
+function toast(msg){const t=document.createElement('div');t.className='toast';t.textContent=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3000)}
+function matchDistance(d,req){
+  try{
+    const dc=DCOORD?.[d.dist],rc=HCOORD?.[req.hosp]||DCOORD?.[req.dist];
+    return dc&&rc?distanceKm(dc,rc):999;
+  }catch(e){return 999}
+}
+function matchScore(d,req){
+  if(!d||!req||!COMPAT[d.bt]||!COMPAT[d.bt].includes(req.bt))return -1;
+  if(d.available===false||!elig(d))return -1;
+  let score=50;
+  if(d.bt===req.bt)score+=30;
+  if(d.dist===req.dist)score+=25;
+  const km=matchDistance(d,req);
+  if(km<5)score+=15; else if(km<15)score+=10; else if(km<30)score+=5;
+  if(req.pr==='emergency')score+=5;
+  return score;
+}
+function rankedMatches(req){
+  // Smart Match is strictly city/district-local: donors from another city are never matched.
+  return DB.donors.filter(d=>d.dist===req.dist && matchScore(d,req)>=0).map(d=>({...d,_matchScore:matchScore(d,req),_matchKm:matchDistance(d,req)})).sort((a,b)=>b._matchScore-a._matchScore||a._matchKm-b._matchKm);
+}
+function matchD(req){return rankedMatches(req)}
+function matchLabel(d,req){
+  const km=Number.isFinite(d._matchKm)?(d._matchKm<999?d._matchKm.toFixed(1)+' km':'nearby'):'nearby';
+  const reasons=[];
+  if(d.bt===req.bt)reasons.push('same blood group');
+  if(d.dist===req.dist)reasons.push('same district');
+  if(d.available!==false)reasons.push('available');
+  return `${km} · ${reasons.slice(0,2).join(' · ')||'compatible donor'}`;
+}
+function notify(req){const m=matchD(req);m.forEach(d=>{if(!DB.notifs.find(n=>n.did===d.id&&n.qid===req.id))DB.notifs.push({did:d.id,qid:req.id,read:false,ts:Date.now()})});return m.length}
+function updTopbar(){
+const u=S.u;if(!u)return;
+const sub={donor:u.bt+' Donor &middot; '+u.dist,requester:'Requester &middot; '+u.dist,hospital:u.staff||'Hospital Staff'}[S.role]||'';
+g('tsub').innerHTML='<strong class="top-user-name">'+u.name+'</strong> &middot; '+(S.role==='donor'?'<strong class="top-blood-group">'+u.bt+'</strong> <strong class="top-user-role">Donor</strong> &middot; <strong class="top-user-place">'+u.dist+'</strong>':sub);
+
+}
+function updMM(){
+const u=S.u;if(!u)return;
+g('mmnt').textContent=u.name;
+g('mmavt').textContent={donor:'🤝',requester:'🏠',hospital:'🏥'}[S.role]||'👤';
+const sub={donor:u.bt+' Donor &middot; '+u.dist+' &middot; '+(elig(u)?'Eligible':'Not Eligible'),requester:'Requester &middot; '+u.dist,hospital:'Hospital Staff &middot; '+(u.dist||'')}[S.role]||'';
+g('mmst').innerHTML=sub;
+const NAVC={
+donor:[{i:'&#x1F3E0;',l:'Home',p:'donor-home',s:'Dashboard'},{i:'&#x1F4CD;',l:'Tracking',p:'tracking',s:'Track blood requests'},{i:'&#x1FA78;',l:'Blood Requests',p:'donor-inbox',s:'Matching requests'},{i:'&#x26FA;',l:'Donation Camps',p:'donor-camps',s:'Upcoming camps'},{i:'&#x1F464;',l:'My Profile',p:'donor-profile',s:'Edit profile & eligibility'},{i:'&#x2139;&#xFE0F;',l:'About Us',p:'about',s:'RakthSetu features'},{i:'&#x1F504;',l:'How It Works',p:'how',s:'Blood request to donation flow'}],
+requester:[{i:'&#x1F3E0;',l:'Home',p:'req-home',s:'Dashboard'},{i:'&#x1F4CD;',l:'Tracking',p:'tracking',s:'Track blood requests'},{i:'&#x1F4CB;',l:'My Requests',p:'req-myreqs',s:'Track all requests'},{i:'&#x1F464;',l:'Profile',p:'req-profile',s:'Edit details'},{i:'&#x2139;&#xFE0F;',l:'About Us',p:'about',s:'RakthSetu features'},{i:'&#x1F504;',l:'How It Works',p:'how',s:'Blood request to donation flow'}],
+hospital:[{i:'&#x1F4CA;',l:'Dashboard',p:'hosp-home',s:'Overview'},{i:'&#x1F4CD;',l:'Tracking',p:'tracking',s:'Track blood requests'},{i:'&#x1F9D1;&#x200D;&#x2695;&#xFE0F;',l:'Patients',p:'hosp-patients',s:'Patient list'},{i:'&#x1FA78;',l:'Blood Inventory',p:'hosp-inv',s:'Stock levels'},{i:'&#x1F464;',l:'My Profile',p:'hospital-profile',s:'Hospital account'},{i:'&#x2139;&#xFE0F;',l:'About Us',p:'about',s:'RakthSetu features'},{i:'&#x1F504;',l:'How It Works',p:'how',s:'Blood request to donation flow'}]
+};
+const items=NAVC[S.role]||[];
+g('mmitems').innerHTML=items.map(it=>`<button class="mmi${S.curPage===it.p?' mma':''}" onclick="sp('${it.p}');clMM()"><div class="mmii" style="background:${S.curPage===it.p?'var(--pl)':'#f5f5f5'}">${it.i}</div><div class="mmif"><div class="mmin">${it.l}</div><div class="mmis">${it.s}</div></div></button>`).join('');setTimeout(()=>{try{translateGlobalText();}catch(e){}},0)
+}
+function fillDistrictSelect(id){
+const s=g(id); if(!s) return;
+if(s.options.length<=1) KD.forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d;s.appendChild(o)});
+}
+function fillHospitalSelect(id,dist,includeAll=false){
+const s=g(id); if(!s)return;
+const current=s.value;
+s.innerHTML='<option value="">-- Select Hospital --</option>';
+const list=KH.filter(h=>!dist||h.d===dist);
+if(includeAll && !dist) s.innerHTML='<option value="">-- Select Hospital --</option>';
+list.forEach(h=>{const o=document.createElement('option');o.value=h.n;o.textContent=h.n+(dist?'':' ('+h.d+')');s.appendChild(o)});
+if(list.some(h=>h.n===current))s.value=current;
+}
+function bindCityHospitalFilter(cityId,hospitalId){
+const city=g(cityId),hospital=g(hospitalId);if(!city||!hospital)return;
+const apply=()=>fillHospitalSelect(hospitalId,city.value,false);
+if(!city.dataset.hospitalFilterBound){city.addEventListener('change',apply);city.dataset.hospitalFilterBound='1';}
+apply();
+}
+function popSels(){
+const lh=g('lhsp');
+// Hospital login must show only hospitals that actually have a registered
+// hospital account in DB.hospitals. KH contains the larger hospital catalog
+// used by blood requests, but most of those hospitals do not have login
+// accounts in this prototype.
+if(lh){
+  const current=lh.value;
+  lh.innerHTML='<option value="">-- Select Registered Hospital --</option>';
+  DB.hospitals.forEach(h=>{
+    const o=document.createElement('option');
+    o.value=h.name;
+    o.textContent=h.name+' ('+h.dist+')';
+    lh.appendChild(o);
+  });
+  if(DB.hospitals.some(h=>h.name===current))lh.value=current;
+}
+['ed','dnd','qd'].forEach(fillDistrictSelect);
+fillHospitalSelect('eh2',g('ed')?.value||'',false);
+bindCityHospitalFilter('ed','eh2');
+bindCityHospitalFilter('qd','qh');
+}
+let selRoleVal='donor';
+function toggleDemoInfo(e){
+  if(e)e.stopPropagation();
+  const box=g('demoInfo'), text=g('demoInfoText');
+  if(!box||!text)return;
+  if(box.style.display==='block'){
+    box.style.display='none';
+    return;
+  }
+  const demos={
+    donor:{label:'Donor',icon:'👤',numbers:'1234567891 or 1234567892'},
+    requester:{label:'Requester',icon:'🩸',numbers:'1234567896 or 1234567897'},
+    hospital:{label:'Hospital',icon:'🏥',numbers:'9900001111 or 9900002222'}
+  };
+  const d=demos[selRoleVal]||demos.donor;
+  text.innerHTML='<b>'+d.icon+' '+d.label+' Demo Account</b><br>Use this number: <b>'+d.numbers+'</b><br>OTP: <b>123456</b><div style="margin-top:3px;color:#64748b;">Use this to login into the demo account.</div>';
+  box.style.display='block';
+}
+document.addEventListener('click',function(e){
+  const box=g('demoInfo'),btn=g('demoInfoBtn');
+  if(box&&box.style.display==='block'&&e.target!==btn&&!btn?.contains(e.target)&&!box.contains(e.target))box.style.display='none';
+});
+function applyRoleLanguage(){
+  const dict=RS_I18N[rsLang]||{};
+  const roleNames={donor:'Donor',requester:'Requester',hospital:'Hospital'};
+  const roleIcons={donor:'🤝',requester:'🏠',hospital:'🏥'};
+  document.querySelectorAll('.rtb').forEach(btn=>{
+    const onclick=btn.getAttribute('onclick')||'';
+    const m=onclick.match(/selR\('([^']+)'/); const role=m?m[1]:'';
+    if(!role)return;
+    btn.innerHTML='<span>'+roleIcons[role]+'</span>'+(dict[roleNames[role]]||roleNames[role]);
+  });
+  const titleKey=selRoleVal==='donor'?'Login as Donor':selRoleVal==='requester'?'Login as Requester':'Login as Hospital Staff';
+  if(g('ltit'))g('ltit').textContent=dict[titleKey]||titleKey;
+  const sl=g('signupRoleLabel');
+  if(sl && sl.getAttribute('data-rs-role')){
+    const sr=sl.getAttribute('data-rs-role');
+    sl.textContent=dict[roleNames[sr]]||roleNames[sr];
+  }
+}
+function selR(r,btn){
+  selRoleVal=r;
+  document.querySelectorAll('.rtb').forEach(t=>t.classList.remove('on'));
+  if(btn)btn.classList.add('on');
+  if(g('hng'))g('hng').style.display=r==='hospital'?'block':'none';
+  if(r==='hospital')popSels();
+  applyRoleLanguage();
+}
+function normalizePhone(value){
+return String(value||'').replace(/\D/g,'').replace(/^91(?=\d{10}$)/,'');
+}
+function sendOTP(){
+  const input=g('lph');
+  const raw=input ? input.value.trim() : '';
+  const ph=normalizePhone(raw);
+  if(!/^\d{10}$/.test(ph)){
+    toast('Enter a valid 10-digit mobile number');
+    if(input) input.focus();
+    return;
+  }
+  S.lph=ph;
+  S.lrole=selRoleVal;
+  S.lmode='login';
+  S.signupData=null;
+  S.lhospital=(g('lhsp')?.value||'');
+  const sub=g('osub');
+  if(sub) sub.textContent='OTP sent to +91 '+ph;
+  ['d1','d2','d3','d4','d5','d6'].forEach(id=>{const el=g(id);if(el)el.value='';});
+  ssc('sotp');
+  setTimeout(()=>{const first=g('d1');if(first)first.focus();},150);
+}
+function oN(c,ni){
+  c.value=String(c.value||'').replace(/\D/g,'').slice(0,1);
+  if(c.value.length===1&&ni){const n=g(ni);if(n)n.focus();}
+}
+function oB(e,c,pi){
+  if(e.key==='Backspace'&&c.value===''&&pi){const p=g(pi);if(p){p.focus();p.select();}}
+}
+function oV(){
+  const v=['d1','d2','d3','d4','d5','d6'].map(id=>g(id)?.value||'').join('');
+  if(v.length===6)verOTP();
+}
+function verOTP(){
+  const v=['d1','d2','d3','d4','d5','d6'].map(id=>g(id)?.value||'').join('');
+  if(v.length!==6){toast('Enter the 6-digit OTP');return;}
+  if(v!=='123456'){
+    toast('Wrong OTP! Use 123456');
+    ['d1','d2','d3','d4','d5','d6'].forEach(id=>{const el=g(id);if(el)el.value='';});
+    const first=g('d1');if(first)first.focus();
+    return;
+  }
+  if(S.lmode==='signup'){completeSignup();return;}
+  loginU(S.lph,S.lrole,S.lhospital||'');
+}
+// Kerala signup location lists. Districts follow Kerala's 14 districts; places include municipalities, major towns,
+// taluk centres and commonly used localities so the signup field is a controlled district -> place selection.
+const KERALA_SIGNUP_PLACES={
+'Thiruvananthapuram':['Thiruvananthapuram','Neyyattinkara','Nedumangad','Attingal','Varkala','Kazhakoottam','Sreekaryam','Kovalam','Vizhinjam','Kattakada','Balaramapuram','Parassala','Neyyar Dam','Pothencode','Kazhakuttam','Chirayinkeezhu','Venjaramoodu','Peringammala','Palode','Aryanad','Amboori','Vithura','Poovar','Kilimanoor','Mangalapuram','Kallambalam','Vakkom','Anchuthengu','Edava','Kadakkavoor'],
+'Kollam':['Kollam','Karunagappally','Kottarakkara','Punalur','Paravur','Chathannoor','Kundara','Kottiyam','Chinnakkada','Anchal','Pathanapuram','Sasthamkotta','Oachira','Chadayamangalam','Thenmala','Shasthamkotta','Chavara','Neendakara','Kottiyam','Mayyanad','Eravipuram','Kilikollur','Kundara','Sooranad'],
+'Pathanamthitta':['Pathanamthitta','Adoor','Thiruvalla','Pandalam','Ranni','Konni','Aranmula','Mallappally','Kozhenchery','Chengannur','Pathanapuram','Vennikulam','Pullad','Perumpetty','Kulanada','Mavelikara','Niranam','Ranni Angadi','Seethathode','Vadasserikkara','Pandalam Thekkekara'],
+'Alappuzha':['Alappuzha','Chengannur','Cherthala','Kayamkulam','Haripad','Mavelikkara','Ambalappuzha','Aroor','Muhamma','Mannar','Changanassery','Kuttanad','Thakazhy','Edathua','Nedumudi','Kuttanad','Karthikappally','Krishnapuram','Cheppad','Mavelikara','Punnapra','Mararikulam','Kalavoor','Cheriyanad','Thuravoor','Vayalar','Pattanakkad'],
+'Kottayam':['Kottayam','Changanassery','Pala','Vaikom','Ettumanoor','Erattupetta','Kanjirappally','Mundakayam','Karukachal','Manarcad','Kumarakom','Kuravilangad','Ramapuram','Bharananganam','Pampady','Ponkunnam','Manimala','Meenachil','Theekoy','Uzhavoor','Kaduthuruthy','Athirampuzha','Kallara','Thalayolaparambu'],
+'Idukki':['Painavu','Thodupuzha','Kattappana','Nedumkandam','Adimali','Munnar','Peerumade','Kumily','Devikulam','Cheruthoni','Idukki','Vandiperiyar','Rajakkad','Nedumkandam','Kanjikuzhy','Karimannoor','Kattappana','Erattayar','Vagamon','Marayoor','Kumaramangalam','Muttom','Thopramkudy'],
+'Ernakulam':['Kochi','Ernakulam','Aluva','Angamaly','Perumbavoor','Muvattupuzha','Kothamangalam','North Paravur','Thrippunithura','Kalamassery','Maradu','Eloor','Kakkanad','Vypin','Fort Kochi','Mattancherry','Edappally','Palarivattom','Cheranalloor','Tripunithura','Piravom','Koothattukulam','Kumbalangi','Njarackal','Paravur','Kalady','Nedumbassery','Mookkannoor','Perumbavoor','Kothad'],
+'Thrissur':['Thrissur','Chalakudy','Kodungallur','Kunnamkulam','Irinjalakuda','Wadakkanchery','Guruvayur','Chavakkad','Mala','Koratty','Mannuthy','Ollur','Punkunnam','Ayyanthole','Puzhakkal','Kuttanellur','Cherpu','Kodakara','Puthukkad','Wadakkanchery','Peringandoor','Pavaratty','Mullassery','Valapad','Kaipamangalam','Anthikad','Irinjalakuda','Mapranam'],
+'Palakkad':['Palakkad','Ottapalam','Shoranur','Chittur-Thathamangalam','Pattambi','Cherpulassery','Mannarkkad','Alathur','Kuzhalmannam','Vadakkencherry','Nenmara','Kollengode','Kanjikode','Malampuzha','Parli','Kongad','Sreekrishnapuram','Peringottukurissi','Pattambi','Ottapalam','Shornur','Mannarkkad','Agali','Attappadi'],
+'Malappuram':['Malappuram','Manjeri','Tirur','Ponnani','Perinthalmanna','Kondotty','Nilambur','Kottakkal','Parappanangadi','Tanur','Valanchery','Wandoor','Edappal','Kalpakanchery','Areekode','Feroke','Mampad','Nilambur','Melattur','Pandikkad','Karulai','Vazhakkad','Kuttippuram','Tirurangadi','Vengara','Parappanangadi','Pookkottur','Angadippuram','Edavanna','Karuvarakundu','Chungathara'],
+'Kozhikode':['Kozhikode','Vadakara','Koyilandy','Ramanattukara','Feroke','Mukkam','Koduvally','Payyoli','Perambra','Balussery','Thamarassery','Nadapuram','Quilandy','Kunnamangalam','Kozhikode Beach','Beypore','Elathur','Kallai','West Hill','Medical College','Pantheerankavu','Chelannur','Atholi','Meppayur','Nadapuram','Thiruvallur','Kuttiady','Vatakara','Mavoor','Omassery'],
+'Wayanad':['Kalpetta','Mananthavady','Sulthan Bathery','Meppadi','Vythiri','Pulpally','Panamaram','Ambalavayal','Sultan Bathery','Pozhuthana','Muttil','Kaniyambetta','Kottathara','Thirunelly','Thavinhal','Edavaka','Nenmeni','Noolpuzha','Meenangadi','Mullankolly','Padinjarathara','Vellamunda','Kenichira','Kambalakkad','Lakkidi','Kakkavayal'],
+'Kannur':['Kannur','Thalassery','Payyannur','Taliparamba','Mattannur','Iritty','Anthoor','Panoor','Sreekandapuram','Koothuparamba','Azhikode','Valapattanam','Muzhappilangad','Dharmasala','Mayyil','Irikkur','Peravoor','Kuthuparamba','Chokli','New Mahe','Peringathur','Cherupuzha','Payyavoor','Alakode','Sreekandapuram','Pariyaram','Pilathara','Ramanthali','Ezhimala','Kannapuram','Chala','Thottada'],
+'Kasaragod':['Kasaragod','Kanhangad','Nileshwaram','Cheruvathur','Manjeshwar','Uppala','Kumbla','Bekal','Hosdurg','Badiadka','Trikaripur','Perla','Mogral Puthur','Ajanur','Udma','Panathady','Rajapuram','Vellarikundu','Bovikanam','Muliyar','Delampady','Enmakaje','Kuttikol','Karadka','Kayyur-Cheemeni']
+};
+const KERALA_SIGNUP_DISTRICTS=Object.keys(KERALA_SIGNUP_PLACES);
+function populateSignupLocations(){
+  const d=g('sdist'),c=g('scity');
+  if(!d||!c)return;
+  const current=d.value;
+  d.innerHTML='<option value="">-- Select District --</option>'+KERALA_SIGNUP_DISTRICTS.map(x=>`<option value="${x}">${x}</option>`).join('');
+  if(current&&KERALA_SIGNUP_DISTRICTS.includes(current))d.value=current;
+  signupDistrictChanged();
+}
+function signupDistrictChanged(){
+  const d=g('sdist'),c=g('scity');
+  if(!d||!c)return;
+  const places=KERALA_SIGNUP_PLACES[d.value]||[];
+  c.disabled=!d.value;
+  c.innerHTML=d.value
+    ? '<option value="">-- Select City / Town / Locality --</option>'+places.map(x=>`<option value="${x}">${x}</option>`).join('')
+    : '<option value="">-- Select District First --</option>';
+}
+
+function openSignup(){
+  if(selRoleVal==='hospital'){toast('Hospital accounts are created through the hospital/admin system.');return;}
+  const role=selRoleVal;
+  S.signupRole=role;
+  if(g('signupRoleLabel')){g('signupRoleLabel').setAttribute('data-rs-role',role);g('signupRoleLabel').textContent=(RS_I18N[rsLang]||{})[role==='donor'?'Donor':'Requester']||(role==='donor'?'Donor':'Requester');}
+  ['snm','sage','sdob','sbt','semail','spin','sphone','saadhaar'].forEach(id=>{const el=g(id);if(el)el.value=''});
+  if(g('sstate'))g('sstate').value='Kerala';
+  if(g('sdist'))g('sdist').value='';
+  populateSignupLocations();
+  ssc('ssignup');
+}
+function ageFromDob(dob){
+  if(!dob)return null;
+  const d=new Date(dob+'T00:00:00');
+  if(Number.isNaN(d.getTime()))return null;
+  const now=new Date();let age=now.getFullYear()-d.getFullYear();
+  const m=now.getMonth()-d.getMonth();
+  if(m<0||(m===0&&now.getDate()<d.getDate()))age--;
+  return age;
+}
+function signupSendOTP(){
+  const role=S.signupRole||'donor';
+  const name=g('snm')?.value.trim()||'';
+  const age=parseInt(g('sage')?.value||'',10);
+  const dob=g('sdob')?.value||'';
+  const bt=g('sbt')?.value||'';
+  const email=g('semail')?.value.trim()||'';
+  const state=g('sstate')?.value.trim()||'';
+  const dist=g('sdist')?.value.trim()||'';
+  const city=g('scity')?.value.trim()||'';
+  const pin=String(g('spin')?.value||'').replace(/\D/g,'');
+  const phone=normalizePhone(g('sphone')?.value||'');
+  const aadhaar=String(g('saadhaar')?.value||'').replace(/\D/g,'');
+  const dobAge=ageFromDob(dob);
+  if(!name||!dob||!Number.isInteger(age)||!bt||!email||!state||!dist||!city||!/^[0-9]{6}$/.test(pin)||!/^[0-9]{10}$/.test(phone)||!/^[0-9]{12}$/.test(aadhaar)){
+    toast('Please fill all fields correctly');return;
+  }
+  if(!dobAge||dobAge<1||dobAge>120||dobAge!==age){toast('Age does not match the Date of Birth');return;}
+  if(age<18){toast('Signup is available for users aged 18 or above');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){toast('Enter a valid email address');return;}
+  if(DB.donors.some(d=>normalizePhone(d.phone)===phone)||DB.requesters.some(r=>normalizePhone(r.phone)===phone)||DB.hospitals.some(h=>normalizePhone(h.phone)===phone)){
+    toast('This mobile number is already registered. Please log in.');return;
+  }
+  const allUsers=[...(DB.donors||[]),...(DB.requesters||[]),...(DB.hospitals||[])];
+  const aadhaarExists=allUsers.some(u=>String(u.aadhaar||'').replace(/\D/g,'')===aadhaar);
+  if(aadhaarExists){toast('This Aadhaar number is already registered. One account per Aadhaar is allowed.');return;}
+  S.signupData={id:gid(),name,age,dob,bt,email,state,dist,city,pin,phone,aadhaar,role};
+  S.lph=phone;S.lrole=role;S.lmode='signup';S.lhospital='';
+  if(g('osub'))g('osub').textContent='OTP sent to +91 '+phone+' for account verification.';
+  ['d1','d2','d3','d4','d5','d6'].forEach(id=>{const el=g(id);if(el)el.value='';});
+  ssc('sotp');setTimeout(()=>{const first=g('d1');if(first)first.focus();},150);
+}
+function completeSignup(){
+  const d=S.signupData;if(!d){toast('Signup session expired. Please register again.');ssc('ssignup');return;}
+  const allUsers=[...(DB.donors||[]),...(DB.requesters||[]),...(DB.hospitals||[])];
+  if(allUsers.some(u=>String(u.aadhaar||'').replace(/\D/g,'')===d.aadhaar)){toast('This Aadhaar number is already registered.');ssc('ssignup');return;}
+  if(DB.donors.some(u=>normalizePhone(u.phone)===d.phone)||DB.requesters.some(u=>normalizePhone(u.phone)===d.phone)){toast('This mobile number is already registered.');ssc('sl');return;}
+  let u;
+  if(d.role==='donor'){
+    u={id:d.id,name:d.name,phone:d.phone,bt:d.bt,dist:d.dist,age:d.age,dob:d.dob,email:d.email,state:d.state,city:d.city,pin:d.pin,aadhaar:d.aadhaar,ld:null,med:[],medOther:'',tat:false,tatDt:'',feverRecent:'',vaxRecent:'',dons:0,rc:d.name.split(/\s+/)[0].toUpperCase()+Math.floor(100+Math.random()*900),rp:0,role:'donor'};
+    DB.donors.push(u);
+  }else{
+    u={id:d.id,name:d.name,phone:d.phone,dist:d.dist,age:d.age,dob:d.dob,email:d.email,state:d.state,city:d.city,pin:d.pin,aadhaar:d.aadhaar,role:'requester',rc:d.name.split(/\s+/)[0].toUpperCase()+Math.floor(100+Math.random()*900),rp:0};
+    DB.requesters.push(u);
+  }
+  saveDB();
+  S.signupData=null;S.lmode='login';S.u=u;S.role=d.role;S.navStack=[];S.lhospital='';
+  ssc('sm');if(g('dfab'))g('dfab').classList.remove('hid');
+  if(d.role==='donor')sp('donor-home');else sp('req-home');
+  updD();updTopbar();updMM();
+  toast('Account created successfully. Welcome to RakthSetu!');
+}
+
+function loginU(ph,role,selectedHospital){
+  ph=normalizePhone(ph);
+  role=role||selRoleVal||'donor';
+  // Only the v3 deletion ledger is authoritative. Older prototype ledgers may contain
+  // stale/corrupted entries from previous delete-button bugs and must not delete other accounts.
+  if(isAccountDeleted(ph,role,S.u?.id)){
+    toast('This account has been permanently deleted and cannot be recovered.');
+    return;
+  }
+  let u=null;
+
+  if(role==='donor'){
+    u=DB.donors.find(d=>normalizePhone(d.phone)===ph);
+  }else if(role==='requester'){
+    u=DB.requesters.find(r=>normalizePhone(r.phone)===ph);
+  }else if(role==='hospital'){
+    const selected=selectedHospital || g('lhsp')?.value || S.lhospital || '';
+    if(!selected){
+      toast('Select your registered hospital');
+      return;
+    }
+    u=DB.hospitals.find(h=>h.name===selected && normalizePhone(h.phone)===ph);
+    if(!u){
+      toast('Hospital login failed. Use the registered mobile number for the selected hospital.');
+      return;
+    }
+  }
+
+  if(!u){
+    if(role==='donor'){
+      u={id:gid(),name:'New Donor',phone:ph,bt:'O+',dist:'Ernakulam',age:25,ld:null,med:[],tat:false,dons:0,rc:'NEW'+Date.now(),rp:0,role:'donor'};
+      DB.donors.push(u);saveDB();
+    }else if(role==='requester'){
+      u={id:gid(),name:'New Requester',phone:ph,dist:'Ernakulam',role:'requester',rc:'NEW'+Date.now(),rp:0};
+      DB.requesters.push(u);saveDB();
+    }else{
+      toast('Hospital login failed. Select a registered hospital and use its registered mobile number.');
+      return;
+    }
+  }
+
+  S.u=u;S.role=role;S.navStack=[];S.lhospital='';
+  ssc('sm');
+  if(g('dfab'))g('dfab').classList.remove('hid');
+  if(role==='donor')sp('donor-home');
+  else if(role==='requester')sp('req-home');
+  else sp('hosp-home');
+  updD();updTopbar();updMM();
+
+  // Emergency alerts are shown immediately when a donor logs in.
+  if(role==='donor'){
+    const emergency=DB.reqs.find(r=>r.st!=='fulfilled'&&r.pr==='emergency'&&matchD(r).some(d=>String(d.id)===String(u.id)));
+    if(emergency)setTimeout(()=>shAl(emergency),250);
+  }
+}
+
+function goEmg(){ssc('se');bindCityHospitalFilter('ed','eh2')}
+function logout(){
+  try{stpG();}catch(e){}
+  try{clMM();}catch(e){}
+  try{clD();}catch(e){}
+  try{clA();}catch(e){}
+  S.u=null; S.role=null; S.curPage=''; S.lrole='donor'; S.lmode='login'; S.signupData=null; S.signupRole='donor'; S.lph=''; S.lhospital=''; S.selQ=null; S.gpsQid=null;
+  const fab=g('dfab'); if(fab) fab.classList.add('hid');
+  ['d1','d2','d3','d4','d5','d6'].forEach(id=>{const el=g(id);if(el)el.value='';});
+  const phone=g('lph'); if(phone)phone.value='';
+  const hospital=g('lhsp'); if(hospital)hospital.selectedIndex=0;
+  selRoleVal='donor';
+  document.querySelectorAll('.rtb').forEach((t,i)=>t.classList.toggle('on',i===0));
+  if(g('hng'))g('hng').style.display='none';
+  applyRoleLanguage();
+  ssc('sl'); window.scrollTo({top:0,behavior:'auto'}); toast('Logged out successfully');
+}
+function subEmg(){
+const n=g('en').value.trim(),ph=g('ep').value.trim(),bt=g('eb').value,dist=g('ed').value,hosp=g('eh2').value,u=parseInt(g('eu').value)||1;
+if(!n||!ph||!bt||!dist||!hosp){toast('Fill all fields');return}
+const req={id:gid(),rid:'EMG',pc:'Emergency Patient',bt,dist,hosp,u,pr:'emergency',ud:new Date().toISOString().split('T')[0],st:'pending',ts:Date.now(),ab:null,pn:n+' (Emergency)',pp:ph};
+DB.reqs.unshift(req);const m=notify(req);ssc('sl');setTimeout(()=>toast('Emergency sent! '+m+' donors alerted.'),400)
+}
+function opMM(){updMM();g('mmpanel').classList.add('on');g('mmov').classList.add('on')}
+function clMM(){g('mmpanel').classList.remove('on');g('mmov').classList.remove('on')}
+function sp(p,opts={}){
+pushNav(p,!!opts.fromBack);S.curPage=p;ssc('sm');updTopbar();const pc=g('pc');
+const map={'donor-home':rDH,'donor-inbox':rDI,'donor-camps':rDC,'donor-profile':rDP,'req-home':rRH,'req-myreqs':rRM,'req-profile':rRP,'hosp-home':rHH,'hospital-profile':rHospitalProfile,'tracking':rTrack,'hosp-patients':rHPt,'hosp-inv':rHIn,'hosp-dons':rHD,'about':rAbout,'how':rHow};
+if(map[p])map[p](pc);setTimeout(()=>{try{translateGlobalText();}catch(e){}},0);const home=S.role==='donor'?'donor-home':S.role==='requester'?'req-home':'hosp-home';if(home&&p!==home&&!pc.querySelector('.topbar'))pc.insertAdjacentHTML('afterbegin',`<button class="page-back" onclick="goBack()">&#8592; Back</button>`);
+}
+function donorActiveCount(u){return DB.reqs.filter(r=>r.st!=='fulfilled'&&((r.ab&&String(r.ab)===String(u.id))||(!r.ab&&matchD(r).some(d=>String(d.id)===String(u.id))))).length}
+function rDH(pc){const u=S.u,el=elig(u),ic=DB.notifs.filter(n=>n.did===u.id&&!n.read).length,rc=donorActiveCount(u);
+pc.innerHTML=`<div class="pc">
+<div class="wb"><div class="wbi">&#x1FA78;</div><div class="wbt"><h3>${el?'You can donate today!':'Not eligible right now'}</h3><p>${el?rc+' matching requests for you':'See Profile to check reason'}</p></div></div>
+<div class="bg2">
+<div class="bc" onclick="sp('donor-inbox')"><div class="bci">&#x1F4EC;</div><div class="bct">Blood Requests</div><div class="bcn">${rc}</div><div class="bcs">Active requests${ic>0?' &bull; '+ic+' new':''}</div></div>
+<div class="bc" onclick="sp('tracking')"><div class="bci">&#x1F4CD;</div><div class="bct">Track Requests</div><div class="bcs">Live status</div></div>
+<div class="bc" onclick="showDons()"><div class="bci">&#x1F3C6;</div><div class="bct">My Donations</div><div class="bcn">${u.dons}</div><div class="bcs">total</div></div>
+<div class="bc" onclick="sp('donor-camps')"><div class="bci">&#x26FA;</div><div class="bct">Nearby Camps</div><div class="bcn">${CAMPS.length}</div><div class="bcs">upcoming</div></div>
+<div class="bc" onclick="sp('donor-profile')"><div class="bci">&#x1F464;</div><div class="bct">My Profile</div><div class="bcs">${u.bt} &middot; ${u.dist}</div><div class="bcs">${el?'&#x2705; Eligible':'&#x26A0; Not eligible'}</div></div>
+</div>
+<div class="rcd"><h3>&#x1F381; Refer &amp; Earn!</h3><p>Earn 50 pts per referral &middot; <strong>${u.rp} points</strong> so far</p><div class="rcb"><span class="rcc">${u.rc}</span><button style="background:rgba(255,255,255,.25);color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:6px 13px;border-radius:50px;font-family:Nunito;font-weight:800;cursor:pointer;font-size:.82rem" onclick="copyText('${u.rc}')">Copy</button></div></div>
+</div>`}
+function showDons(){const u=S.u,md=DB.dons.filter(d=>d.did===u.id);const pc=g('pc');
+pc.innerHTML=`<div class="topbar"><button class="tbk" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">My Donations</div></div></div>
+<div class="pc">
+<div class="sr"><div class="sc2"><div class="sv">${u.dons}</div><div class="sl">Donations</div></div><div class="sc2"><div class="sv">${u.dons*450}ml</div><div class="sl">Blood Given</div></div><div class="sc2"><div class="sv">${u.dons}</div><div class="sl">Lives Saved</div></div></div>
+<div class="lc2">${md.length?md.map(d=>`<div class="dli"><div class="dlic">&#x1FA78;</div><div class="dlif"><div class="dln">${d.hosp}</div><div class="dls">${d.u} unit &middot; ${d.st}</div></div><div class="dld">${fdt(d.dt)}</div></div>`).join(''):'<div class="es"><div class="esi">&#x1FA78;</div><p>No donations yet</p></div>'}</div>
+<div style="background:var(--pl);border-radius:var(--rs);padding:13px;"><p style="font-size:.78rem;font-weight:700;color:var(--pd)">Last donation: <strong>${fdt(u.ld)}</strong> &middot; Next eligible: <strong>${u.ld?fdt(new Date(new Date(u.ld).getTime()+90*86400000)):'Now'}</strong></p></div>
+</div>`}
+function rDI(pc){const u=S.u;syncAllRequests();const matching=DB.reqs.filter(r=>{if(r.st==='fulfilled')return false;if(r.ab&&String(r.ab)!==String(u.id))return false;return matchD(r).some(d=>String(d.id)===String(u.id))||String(r.ab)===String(u.id)});matching.sort((a,b)=>({emergency:0,high:1,normal:2}[a.pr]||2)-({emergency:0,high:1,normal:2}[b.pr]||2));DB.notifs.filter(n=>n.did===u.id).forEach(n=>n.read=true);updTopbar();
+pc.innerHTML=`<div class="pc">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;padding:2px 1px"><div style="font-size:.92rem;font-weight:900;color:#123b5d">Blood Requests</div><span class="bdg bac">Active ${matching.length}</span></div>
+${matching.length===0?`<div class="es" style="margin-top:55px"><div class="esi">&#x1F4ED;</div><p>No matching requests now</p><p style="margin-top:5px;font-size:.75rem">You will be notified when one arrives</p></div>`:
+`<div style="background:linear-gradient(135deg,#eef7ff,#f7fbff);border:1px solid #cfe5f7;border-radius:14px;padding:12px 13px;margin-bottom:11px"><div style="font-size:.86rem;font-weight:900;color:#123b5d">&#x2728; Smart Matching</div><div style="font-size:.73rem;color:var(--tm);font-weight:650;margin-top:3px">Requests are matched only with eligible donors in the same city, using blood-group compatibility, availability and estimated distance.</div></div>
+<p style="font-size:.8rem;font-weight:700;color:var(--tm);margin-bottom:11px">&#x1F512; Names hidden until you accept</p>
+<div class="lc2">${matching.map(r=>{const me=matchD(r).find(d=>String(d.id)===String(u.id));return `<div class="ii ${r.pr==='emergency'?'eme':''}" onclick="opQD('${r.id}')">
+<div class="btb ${btcls(r.bt)}">${r.bt}</div>
+<div class="iii"><div class="iit">${r.pc}</div><div class="iis">${r.dist} &middot; ${r.hosp.slice(0,30)}</div><div style="margin-top:4px">${pbdg(r.pr)} ${sbdg(r.st)}</div>${me?`<div style="margin-top:7px;padding:7px 9px;background:#f4fbff;border:1px solid #d5eaf7;border-radius:9px;font-size:.72rem;font-weight:800;color:#24516f">&#x2728; Smart match &middot; ${matchLabel(me,r)}</div>`:''}</div><div class="iia">&#8250;</div></div>`}).join('')}</div>`}
+</div>`}
+function opQD(qid){S.selQ=qid;const req=DB.reqs.find(r=>r.id===qid);if(!req)return;const u=S.u,acc=req.ab===u.id;req.donorDone=!!req.donorDone;req.requesterDone=!!req.requesterDone;const pc=g('pc');
+pc.innerHTML=`<div class="topbar"><button class="tbk" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">Request Details</div></div></div>
+<div class="dbn"><div class="dbl">Blood Type Needed</div><div class="dbb">${req.bt}</div><div style="margin-top:6px">${pbdg(req.pr)}</div></div>
+<div style="padding-top:24px"></div>
+<div class="dic">
+<div class="dr"><div class="dri">&#x1F9D1;</div><div class="drf"><div class="drl">Request</div><div class="drv">${req.pc}</div></div></div>
+<div class="dr"><div class="dri">&#x1FA78;</div><div class="drf"><div class="drl">Blood Type</div><div class="drv">${req.bt}</div></div></div>
+<div class="dr"><div class="dri">&#x1F9EA;</div><div class="drf"><div class="drl">Units</div><div class="drv">${req.u} unit(s)</div></div></div>
+<div class="dr"><div class="dri">&#x1F4CD;</div><div class="drf"><div class="drl">District</div><div class="drv">${req.dist}</div></div></div>
+<div class="dr"><div class="dri">&#x1F3E5;</div><div class="drf"><div class="drl">Hospital</div><div class="drv">${req.hosp}</div></div></div>
+<div class="dr"><div class="dri">&#x1F4C5;</div><div class="drf"><div class="drl">Needed By</div><div class="drv">${fdt(req.ud)}</div></div></div>
+
+</div>
+<div class="pn"><div class="pi">&#x1F512;</div><p>Requester and patient names are private. Communication and coordination are handled through RakthSetu.</p></div>${acc?`<div style="background:var(--okl);border-radius:var(--rs);padding:13px 15px;margin:0 14px 11px;display:flex;gap:9px"><div style="font-size:1.3rem">&#x2705;</div><p style="color:#2E7D32;font-size:.78rem;font-weight:700">You accepted! Head to the hospital. Live GPS is starting automatically.</p></div>`:''}
+<div style="padding:0 14px 80px;display:flex;flex-direction:column;gap:9px">
+${acc?`<button class="btn bsu" type="button" onclick="stGPS('${req.id}')">&#x1F5FA;&#xFE0F; Start Live GPS</button><button class="btn bp" type="button" onclick="mkDone('${req.id}')">&#x2705; ${req.donorDone?(req.requesterDone?'Donation Completed':'Donation Done — Waiting for Requester'):'I Donated — Mark Donation Done'}</button><div style="font-size:.74rem;color:var(--tm);font-weight:700;text-align:center">${req.donorDone?(req.requesterDone?'Both confirmed — donation recorded.':'You confirmed. Requester must also confirm.'):'Click after the blood donation is physically completed.'}</div>`:`<button class="btn bp" type="button" onclick="accReq('${req.id}')">&#x2705; Accept &mdash; I Will Donate</button>`}
+<button class="btn bgh" onclick="sp('donor-inbox')">&#8592; Back</button>
+</div>`}
+function accReq(qid){
+const req=DB.reqs.find(r=>r.id===qid),u=S.u;
+if(!req||!u)return;
+if(req.st==='fulfilled'){toast('This request is already fulfilled');return}
+if(req.ab&&String(req.ab)!==String(u.id)){toast('Another donor has already accepted this request');return}
+if(!elig(u)){toast('You are not currently eligible to donate');return}
+req.ab=u.id;req.st='accepted';req.acceptedAt=Date.now();req.donorLat=null;req.donorLng=null;req.donorUpdated=null;syncSaveReq(req);saveDB();
+toast('Accepted! Request accepted. Live GPS is starting automatically.');
+opQD(qid);
+// Automatically start live GPS immediately after donor acceptance.
+setTimeout(()=>{
+  const accepted=DB.reqs.find(r=>r.id===qid);
+  if(accepted && String(accepted.ab)===String(S.u?.id) && accepted.st==='accepted') stGPS(qid);
+},450);
+}
+function recordDonationIfBoth(req){
+if(!req||!req.donorDone||!req.requesterDone||req.st==='fulfilled')return false;
+const donor=getAcceptedDonor(req);
+const units=Math.max(1,parseInt(req.u)||1);
+const dt=new Date().toISOString().split('T')[0];
+req.st='fulfilled';
+
+// Count the completed donation once for the donor.
+if(donor){
+  donor.dons=(donor.dons||0)+1;
+  donor.ld=dt;
+}
+
+// Create the RakthSetu donation record once.
+let donation=DB.dons.find(d=>d.qid===req.id);
+if(!donation){
+  donation={id:gid(),did:req.ab,qid:req.id,hosp:req.hosp,dt,u:units,st:'completed'};
+  DB.dons.push(donation);
+}
+
+// A completed donor/requester transaction supplies the selected hospital.
+// Add the donated blood to that hospital's inventory automatically.
+const hospital=DB.hospitals.find(h=>h.name===req.hosp && String(h.dist)===String(req.dist));
+if(hospital){
+  hospital.inv=hospital.inv||{};
+  hospital.dons=hospital.dons||[];
+  const before=hospital.dons.find(d=>d.qid===req.id && d.source==='RakthSetu');
+  if(!before){
+    hospital.inv[req.bt]=(Number(hospital.inv[req.bt])||0)+units;
+    hospital.dons.push({
+      id:gid(),qId:req.id,qid:req.id,dn:donor?.name||'RakthSetu Donor',
+      bt:req.bt,dt,u:units,fp:req.pn||'General Stock',source:'RakthSetu'
+    });
+  }
+}
+
+syncSaveReq(req);saveDB();
+return true;
+}
+function showLifeSaved(){
+const old=document.querySelector('.life-pop');if(old)old.remove();
+const wrap=document.createElement('div');wrap.className='life-pop';
+const card=document.createElement('div');card.className='life-card';
+card.innerHTML='<div class="life-heart">&#x2764;&#xFE0F;</div><div class="life-title">1 Life Saved</div><div class="life-sub">Donation completed successfully</div>';
+wrap.appendChild(card);
+for(let i=0;i<18;i++){
+  const c=document.createElement('span');c.className='life-conf';
+  c.style.setProperty('--x',`${Math.round(Math.cos(i/18*Math.PI*2)*(75+Math.random()*100))}px`);
+  c.style.setProperty('--y',`${Math.round(Math.sin(i/18*Math.PI*2)*(65+Math.random()*90))}px`);
+  c.style.animationDelay=`${Math.random()*0.12}s`;
+  c.style.background=['#1976D2','#43A047','#FBC02D','#E53935','#8E24AA'][i%5];
+  card.appendChild(c);
+}
+document.body.appendChild(wrap);setTimeout(()=>wrap.remove(),2300);
+}
+function mkDone(qid){
+  const local=DB.reqs.find(r=>String(r.id)===String(qid));
+  const req=local?syncMerge(local):null;
+  const u=S.u;
+  if(!req||!u){toast('Request not found');return;}
+  if(S.role!=='donor'){toast('Only the donor can confirm the donation');return;}
+  if(String(req.ab)!==String(u.id)){toast('You must accept this request first');return;}
+  if(req.st==='fulfilled'){toast('Donation record is already completed');return;}
+  if(req.donorDone){toast(req.requesterDone?'Donation record completed!':'You already confirmed. Waiting for the requester to confirm.');return;}
+  req.donorDone=true;
+  syncSaveReq(req);saveDB();
+  const completed=recordDonationIfBoth(req);
+  if(completed){
+    showLifeSaved();
+    toast('Both confirmed! Donation completed.');
+    setTimeout(()=>sp('donor-home',{fromBack:true}),1800);
+  }else{
+    toast('Donation marked done. Waiting for requester to confirm.');
+    setTimeout(()=>sp('donor-home',{fromBack:true}),900);
+  }
+}
+function requesterDone(qid){
+  const local=DB.reqs.find(r=>String(r.id)===String(qid));
+  const req=local?syncMerge(local):null;
+  const u=S.u;
+  if(!req||!u){toast('Request not found');return;}
+  if(S.role!=='requester'||String(req.rid)!==String(u.id)){toast('Only the requester can confirm this donation');return;}
+  if(req.st!=='accepted'||!req.ab){toast('A donor must accept this request first');return;}
+  if(req.requesterDone){toast(req.donorDone?'Donation completed!':'You already confirmed. Waiting for the donor to confirm.');return;}
+  req.requesterDone=true;
+  syncSaveReq(req);saveDB();
+  const completed=recordDonationIfBoth(req);
+  if(completed){
+    toast('Donation completed successfully. Thank you for confirming.');
+    setTimeout(()=>sp('req-home',{fromBack:true}),900);
+  }else{
+    toast('Donation marked done. Waiting for donor to confirm.');
+    setTimeout(()=>sp('req-home',{fromBack:true}),900);
+  }
+}
+
+function shRD(qid){
+const req=syncMerge(DB.reqs.find(r=>r.id===qid));
+if(!req)return;
+const u=S.u;
+if(!u)return;
+const isRequester=S.role==='requester'&&String(req.rid)===String(u.id);
+const isDonor=S.role==='donor'&&String(req.ab)===String(u.id);
+const donor=getAcceptedDonor(req);
+const canDone=isRequester&&req.st==='accepted'&&!!req.ab;
+const requesterConfirmed=!!req.requesterDone;
+const donorConfirmed=!!req.donorDone;
+const doneText=requesterConfirmed?(donorConfirmed?'Donation completed — both confirmed':'Donation Done — Waiting for Donor'):'Mark Donation Done';
+pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">Request Details</div></div></div>
+<div class="dbn"><div class="dbl">Blood Type Needed</div><div class="dbb">${req.bt}</div><div style="margin-top:6px">${pbdg(req.pr)} ${sbdg(req.st)}</div></div>
+<div style="padding-top:20px"></div>
+<div class="dic">
+<div class="dr"><div class="dri">&#x1F9D1;</div><div class="drf"><div class="drl">Request</div><div class="drv">${req.pc||'Blood Request'}</div></div></div>
+<div class="dr"><div class="dri">&#x1FA78;</div><div class="drf"><div class="drl">Blood Type</div><div class="drv">${req.bt}</div></div></div>
+<div class="dr"><div class="dri">&#x1F9EA;</div><div class="drf"><div class="drl">Units</div><div class="drv">${req.u||1} unit(s)</div></div></div>
+<div class="dr"><div class="dri">&#x1F4CD;</div><div class="drf"><div class="drl">District</div><div class="drv">${req.dist}</div></div></div>
+<div class="dr"><div class="dri">&#x1F3E5;</div><div class="drf"><div class="drl">Hospital</div><div class="drv">${req.hosp}</div></div></div>
+<div class="dr"><div class="dri">&#x1F4C5;</div><div class="drf"><div class="drl">Needed By</div><div class="drv">${fdt(req.ud)}</div></div></div>
+${isRequester&&req.st==='accepted'&&donor?`<div class="dr"><div class="dri">&#x1F91D;</div><div class="drf"><div class="drl">Accepted Donor</div><div class="drv">${donor.name}</div></div></div>`:''}
+</div>
+<div class="pn"><div class="pi">&#x1F512;</div><p>Donor and requester details are shared only as allowed by the accepted request.</p></div>
+${(isRequester||S.role==='hospital')&&req.st==='accepted'&&req.ab?`<div style="margin:0 14px 11px;background:#f0fff4;border:1px solid #b7ebc6;border-radius:12px;padding:12px 14px"><div style="font-size:.8rem;font-weight:900;color:#2e7d32">&#x2705; Donor accepted this request</div><div style="font-size:.73rem;color:var(--tm);font-weight:700;margin-top:3px">Live donor GPS is available now.</div></div>`:''}
+<div style="padding:0 14px 80px;display:flex;flex-direction:column;gap:9px">
+${(isRequester||S.role==='hospital')&&req.st==='accepted'&&req.ab?`<button class="btn bsu" type="button" onclick="openViewerGPS('${req.id}','${S.role}')">&#x1F4CD; Open Donor Live GPS</button>`:''}
+${canDone&&!requesterConfirmed?`<button class="btn bp" type="button" onclick="requesterDone('${req.id}')">&#x2705; Mark Donation Done</button><div style="font-size:.74rem;color:var(--tm);font-weight:700;text-align:center">After you confirm, the donor must also click Donation Done.</div>`:''}
+${isRequester&&requesterConfirmed?`<button class="btn bsu" type="button" disabled>&#x2705; ${doneText}</button><div style="font-size:.74rem;color:var(--tm);font-weight:700;text-align:center">${donorConfirmed?'Both confirmed — donation record created.':'You confirmed. Waiting for the donor to confirm.'}</div>`:''}
+${isDonor&&req.st==='accepted'&&!req.donorDone?`<button class="btn bp" type="button" onclick="mkDone('${req.id}')">&#x2705; I Donated — Mark Donation Done</button>`:''}${isDonor&&req.st==='accepted'&&req.donorDone?`<button class="btn bsu" type="button" disabled>&#x2705; ${req.requesterDone?'Donation Completed':'Donation Done — Waiting for Requester'}</button>`:''}
+<button class="btn bgh" type="button" onclick="goBack()">&#8592; Back</button>
+</div>`;
+}
+function rTrack(pc){
+syncAllRequests();
+const u=S.u||{},role=S.role;
+const rows=DB.reqs.filter(r=>{syncMerge(r);if(role==='requester')return String(r.rid)===String(u.id);if(role==='donor')return String(r.ab)===String(u.id);if(role==='hospital')return r.hosp===u.name||r.hosp===u.hospital||(u.dist&&r.dist===u.dist);return false});
+const body=rows.map(r=>{
+  const canViewer=(role==='requester'||role==='hospital')&&r.st==='accepted'&&!!r.ab;
+  const live=canViewer&&!!r.donorUpdated;
+  const donor=getAcceptedDonor(r);
+  const gpsFn=role==='hospital'?`openHospitalGPS('${r.id}')`:`openRequesterGPS('${r.id}')`;
+  return `<div class="ii" onclick="shRD('${r.id}')"><div class="btb ${btcls(r.bt)}">${r.bt}</div><div class="iii"><div class="iit">${r.pc||'Blood Request'}</div><div class="iis">${r.hosp||'Hospital'} · ${r.u||1} unit(s)</div><div style="margin-top:4px">${pbdg(r.pr)} ${sbdg(r.st)}</div>${canViewer&&donor?`<div style="margin-top:7px;padding:8px 10px;border-radius:10px;background:#f0fff4;border:1px solid #b7ebc6"><div style="font-size:.72rem;color:#2e7d32;font-weight:800;text-transform:uppercase;letter-spacing:.04em">Accepted Donor</div><div style="font-size:.9rem;font-weight:900;color:#17351f;margin-top:2px">${donor.name}</div><div class="iis" style="margin-top:3px;color:${live?'#2E7D32':'#E65100'};font-weight:800">${live?'🟢 Donor GPS LIVE · '+fmtAgo(r.donorUpdated):'🟠 Donor accepted · GPS ready'}</div></div>`:''}${role==='donor'&&r.st==='accepted'&&String(r.ab)===String(u.id)?`<div style="padding:0 12px 10px"><button class="btn bp" type="button" onclick="event.stopPropagation();mkDone('${r.id}')" style="padding:10px">${r.donorDone?'✓ Donation Done — Waiting for Requester':'✓ I Donated — Mark Donation Done'}</button></div>`:''}${role==='requester'&&r.st==='accepted'&&String(r.rid)===String(u.id)?`<div style="padding:0 12px 10px"><button class="btn bp" type="button" onclick="event.stopPropagation();requesterDone('${r.id}')" style="padding:10px">${r.requesterDone?(r.donorDone?'✓ Donation Completed':'✓ Done — Waiting for Donor'):'✓ Donation Received — Mark Done'}</button></div>`:''}</div><div class="iia">›</div></div>${canViewer?`<div style="padding:0 12px 12px"><button class="btn bsu" type="button" onclick="event.stopPropagation();${gpsFn}" style="padding:10px">📍 ${live?'Open Live GPS':'Open Donor GPS'}</button></div>`:''}`;
+}).join('');
+pc.innerHTML=`<div class="pc"><div style="padding:4px 0 8px"><p style="font-size:.8rem;color:var(--tm);font-weight:700">Track requests connected to your account.</p></div>${rows.length?`<div class="lc2">${body}</div>`:`<div class="es"><div class="esi">📍</div><p>No requests to track yet.</p><p class="iis">Your submitted blood requests will appear here.</p></div>`}</div>`;
+}
+function showTrackDetails(qid){
+const r=DB.reqs.find(x=>x.id===qid);if(!r)return;
+toast('Status: '+r.st+' | '+r.u+' unit(s) requested');
+}
+function rAbout(pc){
+pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">About Us</div><div class="tlogosub">RakthSetu &middot; Connecting Blood. Saving Lives.</div></div></div>
+<div class="pc"><div class="fsc"><div class="stit">&#x2139;&#xFE0F; About RakthSetu</div><div class="about-intro" style="margin-bottom:14px"><strong>RakthSetu</strong> is a smart blood-connect platform designed to connect people who need blood with eligible donors and hospitals. Our goal is to make blood requests faster, more organized, privacy-aware and easier to coordinate.</div><div class="stit">&#x2728; Key Features</div><div class="feature-grid">
+<div class="feature-item"><div class="fi">&#x1F9E0;</div><div class="ft">Smart Blood Matching</div><div class="fs">Matches requests using blood-group compatibility, availability, location and estimated distance.</div></div>
+<div class="feature-item"><div class="fi">&#x1F4CD;</div><div class="ft">District Filtering</div><div class="fs">Filters eligible donors and hospitals by the selected city or district for local coordination.</div></div>
+<div class="feature-item"><div class="fi">&#x1F6A8;</div><div class="ft">Emergency Alerts</div><div class="fs">Urgent requests can alert matching donors immediately.</div></div>
+<div class="feature-item"><div class="fi">&#x1F3AF;</div><div class="ft">Priority Requests</div><div class="fs">Requests can be marked Emergency, High or Normal according to urgency.</div></div>
+<div class="feature-item"><div class="fi">&#x1F512;</div><div class="ft">Privacy Protection</div><div class="fs">Donor live GPS is shared with the requester only after the donor accepts.</div></div>
+<div class="feature-item"><div class="fi">&#x1F4E1;</div><div class="ft">Live GPS Tracking</div><div class="fs">Accepted donors can share live location while travelling to the hospital.</div></div>
+<div class="feature-item"><div class="fi">&#x1F91D;</div><div class="ft">Two-Sided Confirmation</div><div class="fs">A donation is completed only after both donor and requester confirm.</div></div>
+<div class="feature-item"><div class="fi">&#x1F3E5;</div><div class="ft">Hospital Inventory</div><div class="fs">Completed donations can automatically update the selected hospital's blood inventory.</div></div>
+<div class="feature-item"><div class="fi">&#x1F4CA;</div><div class="ft">Role-Based Dashboards</div><div class="fs">Separate dashboards support donors, requesters and hospitals.</div></div>
+<div class="feature-item"><div class="fi">&#x2764;&#xFE0F;</div><div class="ft">Donation History &amp; Life Saved</div><div class="fs">Completed donations are recorded and donors receive a Life Saved confirmation.</div></div>
+</div></div></div>`}
+function rHow(pc){
+pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">How It Works</div><div class="tlogosub">From blood request to completed donation</div></div></div>
+<div class="pc"><div class="fsc"><div class="stit">&#x1F504; RakthSetu Flow</div><div class="about-intro">A simple step-by-step flow connecting a requester, a compatible donor and the hospital.</div><div class="flow">
+<div class="flow-step"><div class="flow-num">1</div><div class="flow-icon">&#x1FA78;</div><div class="flow-text"><div class="flow-title">Request Blood</div><div class="flow-sub">Requester selects blood group, units, district, hospital, needed-by date and priority.</div></div></div><div class="flow-arrow">&#8595;</div>
+<div class="flow-step"><div class="flow-num">2</div><div class="flow-icon">&#x1F9E0;</div><div class="flow-text"><div class="flow-title">Smart Filtering &amp; Matching</div><div class="flow-sub">The system filters by local district and identifies eligible donors using compatibility and availability.</div></div></div><div class="flow-arrow">&#8595;</div>
+<div class="flow-step"><div class="flow-num">3</div><div class="flow-icon">&#x1F4F2;</div><div class="flow-text"><div class="flow-title">Notify Matching Donors</div><div class="flow-sub">Matching donors receive the request and can review the anonymous request information.</div></div></div><div class="flow-arrow">&#8595;</div>
+<div class="flow-step"><div class="flow-num">4</div><div class="flow-icon">&#x1F91D;</div><div class="flow-text"><div class="flow-title">Donor Accepts</div><div class="flow-sub">The donor accepts the request and the requester can see the accepted donor status.</div></div></div><div class="flow-arrow">&#8595;</div>
+<div class="flow-step"><div class="flow-num">5</div><div class="flow-icon">&#x1F4CD;</div><div class="flow-text"><div class="flow-title">Live GPS Journey</div><div class="flow-sub">After acceptance, the donor can share live GPS while travelling to the selected hospital.</div></div></div><div class="flow-arrow">&#8595;</div>
+<div class="flow-step"><div class="flow-num">6</div><div class="flow-icon">&#x2764;&#xFE0F;</div><div class="flow-text"><div class="flow-title">Confirm Donation</div><div class="flow-sub">Donor and requester both confirm the completed donation. The record is then created.</div></div></div><div class="flow-arrow">&#8595;</div>
+<div class="flow-step"><div class="flow-num">7</div><div class="flow-icon">&#x1F3E5;</div><div class="flow-text"><div class="flow-title">Hospital Inventory Updated</div><div class="flow-sub">The completed donation can automatically add the donated blood units to the selected hospital inventory.</div></div></div>
+</div></div></div>`}
+function rDC(pc){pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="campBack()" aria-label="Back to donor home">&#8592;</button><div style="flex:1"><div class="tlogo">Donation Camps</div><div class="tlogosub">Upcoming blood donation camps</div></div></div><div class="pc">${CAMPS.map(c=>`<div class="ci"><div class="cii">&#x1FA78;</div><div class="cif"><h4>${c.n}</h4><p>${c.v}</p><p>${c.tm} &middot; ${c.org}</p></div><div class="cid">${fdt(c.dt)}</div></div>`).join('')}</div>`}
+function toggleTattoo(){}
+
+// Delete buttons use a direct inline handler. Keep this helper for any dynamically created button.
+function bindDeleteAccountButton(){
+  const btn=g('deleteAccountBtn');
+  if(btn){
+    btn.onclick=function(ev){return window.deleteAccount(ev);};
+    btn.style.pointerEvents='auto';
+    btn.style.position='relative';
+    btn.style.zIndex='10001';
+  }
+}
+function rDP(pc){const u=S.u,el=elig(u),cd=dsi(u.ld);
+pc.innerHTML=`<div class="pbn"><div class="pav">&#x1F464;</div><div class="pnm">${u.name}</div><div class="psb">${u.bt} Donor &middot; ${u.dist}</div></div>
+<div class="pc" style="margin-top:-18px">
+<div class="elb ${el?'ely':'eln'}"><div class="ebi">${el?'&#x2705;':'&#x26A0;&#xFE0F;'}</div><div><div class="ebtt">${el?'Eligible to Donate':'Not Eligible Right Now'}</div><div class="ebts">${el?'All criteria met':cd<90?'Wait '+(90-cd)+' more days':'Medical condition prevents donation'}</div></div></div>
+<div class="pcd">
+<div class="stit">Basic Info</div>
+<div class="ig"><label>Full Name</label><input class="inf" id="pn2" value="${u.name}"></div>
+<div class="fr"><div class="ig"><label>Age</label><input class="inf" id="pa" type="number" value="${u.age||''}"></div><div class="ig"><label>Blood Type</label><select class="inf sf" id="pb">${BT.map(b=>`<option ${b===u.bt?'selected':''}>${b}</option>`).join('')}</select></div></div>
+<div class="ig"><label>District</label><select class="inf sf" id="pd">${KD.map(d=>`<option ${d===u.dist?'selected':''}>${d}</option>`).join('')}</select></div>
+<div class="ig"><label>Last Donation Date</label><input class="inf" id="pld" type="date" value="${u.ld||''}"><p style="font-size:.7rem;color:var(--tl);margin-top:3px;font-weight:600">Auto-updates when you donate via RakthSetu</p></div>
+</div>
+<div class="pcd" style="margin-top:0">
+<div class="stit">Medical History</div>
+<div class="ckg">${['Diabetic','Hypertensive','Heart Disease','Asthma','HIV','Hepatitis B','Hepatitis C','Malaria'].map(m=>`<div class="cki"><input type="checkbox" id="m${m.replace(/\s+/g,'')}" ${(u.med||[]).includes(m)?'checked':''}><label for="m${m.replace(/\s+/g,'')}">${m}</label></div>`).join('')}</div>
+<div class="ig" style="margin-top:12px"><label>Other Medical Condition</label><input class="inf" id="pother" value="${u.medOther||''}" placeholder="Type any other condition"></div>
+<div class="fr" style="margin-top:2px">
+<div class="ig"><label>Recent Fever</label><select class="inf sf" id="pfever"><option value="" ${!u.feverRecent?'selected':''}>Select</option><option value="1w" ${u.feverRecent==='1w'?'selected':''}>1 week</option><option value="2w" ${u.feverRecent==='2w'?'selected':''}>2 weeks</option><option value="3w" ${u.feverRecent==='3w'?'selected':''}>3 weeks</option><option value="more4" ${u.feverRecent==='more4'?'selected':''}>More than 4 weeks</option></select></div>
+<div class="ig"><label>Tattoo</label><select class="inf sf" id="ptat" onchange="g('tdg').style.display=this.value==='yes'?'block':'none';if(this.value!=='yes')g('ptd').value=''"> <option value="" ${!u.tat?'selected':''}>No</option><option value="yes" ${u.tat?'selected':''}>Yes</option></select></div>
+</div>
+<div class="fr" style="margin-top:2px">
+<div class="ig" id="tdg" style="display:${u.tat?'block':'none'}"><label>Tattoo Date</label><input class="inf" id="ptd" type="date" value="${u.tatDt||''}"></div>
+<div class="ig"><label>Recent Vaccination</label><select class="inf sf" id="pvax2"><option value="" ${!u.vaxRecent?'selected':''}>Select</option><option value="1w" ${u.vaxRecent==='1w'?'selected':''}>1 week</option><option value="2w" ${u.vaxRecent==='2w'?'selected':''}>2 weeks</option><option value="more3" ${u.vaxRecent==='more3'?'selected':''}>More than 3 weeks</option></select></div>
+</div>
+<div style="font-size:.7rem;color:var(--tl);font-weight:700;margin-top:8px">Eligibility rule: recent fever must be more than 4 weeks ago and recent vaccination must be more than 3 weeks ago.</div>
+</div>
+<button class="btn bp" onclick="svDP()">&#x1F4BE; Save Profile</button>
+<button id="deleteAccountBtn" class="btn delete-account-btn" style="margin-top:9px;background:#FFF5F5;color:#B71C1C;border:2px solid #FFCDD2;position:relative;z-index:10001;pointer-events:auto!important" type="button" onclick="return window.deleteAccount(event)">&#x1F5D1;&#xFE0F; Delete Account</button>
+<div style="height:16px"></div></div>`;bindDeleteAccountButton()}
+function svDP(){const u=S.u;u.name=g('pn2').value.trim()||u.name;u.age=parseInt(g('pa').value)||u.age;u.bt=g('pb').value;u.dist=g('pd').value;u.ld=g('pld').value||u.ld;u.tat=(g('ptat')?.value==='yes');if(u.tat)u.tatDt=g('ptd')?.value||u.tatDt;else u.tatDt='';u.med=['Diabetic','Hypertensive','Heart Disease','Asthma','HIV','Hepatitis B','Hepatitis C','Malaria'].filter(m=>g('m'+m.replace(/\s+/g,''))?.checked);u.medOther=g('pother')?.value.trim()||'';u.feverRecent=g('pfever')?.value||'';u.vaxRecent=g('pvax2')?.value||g('pvax')?.value||'';saveDB();updTopbar();updMM();toast('Profile saved!');setTimeout(()=>sp('donor-home',{fromBack:true}),350)}
+function shRF(){
+  if((S.role!=='requester'&&S.role!=='hospital')||!S.u){toast('Please login first');return}
+  const pc=g('pc');
+  if(!pc)return;
+  const isHospital=S.role==='hospital', h=isHospital?S.u:null;
+  pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">Request Blood</div><div class="tlogosub">${isHospital?'Alert eligible donors for a hospital patient':'Find a compatible donor near you'}</div></div></div>
+  <div class="pc">
+    <div class="fsc"><h3>&#x1FA78; ${isHospital?'Hospital Blood Request':'Blood Request'}</h3>
+      <div class="ig"><label>Patient / Request Name</label><input class="inf" id="qpc" type="text" placeholder="e.g. Patient Alpha"></div>
+      <div class="fr">
+        <div class="ig"><label>Blood Type Needed</label><select class="inf sf" id="qbt"><option value="">-- Select --</option>${BT.map(b=>`<option value="${b}">${b}</option>`).join('')}</select></div>
+        <div class="ig"><label>Units Needed</label><input class="inf" id="qu" type="number" min="1" max="10" value="1"></div>
+      </div>
+      <div class="ig"><label>District / City</label><select class="inf sf" id="qd"><option value="">-- Select District --</option>${KD.map(d=>`<option value="${d}" ${(isHospital&&d===h.dist)||(!isHospital&&d===S.u.dist)?'selected':''}>${d}</option>`).join('')}</select></div>
+      <div class="ig"><label>Hospital</label><select class="inf sf" id="qh"><option value="">-- Select Hospital --</option></select></div>
+      <div class="ig"><label>Priority Level</label>
+        <div class="priority-options" role="group" aria-label="Priority level">
+          <button type="button" id="pe-l" class="priority-card" onclick="setP('emergency')"><span class="priority-icon">&#x1F6A8;</span><span class="priority-name">Emergency</span><span class="priority-help">Life risk</span></button>
+          <button type="button" id="ph-l" class="priority-card" onclick="setP('high')"><span class="priority-icon">&#x1F534;</span><span class="priority-name">High</span><span class="priority-help">Within 24h</span></button>
+          <button type="button" id="pn-l" class="priority-card selected"><span class="priority-icon">&#x1F7E2;</span><span class="priority-name">Normal</span><span class="priority-help">Within days</span></button>
+        </div>
+        <input type="hidden" id="qpr" value="normal">
+      </div>
+      <div class="ig"><label>Needed By</label><input class="inf" id="qud" type="date"></div>
+      ${isHospital?`<div class="note" style="margin-top:8px;background:#f7fbff;border:1px solid #d7eaf7;border-radius:11px;padding:10px 12px;font-size:.74rem;color:var(--tm);font-weight:700">&#x1F4E2; When you send this request, matching donors in <strong>${h.dist}</strong> will receive it in their Blood Requests inbox.</div>`:''}
+      <button class="btn be" type="button" onclick="submitBloodRequest()" style="margin-top:7px">&#x1FA78; SEND BLOOD REQUEST</button>
+      <button class="btn bgh" type="button" onclick="goBack()" style="margin-top:9px">&#8592; Cancel</button>
+    </div>
+  </div>`;
+  bindCityHospitalFilter('qd','qh');
+  const date=g('qud');
+  if(date){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());date.min=d.toISOString().slice(0,10);const next=new Date(d);next.setDate(next.getDate()+1);date.value=next.toISOString().slice(0,10);}
+  if(isHospital){
+    const hs=g('qh');
+    if(hs){hs.value=h.name;}
+  }
+}
+function setP(p){
+  const allowed=['emergency','high','normal'];
+  if(!allowed.includes(p))p='normal';
+  const q=g('qpr');if(q)q.value=p;
+  allowed.forEach(px=>{const el=g('p'+px[0]+'-l');if(el)el.classList.toggle('selected',px===p)});
+}
+function submitBloodRequest(){
+  const u=S.u;
+  const isRequester=S.role==='requester', isHospital=S.role==='hospital';
+  if((!isRequester&&!isHospital)||!u){toast('Please login as a requester or hospital');return}
+  const pc=(g('qpc')?.value||'').trim();
+  const bt=g('qbt')?.value||'';
+  const dist=g('qd')?.value||'';
+  const hosp=g('qh')?.value||'';
+  const units=Math.max(1,Math.min(10,parseInt(g('qu')?.value,10)||1));
+  const pr=g('qpr')?.value||'normal';
+  const ud=g('qud')?.value||'';
+  if(!pc||!bt||!dist||!hosp||!ud){toast('Please fill all required fields');return}
+  if(!KD.includes(dist)){toast('Please select a valid district');return}
+  if(!KH.some(h=>h.n===hosp&&h.d===dist)){toast('Please select a hospital from the selected district');return}
+  if(isHospital && (hosp!==u.name || dist!==u.dist)){toast('Hospital requests must use your registered hospital and district');return}
+  const today=new Date();today.setHours(0,0,0,0);
+  const needed=new Date(ud+'T00:00:00');
+  if(Number.isNaN(needed.getTime())||needed<today){toast('Needed By must be today or a future date');return}
+  const req={
+    id:gid(),
+    rid:isHospital?('HOSP:'+u.id):u.id,
+    sourceRole:isHospital?'hospital':'requester',
+    sourceId:u.id,
+    pc,bt,dist,hosp,u:units,pr,ud,st:'pending',ts:Date.now(),ab:null,
+    pn:pc,pp:'Via App Only',donorDone:false,requesterDone:false,
+    donorLat:null,donorLng:null,donorAccuracy:null,donorUpdated:null
+  };
+  DB.reqs.unshift(req);
+  const matched=notify(req);
+  syncSaveReq(req);
+  saveDB();
+  toast((isHospital?'Hospital blood request sent! ':'Blood request sent! ')+matched+' matching donor'+(matched===1?'':'s')+' alerted.');
+  setTimeout(()=>sp(isHospital?'hosp-home':'req-home',{fromBack:true}),700);
+}
+function rRH(pc){const u=S.u,mr=DB.reqs.filter(r=>r.rid===u.id);const ordered=[...mr].sort((a,b)=>{const af=a.st==='fulfilled'?1:0,bf=b.st==='fulfilled'?1:0;if(af!==bf)return af-bf;return (b.ts||0)-(a.ts||0)}),pen=mr.filter(r=>r.st==='pending').length,acc=mr.filter(r=>r.st==='accepted').length;
+pc.innerHTML=`<div class="pc">
+<div class="wb" style="background:linear-gradient(135deg,#1976D2,#0D47A1)"><div class="wbi">&#x1F3E0;</div><div class="wbt"><h3>Need Blood? We find donors</h3><p>${DB.donors.length} registered donors in Kerala</p></div></div>
+<button class="btn be" onclick="shRF()" style="margin-bottom:10px">&#x1FA78; Request Blood Now</button>
+<button class="btn bsec" onclick="sp('tracking')" style="margin-bottom:14px">&#x1F4CD; Track My Request</button>
+<div class="sr"><div class="sc2"><div class="sv">${mr.length}</div><div class="sl">Total</div></div><div class="sc2"><div class="sv">${pen}</div><div class="sl">Pending</div></div><div class="sc2"><div class="sv">${acc}</div><div class="sl">Accepted</div></div></div>
+${mr.length>0?`<div class="stit">Recent Requests</div><div class="lc2">${ordered.slice(0,3).map(r=>`<div class="ii" onclick="shRD('${r.id}')"><div class="btb ${btcls(r.bt)}">${r.bt}</div><div class="iii"><div class="iit">${r.pc}</div><div class="iis">${r.dist} &middot; ${r.u} unit(s)</div><div style="margin-top:4px">${pbdg(r.pr)} ${sbdg(r.st)}</div>${r.st==='accepted'&&r.ab?`<div style="margin-top:6px;font-size:.78rem;font-weight:900;color:#2E7D32">&#x1F91D; Accepted Donor: ${getAcceptedDonor(r)?.name||'Donor'}</div>`:''}</div><div class="iia">&#8250;</div></div>`).join('')}</div>`:''}
+<div class="rcd" style="margin-top:9px"><h3>&#x1F381; Referral Program</h3><p>Share your code to earn points. Points: <strong>${u.rp}</strong></p><div class="rcb"><span class="rcc">${u.rc}</span><b onclick="copyText('${u.rc}')">Copy</b></div></div>
+</div>`}
+function rRM(pc){syncAllRequests();const u=S.u,mr=DB.reqs.filter(r=>r.rid===u.id),ordered=[...mr].sort((a,b)=>{const af=a.st==='fulfilled'?1:0,bf=b.st==='fulfilled'?1:0;if(af!==bf)return af-bf;return (b.ts||0)-(a.ts||0)});
+pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="goBack()" aria-label="Back to requester dashboard">&#8592;</button><div style="flex:1"><div class="tlogo">My Requests</div></div><button style="background:var(--p);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center" onclick="shRF()">+</button></div>
+<div class="pc">${mr.length===0?`<div class="es" style="margin-top:55px"><div class="esi">&#x1F4CB;</div><p>No requests yet</p></div>`:
+`<div class="lc2">${ordered.map(r=>`<div class="ii" onclick="shRD('${r.id}')"><div class="btb ${btcls(r.bt)}">${r.bt}</div><div class="iii"><div class="iit">${r.pc}</div><div class="iis">${r.dist} &middot; ${r.u} unit(s)</div><div style="margin-top:4px">${pbdg(r.pr)} ${sbdg(r.st)}</div>${r.st==='accepted'&&r.ab?`<div style="margin-top:6px;font-size:.78rem;font-weight:900;color:#2E7D32">🤝 Accepted Donor: ${getAcceptedDonor(r)?.name||'Donor'}</div>`:''}</div><div class="iia">&#8250;</div></div>`).join('')}</div>`}</div>`}
+function rRP(pc){const u=S.u;
+pc.innerHTML=`<div class="pbn" style="background:linear-gradient(135deg,#1976D2,#0D47A1)"><div class="pav">&#x1F464;</div><div class="pnm">${u.name}</div><div class="psb">${u.dist}</div></div>
+<div class="pc" style="margin-top:-18px">
+<div class="pcd"><div class="stit">My Details</div>
+<div class="ig"><label>Full Name</label><input class="inf" id="rpn" value="${u.name}"></div>
+<div class="ig"><label>District</label><select class="inf sf" id="rpd">${KD.map(d=>`<option ${d===u.dist?'selected':''}>${d}</option>`).join('')}</select></div>
+</div>
+<div class="rcd"><h3>&#x1F381; Referral Code</h3><p>Share to earn 50 pts per referral &middot; Points: <strong>${u.rp}</strong></p><div class="rcb"><span class="rcc">${u.rc}</span><button style="background:rgba(255,255,255,.25);color:#fff;border:1.5px solid rgba(255,255,255,.5);padding:6px 13px;border-radius:50px;font-family:Nunito;font-weight:800;cursor:pointer;font-size:.82rem" onclick="copyText('${u.rc}')">Copy</button></div></div>
+<button class="btn bp" onclick="const u2=S.u;u2.name=g('rpn').value.trim()||u2.name;u2.dist=g('rpd').value;saveDB();updTopbar();updMM();toast('Profile saved!');setTimeout(()=>sp('req-home',{fromBack:true}),350)">&#x1F4BE; Save Profile</button>
+<button id="deleteAccountBtn" class="btn delete-account-btn" style="margin-top:9px;background:#FFF5F5;color:#B71C1C;border:2px solid #FFCDD2;position:relative;z-index:10001;pointer-events:auto!important" type="button" onclick="return window.deleteAccount(event)">&#x1F5D1;&#xFE0F; Delete Account</button>
+</div>`;bindDeleteAccountButton()}
+function rHospitalProfile(pc){const h=S.u;pc.innerHTML=`<div class="topbar"><button class="tbk" type="button" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">My Profile</div><div class="tlogosub">Hospital account</div></div></div><div class="pc"><div class="pcd"><div class="stit">Hospital Details</div><div class="dr"><div class="dri">&#x1F3E5;</div><div class="drf"><div class="drl">Hospital</div><div class="drv">${h.name}</div></div></div><div class="dr"><div class="dri">&#x1F4CD;</div><div class="drf"><div class="drl">District</div><div class="drv">${h.dist}</div></div></div><div class="dr"><div class="dri">&#x1F4DE;</div><div class="drf"><div class="drl">Registered Mobile</div><div class="drv">${h.phone}</div></div></div></div><button id="deleteAccountBtn" class="btn delete-account-btn" style="background:#FFF5F5;color:#B71C1C;border:2px solid #FFCDD2;position:relative;z-index:10001;pointer-events:auto!important" type="button" onclick="return window.deleteAccount(event)">&#x1F5D1;&#xFE0F; Delete Account</button></div>`;bindDeleteAccountButton()}
+function rHH(pc){const h=S.u;h.pts=h.pts||[];h.inv=h.inv||{};h.dons=h.dons||[];const tp=h.pts.length,cr=h.pts.filter(p=>p.st==='critical').length,fu=h.pts.filter(p=>p.st==='fulfilled').length,pe=h.pts.filter(p=>['pending','stable'].includes(p.st)).length,tu=Object.values(h.inv).reduce((a,b)=>a+b,0),c0=Object.values(h.inv).filter(v=>v===0).length;
+pc.innerHTML=`<div class="pc">
+<div class="hbn"><h3>Welcome, ${h.staff}</h3><p>${new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})}</p></div>
+<div class="hsg"><div class="hs"><div class="hsv">${tp}</div><div class="hsl">Patients</div></div><div class="hs"><div class="hsv" style="color:var(--em)">${cr}</div><div class="hsl">Critical</div></div><div class="hs"><div class="hsv" style="color:var(--ok)">${fu}</div><div class="hsl">Fulfilled</div></div><div class="hs"><div class="hsv">${pe}</div><div class="hsl">Pending</div></div><div class="hs"><div class="hsv">${tu}</div><div class="hsl">Stock Units</div></div><div class="hs"><div class="hsv" style="color:var(--em)">${c0}</div><div class="hsl">Zero Stock</div></div></div>
+<button class="btn bsec" onclick="sp('tracking')" style="margin-bottom:9px">&#x1F4CD; Track Blood Requests</button>
+<button class="btn be" onclick="shRF()" style="margin-bottom:12px">&#x1FA78; Request Blood for a Patient</button>
+<div class="bg2">
+<div class="bc" onclick="sp('hosp-patients')"><div class="bci">&#x1F9D1;&#x200D;&#x2695;&#xFE0F;</div><div class="bct">Patients</div><div class="bcs">${tp} total</div></div>
+<div class="bc" onclick="sp('hosp-inv')"><div class="bci">&#x1FA78;</div><div class="bct">Inventory</div><div class="bcs">${tu} units &middot; ${c0} zero</div></div>
+
+<div class="bc" onclick="shAP()"><div class="bci">&#x2795;</div><div class="bct">Add Patient</div><div class="bcs">New entry</div></div>
+</div></div>`}
+function rHPt(pc){const h=S.u,sc2={critical:'#FFEBEE',stable:'#E8F5E9',pending:'#E3F2FD',fulfilled:'#EDE7F6'},si={critical:'&#x1F534;',stable:'&#x1F7E1;',pending:'&#x1F535;',fulfilled:'&#x2705;'};
+pc.innerHTML=`<div class="topbar"><div style="flex:1"><div class="tlogo">Patients</div></div><button style="background:var(--p);color:#fff;border:none;width:36px;height:36px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center" onclick="shAP()">+</button></div>
+<div class="pc"><div class="lc2">${h.pts.length===0?`<div class="es"><div class="esi">&#x1F9D1;&#x200D;&#x2695;&#xFE0F;</div><p>No patients</p></div>`:h.pts.map(p=>`<div class="pi2"><div class="pio" style="background:${sc2[p.st]||'#f5f5f5'}">${si[p.st]||'&bull;'}</div><div class="pif"><div class="pin">${p.nm} &middot; Age ${p.age}</div><div class="pis">${p.bt} &middot; ${p.nu} needed &middot; ${p.nf} received &middot; ${p.ward}</div><div style="margin-top:3px"><span class="bdg ${p.st==='critical'?'be2':p.st==='fulfilled'?'bff':p.st==='stable'?'bac':'bp2'}">${p.st}</span></div></div><div style="font-size:.7rem;font-weight:700;color:var(--tl)">${fdt(p.ad)}</div></div>`).join('')}</div></div>`}
+function shAP(){const pc=g('pc');
+pc.innerHTML=`<div class="topbar"><button class="tbk" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">Add Patient</div></div></div>
+<div class="pc"><div class="fsc"><h3>Patient Information</h3>
+<div class="ig"><label>Patient Name</label><input class="inf" id="npp" placeholder="Full name"></div>
+<div class="fr"><div class="ig"><label>Age</label><input class="inf" id="npa" type="number" placeholder="Age"></div><div class="ig"><label>Blood Type</label><select class="inf sf" id="npb"><option value="">--Type--</option>${BT.map(b=>`<option>${b}</option>`).join('')}</select></div></div>
+<div class="ig"><label>Ward</label><input class="inf" id="npw" placeholder="ICU, General, Surgery..."></div>
+<div class="ig"><label>Units Needed</label><input class="inf" id="npu" type="number" placeholder="1" min="1"></div>
+<div class="ig"><label>Status</label><select class="inf sf" id="nps"><option value="critical">Critical</option><option value="stable">Stable</option><option value="pending" selected>Pending</option></select></div>
+</div><button class="btn bp" onclick="addPt()">&#x2795; Add Patient</button></div>`}
+function addPt(){const h=S.u,nm=g('npp').value.trim(),age=parseInt(g('npa').value)||0,bt=g('npb').value,ward=g('npw').value||'General',u=parseInt(g('npu').value)||1,st=g('nps').value;if(!nm||!bt){toast('Name and blood type required');return}h.pts.push({id:gid(),nm,age,bt,nu:u,nf:0,ward,st,ad:new Date().toISOString().split('T')[0]});toast('Patient added!');sp('hosp-patients')}
+function rHIn(pc){const h=S.u,inv=h.inv,all=['A+','A-','B+','B-','O+','O-','AB+','AB-'];
+pc.innerHTML=`<div class="pc">
+<div style="background:var(--pl);border-radius:var(--rs);padding:12px 14px;margin-bottom:14px;font-size:.8rem;font-weight:700;color:var(--pd)">&#x1F534; 0 units = Critical &nbsp;&middot;&nbsp; &#x26A0;&#xFE0F; 1-2 = Low &nbsp;&middot;&nbsp; &#x2705; 3+ = Good</div>
+<div class="big4">${all.map(bt=>{const u=inv[bt]||0;const cl=u===0?'crit':u<=2?'low':'';return`<div class="bic ${cl}"><div class="bit">${bt}</div><div class="biu">${u}</div><div class="bil">units</div><div style="font-size:.65rem;margin-top:3px">${u===0?'Critical':u<=2?'Low':'OK'}</div></div>`}).join('')}</div>
+<div class="stit" style="margin-top:14px">Update Stock</div>
+<div class="fsc">
+<div class="fr" style="margin-bottom:7px"><div><select class="inf sf" id="ibt">${all.map(b=>`<option>${b}</option>`).join('')}</select></div><div><input class="inf" id="iu" type="number" placeholder="Units to add" min="1"></div></div>
+<button class="btn bp" onclick="updInv()" style="padding:12px">Add Units</button>
+</div></div>`}
+function updInv(){const h=S.u,bt=g('ibt').value,u=parseInt(g('iu').value)||0;if(u<=0){toast('Enter valid units');return}if(!h.inv[bt])h.inv[bt]=0;h.inv[bt]+=u;toast('Added '+u+' unit(s) of '+bt);rHIn(g('pc'))}
+function rHD(pc){const h=S.u;h.dons=h.dons||[];
+pc.innerHTML=`<div class="topbar"><button class="tbk" onclick="goBack()">&#8592;</button><div style="flex:1"><div class="tlogo">Donation Log</div><div class="tlogosub">Automatic records from completed RakthSetu donations</div></div></div>
+<div class="pc">
+<div class="sr"><div class="sc2"><div class="sv">${h.dons.length}</div><div class="sl">Total</div></div><div class="sc2"><div class="sv">${h.dons.reduce((a,d)=>a+(d.u||1),0)}</div><div class="sl">Units</div></div></div>
+<div class="note" style="background:#f7fbff;border:1px solid #d7eaf7;border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:.74rem;color:var(--tm);font-weight:700">&#x1F512; Donations are added automatically only after both the donor and requester confirm the donation.</div>
+<div class="lc2">${h.dons.length===0?`<div class="es"><div class="esi">&#x1F4DC;</div><p>No donations yet</p><p class="iis">Completed RakthSetu donations will appear here automatically.</p></div>`:h.dons.map(d=>`<div class="dli"><div class="dlic">&#x1FA78;</div><div class="dlif"><div class="dln">${d.dn}</div><div class="dls">${d.bt} &middot; ${d.u} unit &middot; For: ${d.fp}</div></div><div class="dld">${fdt(d.dt)}</div></div>`).join('')}</div>
+</div>`}
+const RSYNC_KEY='raktsetu_live_v3';
+function syncLoad(){try{return JSON.parse(localStorage.getItem(RSYNC_KEY)||'{}')}catch(e){return{}}}
+function syncSaveReq(req){try{const a=syncLoad();a[req.id]={st:req.st,ab:req.ab||null,acceptedAt:req.acceptedAt||null,donorDone:!!req.donorDone,requesterDone:!!req.requesterDone,lat:req.donorLat??null,lng:req.donorLng??null,accuracy:req.donorAccuracy??null,updated:req.donorUpdated||Date.now()};localStorage.setItem(RSYNC_KEY,JSON.stringify(a))}catch(e){}}
+function syncMerge(req){try{const x=syncLoad()[req.id];if(!x)return req;if(x.st)req.st=x.st;if(x.ab!==undefined)req.ab=x.ab;if(x.acceptedAt)req.acceptedAt=x.acceptedAt;if(x.donorDone!==undefined)req.donorDone=!!x.donorDone;if(x.requesterDone!==undefined)req.requesterDone=!!x.requesterDone;if(req.st==='fulfilled'){req.donorDone=true;req.requesterDone=true;}if(Number.isFinite(x.lat)&&Number.isFinite(x.lng)){req.donorLat=x.lat;req.donorLng=x.lng;req.donorAccuracy=x.accuracy;req.donorUpdated=x.updated}}catch(e){}return req}
+function syncAllRequests(){(DB.reqs||[]).forEach(syncMerge)}
+window.addEventListener('storage',e=>{if(e.key===RSYNC_KEY){syncAllRequests();if(S.role==='requester'&&S.curPage==='tracking')rTrack(g('pc'));}});
+const HCOORD={'Govt Medical College Kozhikode':[11.2588,75.7804],'Baby Memorial Hospital':[11.2588,75.7804],'Aster Medcity':[10.0262,76.3125],'Govt Medical College Hospital':[8.5241,76.9366],'KIMS Hospital':[8.5076,76.9567],'Lakeshore Hospital':[9.9334,76.3166],'Medical Trust Hospital':[9.9686,76.2869],'Rajagiri Hospital':[10.0380,76.3270],'Govt Medical College Thrissur':[10.5245,76.2154],'Jubilee Mission Hospital':[10.5159,76.2165],'Govt Medical College Kottayam':[9.5916,76.5222],'Caritas Hospital':[9.6094,76.5452],'Govt Medical College Alappuzha':[9.4981,76.3388],'District Hospital Alappuzha':[9.4981,76.3388],'Govt Medical College Kollam':[8.8932,76.6141],'District Hospital Kollam':[8.8932,76.6141],'Pushpagiri Medical College':[9.2676,76.5564],'Amrita Institute Medical Sciences':[10.0281,76.3052],'Govt Medical College Palakkad':[10.7820,76.6548],'Govt Medical College Malappuram':[11.0516,76.0711],'Govt Medical College Wayanad':[11.6110,76.0820],'Pariyaram Medical College':[12.1412,75.2489],'Govt District Hospital Kannur':[11.8745,75.3704],'General Hospital Kasaragod':[12.4996,74.9869]};
+const DCOORD={Thiruvananthapuram:[8.5241,76.9366],Kollam:[8.8932,76.6141],Pathanamthitta:[9.2648,76.7870],Alappuzha:[9.4981,76.3388],Kottayam:[9.5916,76.5222],Idukki:[9.8500,76.9800],Ernakulam:[9.9816,76.2999],Thrissur:[10.5276,76.2144],Palakkad:[10.7867,76.6548],Malappuram:[11.0510,76.0710],Kozhikode:[11.2588,75.7804],Wayanad:[11.6854,76.1310],Kannur:[11.8745,75.3704],Kasaragod:[12.4996,74.9869]};
+function getDest(req){return HCOORD[req.hosp]||DCOORD[req.dist]||[10,76.3]}
+function distanceKm(a,b){const R=6371,la1=a[0]*Math.PI/180,la2=b[0]*Math.PI/180,dla=(b[0]-a[0])*Math.PI/180,dlo=(b[1]-a[1])*Math.PI/180;const x=Math.sin(dla/2)**2+Math.cos(la1)*Math.cos(la2)*Math.sin(dlo/2)**2;return R*2*Math.atan2(Math.sqrt(x),Math.sqrt(1-x))}
+function fmtAgo(ts){if(!ts)return'Waiting';const s=Math.max(0,Math.floor((Date.now()-ts)/1000));return s<60?(s<10?'Just now':s+'s ago'):Math.floor(s/60)+'m ago'}
+function getAcceptedDonor(req){if(!req||!req.ab)return null;return DB.donors.find(d=>String(d.id)===String(req.ab))||null;}
+function initGPSMap(center){if(!window.L||!g('gpsMap'))return;if(S.gpsMap)S.gpsMap.remove();S.gpsMap=L.map('gpsMap').setView(center,14);L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{maxZoom:19,subdomains:'abcd',attribution:'© OpenStreetMap contributors © CARTO'}).addTo(S.gpsMap)}
+function setGPSMarker(lat,lng,label){if(!S.gpsMap)return;const pos=[lat,lng];if(!S.gpsMarker)S.gpsMarker=L.marker(pos).addTo(S.gpsMap);else S.gpsMarker.setLatLng(pos);S.gpsMarker.bindPopup(label||'Donor live location')}
+function setDestMarker(req){if(!S.gpsMap)return;const d=getDest(req);if(!S.gpsDestMarker)S.gpsDestMarker=L.marker(d).addTo(S.gpsMap);else S.gpsDestMarker.setLatLng(d);S.gpsDestMarker.bindPopup('Hospital: '+req.hosp)}
+function beginDonorGPS(qid){const req=syncMerge(DB.reqs.find(r=>r.id===qid));if(!req||String(req.ab)!==String(S.u?.id)){toast('GPS is available only after you accept the request');return}if(!navigator.geolocation){toast('GPS is not supported by this browser');return}if(location.protocol!=='https:'&&location.hostname!=='localhost'){toast('Live GPS requires HTTPS or localhost');return}if(S.gpsWatch)navigator.geolocation.clearWatch(S.gpsWatch);S.gpsQid=qid;const update=pos=>{const r=DB.reqs.find(x=>x.id===qid);if(!r)return;r.donorLat=pos.coords.latitude;r.donorLng=pos.coords.longitude;r.donorAccuracy=pos.coords.accuracy;r.donorUpdated=Date.now();syncSaveReq(r);saveDB();setGPSMarker(r.donorLat,r.donorLng,'Your live donor location');const km=distanceKm([r.donorLat,r.donorLng],getDest(r));if(g('gpsCoords'))g('gpsCoords').textContent=`${r.donorLat.toFixed(5)}, ${r.donorLng.toFixed(5)} · ±${Math.round(r.donorAccuracy||0)}m · ${fmtAgo(r.donorUpdated)}`;if(g('gpsStatusTitle'))g('gpsStatusTitle').textContent='Live location is being shared';if(g('gpsDot'))g('gpsDot').classList.remove('wait');if(g('gpsFresh')){g('gpsFresh').textContent='LIVE';g('gpsFresh').className='bdg bn2'}if(g('gkm'))g('gkm').textContent=km<.1?'At hospital':km.toFixed(1)+' km to hospital'};const err=()=>{if(g('gpsStatusTitle'))g('gpsStatusTitle').textContent='Location permission needed';if(g('gpsDot'))g('gpsDot').classList.add('wait');toast('Please allow location access to share live GPS')};S.gpsWatch=navigator.geolocation.watchPosition(update,err,{enableHighAccuracy:true,maximumAge:3000,timeout:15000})}
+function stGPS(qid){const req=syncMerge(DB.reqs.find(r=>r.id===qid));if(!req)return;if(String(req.ab)!==String(S.u?.id)){toast('Accept the request before starting GPS');return}S.gpsQid=qid;ssc('sgps');g('gpsTitle').textContent='Live GPS Navigation';g('gpsSub').textContent='Sharing with requester';initGPSMap(getDest(req));setDestMarker(req);g('ghi').innerHTML=`<div style="display:flex;gap:11px;align-items:center"><span style="font-size:1.8rem">🏥</span><div><div style="font-size:.95rem;font-weight:800">${req.hosp}</div><div style="font-size:.78rem;font-weight:600;color:var(--tm)">${req.dist}, Kerala</div></div></div>`;g('gpsStatusNote').textContent='Your live location is now shared with the requester. Keep this page open while travelling.';beginDonorGPS(qid)}
+function renderRequesterGPS(req){req=syncMerge(req);const live=Number.isFinite(req.donorLat)&&Number.isFinite(req.donorLng)&&req.donorUpdated,dest=getDest(req);initGPSMap(live?[req.donorLat,req.donorLng]:dest);setDestMarker(req);if(live){setGPSMarker(req.donorLat,req.donorLng,'Donor live location');S.gpsMap.fitBounds([[req.donorLat,req.donorLng],dest],{padding:[35,35],maxZoom:15})}if(g('gpsStatusTitle'))g('gpsStatusTitle').textContent=live?'Donor is live':'Waiting for donor to start GPS';if(g('gpsCoords'))g('gpsCoords').textContent=live?`${req.donorLat.toFixed(5)}, ${req.donorLng.toFixed(5)} · ±${Math.round(req.donorAccuracy||0)}m · ${fmtAgo(req.donorUpdated)}`:'Donor accepted. Live location will appear when GPS is started.';if(g('gpsDot'))g('gpsDot').classList.toggle('wait',!live);if(g('gpsFresh')){g('gpsFresh').textContent=live?'LIVE':'WAITING';g('gpsFresh').className='bdg '+(live?'bn2':'bp2')}if(g('gkm'))g('gkm').textContent=live?distanceKm([req.donorLat,req.donorLng],dest).toFixed(1)+' km to hospital':'Waiting for donor GPS'}
+function openRequesterGPS(qid){openViewerGPS(qid,'requester')}
+function openHospitalGPS(qid){openViewerGPS(qid,'hospital')}
+function openViewerGPS(qid,viewerRole){const req=syncMerge(DB.reqs.find(r=>r.id===qid));if(!req)return;const allowed=viewerRole==='requester'?(S.role==='requester'&&String(req.rid)===String(S.u?.id)):(S.role==='hospital'&&(req.hosp===S.u?.name||req.hosp===S.u?.hospital||(S.u?.dist&&req.dist===S.u?.dist)));if(!allowed){toast('You are not authorized to view this live location');return}if(req.st!=='accepted'||!req.ab){toast('Live GPS becomes available after a donor accepts');return}S.gpsQid=qid;ssc('sgps');g('gpsTitle').textContent=viewerRole==='hospital'?'Donor Live Location':'Donor Live Location';g('gpsSub').textContent=viewerRole==='hospital'?'Private hospital tracking':'Private live tracking';g('openRouteBtn').style.display='none';const acceptedDonor=getAcceptedDonor(req);g('ghi').innerHTML=`<div style="display:flex;gap:11px;align-items:center"><span style="font-size:1.8rem">🤝</span><div><div style="font-size:.95rem;font-weight:900">${acceptedDonor?.name||'Accepted donor'} is en route</div><div style="font-size:.78rem;font-weight:600;color:var(--tm)">${req.hosp} · ${req.dist}</div></div></div>`;renderRequesterGPS(req);if(S.gpsRefresh)clearInterval(S.gpsRefresh);S.gpsRefresh=setInterval(()=>{const r=syncMerge(DB.reqs.find(x=>x.id===qid));if(r)renderRequesterGPS(r)},2500)}
+function openExternalRoute(){const r=S.gpsQid&&DB.reqs.find(x=>x.id===S.gpsQid);if(!r)return;const d=getDest(r);window.open(`https://www.google.com/maps/dir/?api=1&destination=${d[0]},${d[1]}`,'_blank','noopener')}
+function stpG(){if(S.giv)clearInterval(S.giv);if(S.gpsWatch&&navigator.geolocation)navigator.geolocation.clearWatch(S.gpsWatch);S.gpsWatch=null;if(S.gpsRefresh)clearInterval(S.gpsRefresh);S.gpsRefresh=null;S.geta=12;S.gpsQid=null}
+function playAlert(){try{const ctx=new(window.AudioContext||window.webkitAudioContext)();const pl=(f,s,d)=>{const o=ctx.createOscillator(),g2=ctx.createGain();o.connect(g2);g2.connect(ctx.destination);o.frequency.value=f;o.type='sine';g2.gain.setValueAtTime(.4,ctx.currentTime+s);g2.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+s+d);o.start(ctx.currentTime+s);o.stop(ctx.currentTime+s+d+.05)};for(let i=0;i<4;i++){pl(880,i*.4,.3);pl(660,i*.4+.15,.15)}}catch(e){}}
+function shAl(req){g('abt').textContent=req.bt;g('asb').textContent='Critical need at '+req.hosp+', '+req.dist;g('aov').classList.add('on');playAlert()}
+function clA(){g('aov').classList.remove('on')}
+function opD(){updD();g('dp').classList.add('on');g('pov').classList.add('on')}
+function clD(){g('dp').classList.remove('on');g('pov').classList.remove('on')}
+function updD(){const uc=g('duc');if(uc){const all=[...DB.donors,...DB.requesters,...DB.hospitals];uc.innerHTML=all.map(u=>`<button class="dpc" onclick="qlg('${u.id}','${u.role}')">${{donor:'Donor',requester:'Requester',hospital:'Hospital'}[u.role]}: ${u.name.split(' ')[0]}${u.role==='donor'?' ('+u.bt+')':''}</button>`).join('')}const ds=g('dbs');if(ds)ds.innerHTML=`<div style="background:#fff;border-radius:8px;padding:7px 11px;font-size:.77rem;font-weight:700">${DB.donors.length} Donors</div><div style="background:#fff;border-radius:8px;padding:7px 11px;font-size:.77rem;font-weight:700">${DB.reqs.length} Requests</div><div style="background:#fff;border-radius:8px;padding:7px 11px;font-size:.77rem;font-weight:700">${DB.hospitals.length} Hospitals</div><div style="background:#fff;border-radius:8px;padding:7px 11px;font-size:.77rem;font-weight:700">${DB.dons.length} Donations</div>`}
+function qlg(uid,role){
+  let u=null;
+  if(role==='donor') u=DB.donors.find(d=>String(d.id)===String(uid));
+  else if(role==='requester') u=DB.requesters.find(r=>String(r.id)===String(uid));
+  else if(role==='hospital') u=DB.hospitals.find(h=>String(h.id)===String(uid));
+  if(!u){toast('Demo account not found');return;}
+  clD();
+  // Hospital login needs the hospital name as well as its registered mobile.
+  // Pass it directly so the Admin/Demo panel does not depend on the login dropdown.
+  if(role==='hospital') S.lhospital=u.name;
+  loginU(u.phone,role,role==='hospital'?u.name:'');
+  if(S.u) toast('Logged in as '+u.name);
+}
+function trEmg(){clD();const req=DB.reqs.find(r=>r.pr==='emergency')||DB.reqs[0];if(req)shAl(req);else shAl({bt:'O-',hosp:'Govt Medical College Kozhikode',dist:'Kozhikode'})}
+function trReq(){clD();const nq={id:gid(),rid:'R1',pc:'Patient Omega',bt:'O-',dist:'Kozhikode',hosp:'Govt Medical College Kozhikode',u:2,pr:'high',ud:new Date().toISOString().split('T')[0],st:'pending',ts:Date.now(),ab:null,pn:'Demo Patient (Private)',pp:'Via App Only'};DB.reqs.unshift(nq);notify(nq);saveDB();toast('New request added! Donors notified.');if(S.role==='donor')sp('donor-inbox')}
+function trDon(){clD();const u=S.u;if(S.role!=='donor'){toast('Switch to a donor account first');return}u.dons++;u.ld=new Date().toISOString().split('T')[0];saveDB();toast(u.dons+' donations now! Date auto-updated!');sp('donor-home')}
+function trRef(){clD();const u=S.u;u.rp=(u.rp||0)+50;saveDB();toast('+50 Referral Points added!');if(S.role==='donor')sp('donor-home');else if(S.role==='requester')sp('req-home')}
+function addDU(){const nm=g('dnn').value.trim(),bt=g('dnb').value,dist=g('dnd').value;if(!nm||!bt||!dist){toast('Fill all fields');return}const u={id:gid(),name:nm,phone:String(9000000000+Math.floor(Math.random()*1000000000)),bt,dist,age:Math.floor(Math.random()*20)+20,ld:null,med:[],tat:false,dons:0,rc:nm.split(' ')[0].toUpperCase()+Math.floor(Math.random()*999),rp:0,role:'donor'};DB.donors.push(u);saveDB();g('dnn').value='';toast(nm+' ('+bt+') added!');updD()}
+/* ── Global offline language system ── */
+const RS_LANG_KEY='raktsetu_global_language';
+const RS_I18N={
+  en:{},
+  ml:{
+    'RakthSetu':'രക്തസേതു','Kerala Smart Blood Network':'കേരള സ്മാർട്ട് ബ്ലഡ് നെറ്റ്‌വർക്ക്',
+    'Donor':'ഡോണർ','Requester':'രക്ത അഭ്യർത്ഥകൻ','Hospital':'ആശുപത്രി','Hospital Staff':'ആശുപത്രി സ്റ്റാഫ്',
+    'Login as Donor':'ഡോണറായി ലോഗിൻ ചെയ്യുക','Login as Requester':'അഭ്യർത്ഥകനായി ലോഗിൻ ചെയ്യുക','Login as Hospital Staff':'ആശുപത്രി സ്റ്റാഫായി ലോഗിൻ ചെയ്യുക',
+    'Mobile Number':'മൊബൈൽ നമ്പർ','Hospital':'ആശുപത്രി','Send OTP':'OTP അയയ്ക്കുക','New to RakthSetu?':'RakthSetu-ൽ പുതുതാണോ?','Sign Up':'സൈൻ അപ്പ്','OR':'അല്ലെങ്കിൽ',
+    'EMERGENCY — Need Blood NOW!':'അടിയന്തരാവസ്ഥ — ഇപ്പോൾ രക്തം വേണം!','Emergency skips login':'അടിയന്തരാവസ്ഥയിൽ ലോഗിൻ ഒഴിവാക്കാം',
+    'Create RakthSetu Account':'RakthSetu അക്കൗണ്ട് സൃഷ്ടിക്കുക','Register with your real details. Mobile number will be verified by OTP.':'നിങ്ങളുടെ യഥാർത്ഥ വിവരങ്ങൾ നൽകി രജിസ്റ്റർ ചെയ്യുക. മൊബൈൽ നമ്പർ OTP വഴി പരിശോധിക്കും.',
+    'Signing up as:':'രജിസ്റ്റർ ചെയ്യുന്നത്:','Donor':'ഡോണർ','Full Name':'പൂർണ്ണ പേര്','Age':'പ്രായം','Date of Birth':'ജനന തീയതി','Blood Group':'രക്ത ഗ്രൂപ്പ്','Email':'ഇമെയിൽ','State':'സംസ്ഥാനം','District':'ജില്ല','City / Town / Locality':'നഗരം / പട്ടണം / പ്രദേശം','Pincode':'പിൻകോഡ്','Aadhaar Number':'ആധാർ നമ്പർ',
+    'Send OTP & Create Account':'OTP അയച്ച് അക്കൗണ്ട് സൃഷ്ടിക്കുക','Back to Login':'ലോഗിനിലേക്ക് മടങ്ങുക','Verify Mobile Number':'മൊബൈൽ നമ്പർ സ്ഥിരീകരിക്കുക','Verify OTP':'OTP സ്ഥിരീകരിക്കുക','Prototype OTP:':'പ്രോട്ടോടൈപ്പ് OTP:',
+    'Dashboard':'ഡാഷ്ബോർഡ്','Active requests':'സജീവ അഭ്യർത്ഥനകൾ','Track Requests':'അഭ്യർത്ഥനകൾ ട്രാക്ക് ചെയ്യുക','Live status':'തത്സമയ സ്ഥിതി','My Donations':'എന്റെ രക്തദാനങ്ങൾ','total':'ആകെ','Nearby Camps':'സമീപത്തെ ക്യാമ്പുകൾ','upcoming':'വരാനിരിക്കുന്നവ','Request Blood Now':'ഇപ്പോൾ രക്തം അഭ്യർത്ഥിക്കുക','Profile':'പ്രൊഫൈൽ','Settings':'ക്രമീകരണങ്ങൾ','Logout':'ലോഗൗട്ട്','Home':'ഹോം','Blood Requests':'രക്ത അഭ്യർത്ഥനകൾ','My Requests':'എന്റെ അഭ്യർത്ഥനകൾ','Track My Request':'എന്റെ അഭ്യർത്ഥന ട്രാക്ക് ചെയ്യുക','Request Blood Now':'ഇപ്പോൾ രക്തം അഭ്യർത്ഥിക്കുക','Patients':'രോഗികൾ','Inventory':'സ്റ്റോക്ക്','Donation Log':'രക്തദാന രേഖ','Tracking':'ട്രാക്കിംഗ്',
+    'My Profile':'എന്റെ പ്രൊഫൈൽ','Edit profile & eligibility':'പ്രൊഫൈൽ & യോഗ്യത തിരുത്തുക','Edit details':'വിവരങ്ങൾ തിരുത്തുക','Hospital account':'ആശുപത്രി അക്കൗണ്ട്','Basic Info':'അടിസ്ഥാന വിവരങ്ങൾ','Medical History':'മെഡിക്കൽ ചരിത്രം','Full Name':'പൂർണ്ണ പേര്','Age':'പ്രായം','Blood Type':'രക്ത ഗ്രൂപ്പ്','Last Donation Date':'അവസാന രക്തദാന തീയതി','Auto-updates when you donate via RakthSetu':'RakthSetu വഴി രക്തം ദാനം ചെയ്യുമ്പോൾ സ്വയം അപ്‌ഡേറ്റ് ചെയ്യും','Other Medical Condition':'മറ്റ് മെഡിക്കൽ അവസ്ഥ','Type any other condition':'മറ്റേതെങ്കിലും അവസ്ഥ നൽകുക','Recent Fever':'സമീപകാല പനി','Select':'തിരഞ്ഞെടുക്കുക','1 week':'1 ആഴ്ച','2 weeks':'2 ആഴ്ച','3 weeks':'3 ആഴ്ച','More than 4 weeks':'4 ആഴ്ചയിൽ കൂടുതൽ','Tattoo':'ടാറ്റൂ','No':'ഇല്ല','Yes':'അതെ','Tattoo Date':'ടാറ്റൂ തീയതി','Recent Vaccination':'സമീപകാല വാക്സിനേഷൻ','More than 3 weeks':'3 ആഴ്ചയിൽ കൂടുതൽ','Eligibility rule: recent fever must be more than 4 weeks ago and recent vaccination must be more than 3 weeks ago.':'യോഗ്യതാ നിയമം: സമീപകാല പനി 4 ആഴ്ചയ്ക്ക് മുമ്പായിരിക്കണം, സമീപകാല വാക്സിനേഷൻ 3 ആഴ്ചയ്ക്ക് മുമ്പായിരിക്കണം.','Eligible to Donate':'രക്തദാനത്തിന് യോഗ്യൻ','Not Eligible Right Now':'ഇപ്പോൾ യോഗ്യനല്ല','All criteria met':'എല്ലാ മാനദണ്ഡങ്ങളും പാലിക്കുന്നു','Medical condition prevents donation':'മെഡിക്കൽ അവസ്ഥ കാരണം രക്തദാനം സാധ്യമല്ല','Wait ':'കാത്തിരിക്കണം ',' more days':' ദിവസം കൂടി','Save Profile':'പ്രൊഫൈൽ സംരക്ഷിക്കുക','Delete Account':'അക്കൗണ്ട് ഇല്ലാതാക്കുക','My Details':'എന്റെ വിവരങ്ങൾ','Referral Code':'റഫറൽ കോഡ്','Share to earn 50 pts per referral · Points:':'ഓരോ റഫറലിനും 50 പോയിന്റ് നേടാൻ പങ്കിടുക · പോയിന്റുകൾ:','Copy':'പകർത്തുക','Hospital Details':'ആശുപത്രി വിവരങ്ങൾ','Registered Mobile':'രജിസ്റ്റർ ചെയ്ത മൊബൈൽ','District':'ജില്ല','Hospital':'ആശുപത്രി','Profile saved!':'പ്രൊഫൈൽ സംരക്ഷിച്ചു!','Dashboard':'ഡാഷ്ബോർഡ്',
+    'Live GPS Navigation':'ലൈവ് GPS നാവിഗേഷൻ','Donor Live Location':'ഡോണറിന്റെ ലൈവ് ലൊക്കേഷൻ','Change language':'ഭാഷ മാറ്റുക'
+  },
+  hi:{
+    'RakthSetu':'रक्तसेतु','Kerala Smart Blood Network':'केरल स्मार्ट ब्लड नेटवर्क',
+    'Donor':'दाता','Requester':'रक्त अनुरोधकर्ता','Hospital':'अस्पताल','Hospital Staff':'अस्पताल स्टाफ',
+    'Login as Donor':'दाता के रूप में लॉगिन','Login as Requester':'अनुरोधकर्ता के रूप में लॉगिन','Login as Hospital Staff':'अस्पताल स्टाफ के रूप में लॉगिन',
+    'Mobile Number':'मोबाइल नंबर','Send OTP':'OTP भेजें','New to RakthSetu?':'RakthSetu पर नए हैं?','Sign Up':'साइन अप','OR':'या',
+    'EMERGENCY — Need Blood NOW!':'आपातकाल — अभी रक्त चाहिए!','Emergency skips login':'आपातकाल में लॉगिन आवश्यक नहीं',
+    'Create RakthSetu Account':'RakthSetu खाता बनाएं','Register with your real details. Mobile number will be verified by OTP.':'अपनी सही जानकारी से पंजीकरण करें। मोबाइल नंबर OTP से सत्यापित होगा।',
+    'Signing up as:':'पंजीकरण भूमिका:','Full Name':'पूरा नाम','Age':'आयु','Date of Birth':'जन्म तिथि','Blood Group':'रक्त समूह','Email':'ईमेल','State':'राज्य','District':'जिला','City / Town / Locality':'शहर / कस्बा / क्षेत्र','Pincode':'पिनकोड','Aadhaar Number':'आधार नंबर',
+    'Send OTP & Create Account':'OTP भेजें और खाता बनाएं','Back to Login':'लॉगिन पर वापस जाएं','Verify Mobile Number':'मोबाइल नंबर सत्यापित करें','Verify OTP':'OTP सत्यापित करें','Prototype OTP:':'प्रोटोटाइप OTP:',
+    'Dashboard':'डैशबोर्ड','Active requests':'सक्रिय अनुरोध','Track Requests':'अनुरोध ट्रैक करें','Live status':'लाइव स्थिति','My Donations':'मेरे रक्तदान','total':'कुल','Nearby Camps':'नज़दीकी शिविर','upcoming':'आगामी','Request Blood Now':'अभी रक्त अनुरोध करें','Profile':'प्रोफ़ाइल','Settings':'सेटिंग्स','Logout':'लॉगआउट','Home':'होम','Blood Requests':'रक्त अनुरोध','My Requests':'मेरे अनुरोध','Track My Request':'मेरा अनुरोध ट्रैक करें','Request Blood Now':'अभी रक्त अनुरोध करें','Patients':'मरीज़','Inventory':'स्टॉक','Donation Log':'रक्तदान रिकॉर्ड','Tracking':'ट्रैकिंग',
+    'My Profile':'मेरी प्रोफ़ाइल','Edit profile & eligibility':'प्रोफ़ाइल और पात्रता संपादित करें','Edit details':'विवरण संपादित करें','Hospital account':'अस्पताल खाता','Basic Info':'मूल जानकारी','Medical History':'चिकित्सीय इतिहास','Full Name':'पूरा नाम','Age':'आयु','Blood Type':'रक्त समूह','Last Donation Date':'अंतिम रक्तदान तिथि','Auto-updates when you donate via RakthSetu':'RakthSetu के माध्यम से रक्तदान करने पर स्वतः अपडेट होता है','Other Medical Condition':'अन्य चिकित्सीय स्थिति','Type any other condition':'अन्य स्थिति लिखें','Recent Fever':'हाल का बुखार','Select':'चुनें','1 week':'1 सप्ताह','2 weeks':'2 सप्ताह','3 weeks':'3 सप्ताह','More than 4 weeks':'4 सप्ताह से अधिक','Tattoo':'टैटू','No':'नहीं','Yes':'हाँ','Tattoo Date':'टैटू की तारीख','Recent Vaccination':'हाल का टीकाकरण','More than 3 weeks':'3 सप्ताह से अधिक','Eligibility rule: recent fever must be more than 4 weeks ago and recent vaccination must be more than 3 weeks ago.':'पात्रता नियम: हाल का बुखार 4 सप्ताह से अधिक पहले और हाल का टीकाकरण 3 सप्ताह से अधिक पहले होना चाहिए।','Eligible to Donate':'रक्तदान के लिए पात्र','Not Eligible Right Now':'अभी पात्र नहीं','All criteria met':'सभी मानदंड पूरे हैं','Medical condition prevents donation':'चिकित्सीय स्थिति के कारण रक्तदान संभव नहीं','Wait ':'प्रतीक्षा करें ',' more days':' दिन और','Save Profile':'प्रोफ़ाइल सहेजें','Delete Account':'खाता हटाएं','My Details':'मेरे विवरण','Referral Code':'रेफरल कोड','Share to earn 50 pts per referral · Points:':'हर रेफरल पर 50 अंक कमाने के लिए साझा करें · अंक:','Copy':'कॉपी','Hospital Details':'अस्पताल का विवरण','Registered Mobile':'पंजीकृत मोबाइल','District':'जिला','Hospital':'अस्पताल','Profile saved!':'प्रोफ़ाइल सहेजी गई!','Dashboard':'डैशबोर्ड',
+    'Live GPS Navigation':'लाइव GPS नेविगेशन','Donor Live Location':'दाता का लाइव स्थान','Change language':'भाषा बदलें'
+  },
+  ta:{
+    'RakthSetu':'ரக்த்சேது','Kerala Smart Blood Network':'கேரள ஸ்மார்ட் பிளட் நெட்வொர்க்',
+    'Donor':'நன்கொடையாளர்','Requester':'கோரிக்கையாளர்','Hospital':'மருத்துவமனை','Hospital Staff':'மருத்துவமனை பணியாளர்',
+    'Login as Donor':'நன்கொடையாளராக உள்நுழைக','Login as Requester':'கோரிக்கையாளராக உள்நுழைக','Login as Hospital Staff':'மருத்துவமனை பணியாளராக உள்நுழைக',
+    'Mobile Number':'மொபைல் எண்','Send OTP':'OTP அனுப்பவும்','New to RakthSetu?':'RakthSetu-க்கு புதியவரா?','Sign Up':'பதிவு செய்க','OR':'அல்லது',
+    'EMERGENCY — Need Blood NOW!':'அவசரம் — இப்போது இரத்தம் தேவை!','Emergency skips login':'அவசரநிலையில் உள்நுழைவு தேவையில்லை',
+    'Create RakthSetu Account':'RakthSetu கணக்கை உருவாக்கவும்','Register with your real details. Mobile number will be verified by OTP.':'உங்கள் உண்மையான விவரங்களுடன் பதிவு செய்யவும். மொபைல் எண் OTP மூலம் சரிபார்க்கப்படும்.',
+    'Signing up as:':'பதிவு செய்யும் பங்கு:','Full Name':'முழுப் பெயர்','Age':'வயது','Date of Birth':'பிறந்த தேதி','Blood Group':'இரத்த வகை','Email':'மின்னஞ்சல்','State':'மாநிலம்','District':'மாவட்டம்','City / Town / Locality':'நகரம் / ஊர் / பகுதி','Pincode':'அஞ்சல் குறியீடு','Aadhaar Number':'ஆதார் எண்',
+    'Send OTP & Create Account':'OTP அனுப்பி கணக்கை உருவாக்கவும்','Back to Login':'உள்நுழைவுக்கு திரும்பவும்','Verify Mobile Number':'மொபைல் எண்ணை சரிபார்க்கவும்','Verify OTP':'OTP சரிபார்க்கவும்','Prototype OTP:':'முன்மாதிரி OTP:',
+    'Dashboard':'டாஷ்போர்டு','Active requests':'செயலில் உள்ள கோரிக்கைகள்','Track Requests':'கோரிக்கைகளை கண்காணிக்கவும்','Live status':'நேரடி நிலை','My Donations':'எனது இரத்ததானங்கள்','total':'மொத்தம்','Nearby Camps':'அருகிலுள்ள முகாம்கள்','upcoming':'வரவிருப்பவை','Request Blood Now':'இப்போது இரத்தம் கோரவும்','Profile':'சுயவிவரம்','Settings':'அமைப்புகள்','Logout':'வெளியேறு','Home':'முகப்பு','Blood Requests':'இரத்த கோரிக்கைகள்','My Requests':'எனது கோரிக்கைகள்','Track My Request':'எனது கோரிக்கையை கண்காணிக்கவும்','Request Blood Now':'இப்போது இரத்தம் கோரவும்','Patients':'நோயாளிகள்','Inventory':'இருப்பு','Donation Log':'இரத்ததான பதிவு','Tracking':'கண்காணிப்பு',
+    'My Profile':'எனது சுயவிவரம்','Edit profile & eligibility':'சுயவிவரம் மற்றும் தகுதியைத் திருத்தவும்','Edit details':'விவரங்களைத் திருத்தவும்','Hospital account':'மருத்துவமனை கணக்கு','Basic Info':'அடிப்படை தகவல்','Medical History':'மருத்துவ வரலாறு','Full Name':'முழுப் பெயர்','Age':'வயது','Blood Type':'இரத்த வகை','Last Donation Date':'கடைசி இரத்ததான தேதி','Auto-updates when you donate via RakthSetu':'RakthSetu மூலம் இரத்ததானம் செய்தால் தானாக புதுப்பிக்கப்படும்','Other Medical Condition':'பிற மருத்துவ நிலை','Type any other condition':'வேறு நிலையை உள்ளிடவும்','Recent Fever':'சமீபத்திய காய்ச்சல்','Select':'தேர்ந்தெடுக்கவும்','1 week':'1 வாரம்','2 weeks':'2 வாரங்கள்','3 weeks':'3 வாரங்கள்','More than 4 weeks':'4 வாரங்களுக்கு மேல்','Tattoo':'பச்சைக் குத்து','No':'இல்லை','Yes':'ஆம்','Tattoo Date':'பச்சைக் குத்திய தேதி','Recent Vaccination':'சமீபத்திய தடுப்பூசி','More than 3 weeks':'3 வாரங்களுக்கு மேல்','Eligibility rule: recent fever must be more than 4 weeks ago and recent vaccination must be more than 3 weeks ago.':'தகுதி விதி: சமீபத்திய காய்ச்சல் 4 வாரங்களுக்கு முன்பும், சமீபத்திய தடுப்பூசி 3 வாரங்களுக்கு முன்பும் இருக்க வேண்டும்.','Eligible to Donate':'இரத்ததானத்திற்கு தகுதியானவர்','Not Eligible Right Now':'இப்போது தகுதியில்லை','All criteria met':'அனைத்து அளவுகோள்களும் பூர்த்தி','Medical condition prevents donation':'மருத்துவ நிலை காரணமாக இரத்ததானம் செய்ய முடியாது','Wait ':'காத்திருக்கவும் ',' more days':' நாட்கள் மேலும்','Save Profile':'சுயவிவரத்தைச் சேமிக்கவும்','Delete Account':'கணக்கை நீக்கவும்','My Details':'எனது விவரங்கள்','Referral Code':'பரிந்துரை குறியீடு','Share to earn 50 pts per referral · Points:':'ஒவ்வொரு பரிந்துரைக்கும் 50 புள்ளிகள் பெற பகிரவும் · புள்ளிகள்:','Copy':'நகலெடுக்கவும்','Hospital Details':'மருத்துவமனை விவரங்கள்','Registered Mobile':'பதிவு செய்யப்பட்ட மொபைல்','District':'மாவட்டம்','Hospital':'மருத்துவமனை','Profile saved!':'சுயவிவரம் சேமிக்கப்பட்டது!','Dashboard':'டாஷ்போர்டு',
+    'Live GPS Navigation':'நேரடி GPS வழிசெலுத்தல்','Donor Live Location':'நன்கொடையாளரின் நேரடி இடம்','Change language':'மொழியை மாற்றவும்'
+  }
+};
+// Extra dashboard/requester/hospital strings. Keep these in one place so dynamically
+// rendered screens can always resolve back to the English source key.
+const RS_COMMON={
+  'Welcome,':'Welcome,','Overview':'Overview','Track Blood Requests':'Track Blood Requests','Request Blood for a Patient':'Request Blood for a Patient',
+  'Need Blood? We find donors':'Need Blood? We find donors','registered donors in Kerala':'registered donors in Kerala','Request Blood Now':'Request Blood Now','Track My Request':'Track My Request',
+  'Total':'Total','Pending':'Pending','Accepted':'Accepted','Recent Requests':'Recent Requests','Referral Program':'Referral Program','Share your code to earn points. Points:':'Share your code to earn points. Points:',
+  'My Requests':'My Requests','No requests yet':'No requests yet','Accepted Donor:':'Accepted Donor:','My Details':'My Details','Full Name':'Full Name','Referral Code':'Referral Code','Copy':'Copy','Save Profile':'Save Profile','Delete Account':'Delete Account',
+  'Hospital Details':'Hospital Details','Registered Mobile':'Registered Mobile','Hospital account':'Hospital account','Patients':'Patients','Critical':'Critical','Fulfilled':'Fulfilled','Stock Units':'Stock Units','Zero Stock':'Zero Stock',
+  'Track Blood Requests':'Track Blood Requests','Request Blood for a Patient':'Request Blood for a Patient','Add Patient':'Add Patient','New entry':'New entry','units':'units','zero':'zero',
+  'Patient list':'Patient list','Stock levels':'Stock levels','Donation Log':'Donation Log','Automatic records from completed RakthSetu donations':'Automatic records from completed RakthSetu donations','Total':'Total','Units':'Units',
+  'Donations are added automatically only after both the donor and requester confirm the donation.':'Donations are added automatically only after both the donor and requester confirm the donation.',
+  'No donations yet':'No donations yet','Completed RakthSetu donations will appear here automatically.':'Completed RakthSetu donations will appear here automatically.',
+  'Patient Information':'Patient Information','Patient Name':'Patient Name','Ward':'Ward','Units Needed':'Units Needed','Status':'Status','Name and blood type required':'Name and blood type required','Patient added!':'Patient added!',
+  'Update Stock':'Update Stock','Units to add':'Units to add','Add Units':'Add Units','Enter valid units':'Enter valid units','Blood Request':'Blood Request','Hospital Blood Request':'Hospital Blood Request',
+  'Alert eligible donors for a hospital patient':'Alert eligible donors for a hospital patient','Find a compatible donor near you':'Find a compatible donor near you','Patient / Request Name':'Patient / Request Name','Blood Type Needed':'Blood Type Needed',
+  'District / City':'District / City','-- Select --':'-- Select --','-- Select District --':'-- Select District --','-- Select Hospital --':'-- Select Hospital --','Priority Level':'Priority Level','Emergency':'Emergency','High':'High','Normal':'Normal','Life risk':'Life risk','Within 24h':'Within 24h','Within days':'Within days','Needed By':'Needed By','SEND BLOOD REQUEST':'SEND BLOOD REQUEST','Cancel':'Cancel',
+  'Track requests connected to your account.':'Track requests connected to your account.','No requests to track yet.':'No requests to track yet.','Your submitted blood requests will appear here.':'Your submitted blood requests will appear here.',
+  'Accepted Donor':'Accepted Donor','Donor accepted':'Donor accepted','GPS not started':'GPS not started','Open Live GPS':'Open Live GPS','View GPS Status':'View GPS Status',
+  'Patients':'Patients','No patients':'No patients','Add Patient':'Add Patient','Critical':'Critical','Stable':'Stable','Patient':'Patient','Received':'Received','needed':'needed','received':'received',
+  '0 units = Critical':'0 units = Critical','1-2 = Low':'1-2 = Low','3+ = Good':'3+ = Good','Low':'Low','Good':'Good','OK':'OK',
+  'Back':'Back','Back to requester dashboard':'Back to requester dashboard','Requester':'Requester','Hospital Staff':'Hospital Staff','Dashboard':'Dashboard','Tracking':'Tracking','Blood Requests':'Blood Requests','Donation Camps':'Donation Camps','My Profile':'My Profile','About Us':'About Us','How It Works':'How It Works','Track blood requests':'Track blood requests','Track all requests':'Track all requests','Overview':'Overview','Matching requests':'Matching requests','Upcoming camps':'Upcoming camps','Edit profile & eligibility':'Edit profile & eligibility','Edit details':'Edit details','RakthSetu features':'RakthSetu features','Blood request to donation flow':'Blood request to donation flow',
+  'Home':'Home','Logout':'Logout','Profile':'Profile','Inventory':'Inventory','Patients':'Patients','Donation Log':'Donation Log','Blood Inventory':'Blood Inventory',
+  'Live status':'Live status','Active requests':'Active requests','total':'total','upcoming':'upcoming','Request Blood Now':'Request Blood Now'
+};
+Object.keys(RS_I18N).forEach(lang=>{if(lang==='en')return;const d=RS_I18N[lang];const add={
+ml:{'Welcome,':'സ്വാഗതം,','Overview':'അവലോകനം','Track Blood Requests':'രക്ത അഭ്യർത്ഥനകൾ ട്രാക്ക് ചെയ്യുക','Request Blood for a Patient':'രോഗിക്കായി രക്തം അഭ്യർത്ഥിക്കുക','Need Blood? We find donors':'രക്തം വേണോ? ഞങ്ങൾ ഡോണർമാരെ കണ്ടെത്താം','registered donors in Kerala':'കേരളത്തിലെ രജിസ്റ്റർ ചെയ്ത ഡോണർമാർ','Request Blood Now':'ഇപ്പോൾ രക്തം അഭ്യർത്ഥിക്കുക','Track My Request':'എന്റെ അഭ്യർത്ഥന ട്രാക്ക് ചെയ്യുക','Total':'ആകെ','Pending':'തീർപ്പാക്കാത്തത്','Accepted':'സ്വീകരിച്ചു','Recent Requests':'സമീപകാല അഭ്യർത്ഥനകൾ','Referral Program':'റഫറൽ പ്രോഗ്രാം','Share your code to earn points. Points:':'പോയിന്റുകൾ നേടാൻ നിങ്ങളുടെ കോഡ് പങ്കിടുക. പോയിന്റുകൾ:','My Requests':'എന്റെ അഭ്യർത്ഥനകൾ','No requests yet':'ഇതുവരെ അഭ്യർത്ഥനകളില്ല','Accepted Donor:':'സ്വീകരിച്ച ഡോണർ:','My Details':'എന്റെ വിവരങ്ങൾ','Copy':'പകർത്തുക','Save Profile':'പ്രൊഫൈൽ സംരക്ഷിക്കുക','Delete Account':'അക്കൗണ്ട് ഇല്ലാതാക്കുക','Hospital Details':'ആശുപത്രി വിവരങ്ങൾ','Registered Mobile':'രജിസ്റ്റർ ചെയ്ത മൊബൈൽ','Hospital account':'ആശുപത്രി അക്കൗണ്ട്','Critical':'ഗുരുതരം','Fulfilled':'പൂർത്തിയായി','Stock Units':'സ്റ്റോക്ക് യൂണിറ്റുകൾ','Zero Stock':'സ്റ്റോക്ക് ഇല്ല','Add Patient':'രോഗിയെ ചേർക്കുക','New entry':'പുതിയ എൻട്രി','Donation Log':'രക്തദാന രേഖ','Total':'ആകെ','Units':'യൂണിറ്റുകൾ','No donations yet':'ഇതുവരെ രക്തദാനങ്ങളില്ല','Completed RakthSetu donations will appear here automatically.':'പൂർത്തിയായ RakthSetu രക്തദാനങ്ങൾ ഇവിടെ സ്വയമേവ കാണിക്കും.','Patient Information':'രോഗിയുടെ വിവരങ്ങൾ','Patient Name':'രോഗിയുടെ പേര്','Ward':'വാർഡ്','Units Needed':'ആവശ്യമായ യൂണിറ്റുകൾ','Status':'നില','Update Stock':'സ്റ്റോക്ക് അപ്ഡേറ്റ് ചെയ്യുക','Units to add':'ചേർക്കേണ്ട യൂണിറ്റുകൾ','Add Units':'യൂണിറ്റുകൾ ചേർക്കുക','Blood Request':'രക്ത അഭ്യർത്ഥന','Hospital Blood Request':'ആശുപത്രി രക്ത അഭ്യർത്ഥന','Alert eligible donors for a hospital patient':'ആശുപത്രി രോഗിക്കായി യോഗ്യരായ ഡോണർമാരെ അറിയിക്കുക','Find a compatible donor near you':'നിങ്ങളുടെ സമീപത്തെ അനുയോജ്യ ഡോണറെ കണ്ടെത്തുക','Patient / Request Name':'രോഗി / അഭ്യർത്ഥന പേര്','Blood Type Needed':'ആവശ്യമായ രക്തഗ്രൂപ്പ്','District / City':'ജില്ല / നഗരം','Priority Level':'മുൻഗണന','Emergency':'അടിയന്തരാവസ്ഥ','High':'ഉയർന്നത്','Normal':'സാധാരണ','Life risk':'ജീവൻ അപകടം','Within 24h':'24 മണിക്കൂറിനകം','Within days':'കുറച്ച് ദിവസത്തിനകം','Needed By':'ആവശ്യമായ തീയതി','SEND BLOOD REQUEST':'രക്ത അഭ്യർത്ഥന അയയ്ക്കുക','Cancel':'റദ്ദാക്കുക','Track requests connected to your account.':'നിങ്ങളുടെ അക്കൗണ്ടുമായി ബന്ധപ്പെട്ട അഭ്യർത്ഥനകൾ ട്രാക്ക് ചെയ്യുക.','No requests to track yet.':'ട്രാക്ക് ചെയ്യാൻ അഭ്യർത്ഥനകളില്ല.','Your submitted blood requests will appear here.':'നിങ്ങൾ സമർപ്പിച്ച രക്ത അഭ്യർത്ഥനകൾ ഇവിടെ കാണിക്കും.','Accepted Donor':'സ്വീകരിച്ച ഡോണർ','Open Live GPS':'ലൈവ് GPS തുറക്കുക','View GPS Status':'GPS നില കാണുക','Patients':'രോഗികൾ','No patients':'രോഗികളില്ല','Stable':'സ്ഥിരം','Low':'കുറവ്','Good':'നല്ലത്','OK':'ശരി','Back':'തിരികെ','Back to requester dashboard':'അഭ്യർത്ഥക ഡാഷ്ബോർഡിലേക്ക് തിരികെ','Blood Inventory':'രക്ത സ്റ്റോക്ക്','Inventory':'സ്റ്റോക്ക്','About Us':'ഞങ്ങളെക്കുറിച്ച്','How It Works':'എങ്ങനെ പ്രവർത്തിക്കുന്നു','Home':'ഹോം','Logout':'ലോഗൗട്ട്'},
+hi:{'Welcome,':'स्वागत है,','Overview':'अवलोकन','Track Blood Requests':'रक्त अनुरोध ट्रैक करें','Request Blood for a Patient':'मरीज़ के लिए रक्त अनुरोध करें','Need Blood? We find donors':'रक्त चाहिए? हम डोनर खोजते हैं','registered donors in Kerala':'केरल में पंजीकृत डोनर','Request Blood Now':'अभी रक्त अनुरोध करें','Track My Request':'मेरा अनुरोध ट्रैक करें','Total':'कुल','Pending':'लंबित','Accepted':'स्वीकृत','Recent Requests':'हाल के अनुरोध','Referral Program':'रेफरल प्रोग्राम','Share your code to earn points. Points:':'पॉइंट पाने के लिए अपना कोड साझा करें। पॉइंट:','My Requests':'मेरे अनुरोध','No requests yet':'अभी कोई अनुरोध नहीं','Accepted Donor:':'स्वीकृत डोनर:','Copy':'कॉपी','Save Profile':'प्रोफ़ाइल सहेजें','Delete Account':'खाता हटाएं','Hospital Details':'अस्पताल का विवरण','Registered Mobile':'पंजीकृत मोबाइल','Hospital account':'अस्पताल खाता','Critical':'गंभीर','Fulfilled':'पूरा हुआ','Stock Units':'स्टॉक यूनिट','Zero Stock':'शून्य स्टॉक','Add Patient':'मरीज़ जोड़ें','New entry':'नई प्रविष्टि','Donation Log':'रक्तदान रिकॉर्ड','Units':'यूनिट','No donations yet':'अभी कोई रक्तदान नहीं','Completed RakthSetu donations will appear here automatically.':'पूरे हुए RakthSetu रक्तदान यहां अपने आप दिखेंगे।','Patient Information':'मरीज़ की जानकारी','Patient Name':'मरीज़ का नाम','Ward':'वार्ड','Units Needed':'आवश्यक यूनिट','Status':'स्थिति','Update Stock':'स्टॉक अपडेट करें','Units to add':'जोड़ने के लिए यूनिट','Add Units':'यूनिट जोड़ें','Blood Request':'रक्त अनुरोध','Hospital Blood Request':'अस्पताल रक्त अनुरोध','Alert eligible donors for a hospital patient':'अस्पताल के मरीज़ के लिए योग्य डोनर को सूचित करें','Find a compatible donor near you':'अपने पास संगत डोनर खोजें','Patient / Request Name':'मरीज़ / अनुरोध नाम','Blood Type Needed':'आवश्यक रक्त समूह','District / City':'जिला / शहर','Priority Level':'प्राथमिकता स्तर','Emergency':'आपातकाल','High':'उच्च','Normal':'सामान्य','Life risk':'जीवन जोखिम','Within 24h':'24 घंटे के भीतर','Within days':'कुछ दिनों में','Needed By':'आवश्यक तिथि','SEND BLOOD REQUEST':'रक्त अनुरोध भेजें','Cancel':'रद्द करें','Track requests connected to your account.':'अपने खाते से जुड़े अनुरोध ट्रैक करें।','No requests to track yet.':'अभी ट्रैक करने के लिए कोई अनुरोध नहीं।','Your submitted blood requests will appear here.':'आपके भेजे रक्त अनुरोध यहां दिखेंगे।','Accepted Donor':'स्वीकृत डोनर','Open Live GPS':'लाइव GPS खोलें','View GPS Status':'GPS स्थिति देखें','Patients':'मरीज़','No patients':'कोई मरीज़ नहीं','Stable':'स्थिर','Low':'कम','Good':'अच्छा','OK':'ठीक','Back':'वापस','Back to requester dashboard':'अनुरोधकर्ता डैशबोर्ड पर वापस','Blood Inventory':'रक्त स्टॉक','Inventory':'स्टॉक','About Us':'हमारे बारे में','How It Works':'कैसे काम करता है','Home':'होम','Logout':'लॉगआउट'},
+ta:{'Welcome,':'வரவேற்கிறோம்,','Overview':'மேலோட்டம்','Track Blood Requests':'இரத்த கோரிக்கைகளை கண்காணிக்கவும்','Request Blood for a Patient':'நோயாளிக்காக இரத்தம் கோரவும்','Need Blood? We find donors':'இரத்தம் வேண்டுமா? நாங்கள் நன்கொடையாளர்களைக் கண்டுபிடிப்போம்','registered donors in Kerala':'கேரளாவில் பதிவு செய்யப்பட்ட நன்கொடையாளர்கள்','Request Blood Now':'இப்போது இரத்தம் கோரவும்','Track My Request':'என் கோரிக்கையை கண்காணிக்கவும்','Total':'மொத்தம்','Pending':'நிலுவை','Accepted':'ஏற்றுக்கொள்ளப்பட்டது','Recent Requests':'சமீபத்திய கோரிக்கைகள்','Referral Program':'பரிந்துரை திட்டம்','Share your code to earn points. Points:':'புள்ளிகள் பெற உங்கள் குறியீட்டைப் பகிரவும். புள்ளிகள்:','My Requests':'எனது கோரிக்கைகள்','No requests yet':'இன்னும் கோரிக்கைகள் இல்லை','Accepted Donor:':'ஏற்றுக்கொண்ட நன்கொடையாளர்:','Copy':'நகலெடுக்கவும்','Save Profile':'சுயவிவரத்தைச் சேமிக்கவும்','Delete Account':'கணக்கை நீக்கவும்','Hospital Details':'மருத்துவமனை விவரங்கள்','Registered Mobile':'பதிவு செய்யப்பட்ட மொபைல்','Hospital account':'மருத்துவமனை கணக்கு','Critical':'மிகவும் அவசரம்','Fulfilled':'நிறைவு','Stock Units':'இருப்பு யூனிட்கள்','Zero Stock':'பூஜ்ஜிய இருப்பு','Add Patient':'நோயாளியைச் சேர்க்கவும்','New entry':'புதிய பதிவு','Donation Log':'இரத்ததான பதிவு','Units':'யூனிட்கள்','No donations yet':'இன்னும் இரத்ததானங்கள் இல்லை','Completed RakthSetu donations will appear here automatically.':'முடிக்கப்பட்ட RakthSetu இரத்ததானங்கள் இங்கே தானாக தோன்றும்.','Patient Information':'நோயாளி தகவல்','Patient Name':'நோயாளியின் பெயர்','Ward':'வார்டு','Units Needed':'தேவையான யூனிட்கள்','Status':'நிலை','Update Stock':'இருப்பை புதுப்பிக்கவும்','Units to add':'சேர்க்க வேண்டிய யூனிட்கள்','Add Units':'யூனிட்களைச் சேர்க்கவும்','Blood Request':'இரத்த கோரிக்கை','Hospital Blood Request':'மருத்துவமனை இரத்த கோரிக்கை','Alert eligible donors for a hospital patient':'மருத்துவமனை நோயாளிக்கான தகுதியான நன்கொடையாளர்களை அறிவிக்கவும்','Find a compatible donor near you':'உங்களுக்கு அருகிலுள்ள பொருத்தமான நன்கொடையாளரைக் கண்டறியவும்','Patient / Request Name':'நோயாளி / கோரிக்கை பெயர்','Blood Type Needed':'தேவையான இரத்த வகை','District / City':'மாவட்டம் / நகரம்','Priority Level':'முன்னுரிமை நிலை','Emergency':'அவசரம்','High':'உயர்','Normal':'சாதாரணம்','Life risk':'உயிர் ஆபத்து','Within 24h':'24 மணி நேரத்திற்குள்','Within days':'சில நாட்களில்','Needed By':'தேவைப்படும் தேதி','SEND BLOOD REQUEST':'இரத்த கோரிக்கையை அனுப்பவும்','Cancel':'ரத்து செய்','Track requests connected to your account.':'உங்கள் கணக்குடன் இணைந்த கோரிக்கைகளை கண்காணிக்கவும்.','No requests to track yet.':'கண்காணிக்க கோரிக்கைகள் இல்லை.','Your submitted blood requests will appear here.':'நீங்கள் அனுப்பிய இரத்த கோரிக்கைகள் இங்கே தோன்றும்.','Accepted Donor':'ஏற்றுக்கொண்ட நன்கொடையாளர்','Open Live GPS':'நேரடி GPS திறக்கவும்','View GPS Status':'GPS நிலையைப் பார்க்கவும்','Patients':'நோயாளிகள்','No patients':'நோயாளிகள் இல்லை','Stable':'நிலையானது','Low':'குறைவு','Good':'நன்று','OK':'சரி','Back':'பின்','Back to requester dashboard':'கோரிக்கையாளர் டாஷ்போர்டுக்குத் திரும்பவும்','Blood Inventory':'இரத்த இருப்பு','Inventory':'இருப்பு','About Us':'எங்களைப் பற்றி','How It Works':'எப்படி செயல்படுகிறது','Home':'முகப்பு','Logout':'வெளியேறு'}
+};
+Object.assign(RS_I18N[lang], add[lang]);
+});
+// Extended translations for About Us and How It Works pages.
+const RS_ABOUT_HOW_I18N={
+  ml:{
+    'Connecting Blood. Saving Lives.':'രക്തത്തെ ബന്ധിപ്പിച്ച് ജീവൻ രക്ഷിക്കുന്നു.',
+    'About RakthSetu':'രക്തസേതുവിനെക്കുറിച്ച്',
+    'RakthSetu is a smart blood-connect platform designed to connect people who need blood with eligible donors and hospitals. Our goal is to make blood requests faster, more organized, privacy-aware and easier to coordinate.':'രക്തം ആവശ്യമുള്ള ആളുകളെ യോഗ്യരായ ഡോണർമാരുമായും ആശുപത്രികളുമായും ബന്ധിപ്പിക്കുന്ന സ്മാർട്ട് ബ്ലഡ്-കണക്റ്റ് പ്ലാറ്റ്ഫോമാണ് രക്തസേതു. രക്ത അഭ്യർത്ഥനകൾ വേഗത്തിലും ക്രമബദ്ധമായും സ്വകാര്യത കാത്തുസൂക്ഷിച്ചും ഏകോപിപ്പിക്കാൻ എളുപ്പമായും മാറ്റുകയാണ് ഞങ്ങളുടെ ലക്ഷ്യം.',
+    'Key Features':'പ്രധാന സവിശേഷതകൾ','Smart Blood Matching':'സ്മാർട്ട് ബ്ലഡ് മാച്ചിംഗ്','Matches requests using blood-group compatibility, availability, location and estimated distance.':'രക്തഗ്രൂപ്പ് അനുയോജ്യത, ലഭ്യത, സ്ഥലം, കണക്കാക്കിയ ദൂരം എന്നിവ ഉപയോഗിച്ച് അഭ്യർത്ഥനകൾ പൊരുത്തപ്പെടുത്തുന്നു.',
+    'District Filtering':'ജില്ലാ ഫിൽട്ടറിംഗ്','Filters eligible donors and hospitals by the selected city or district for local coordination.':'പ്രാദേശിക ഏകോപനത്തിനായി തിരഞ്ഞെടുത്ത നഗരം അല്ലെങ്കിൽ ജില്ല അനുസരിച്ച് യോഗ്യരായ ഡോണർമാരെയും ആശുപത്രികളെയും ഫിൽട്ടർ ചെയ്യുന്നു.',
+    'Emergency Alerts':'അടിയന്തര അലർട്ടുകൾ','Urgent requests can alert matching donors immediately.':'അടിയന്തര അഭ്യർത്ഥനകൾക്ക് അനുയോജ്യരായ ഡോണർമാരെ ഉടൻ അറിയിക്കാം.',
+    'Priority Requests':'മുൻഗണനാ അഭ്യർത്ഥനകൾ','Requests can be marked Emergency, High or Normal according to urgency.':'അടിയന്തരാവസ്ഥ അനുസരിച്ച് അഭ്യർത്ഥനകൾ അടിയന്തര, ഉയർന്ന, സാധാരണ എന്നിങ്ങനെ അടയാളപ്പെടുത്താം.',
+    'Privacy Protection':'സ്വകാര്യത സംരക്ഷണം','Donor live GPS is shared with the requester only after the donor accepts.':'ഡോണർ അഭ്യർത്ഥന സ്വീകരിച്ചതിന് ശേഷം മാത്രമേ ലൈവ് GPS അഭ്യർത്ഥകനുമായി പങ്കിടുകയുള്ളൂ.',
+    'Live GPS Tracking':'ലൈവ് GPS ട്രാക്കിംഗ്','Accepted donors can share live location while travelling to the hospital.':'അഭ്യർത്ഥന സ്വീകരിച്ച ഡോണർമാർ ആശുപത്രിയിലേക്ക് യാത്ര ചെയ്യുമ്പോൾ ലൈവ് ലൊക്കേഷൻ പങ്കിടാം.',
+    'Two-Sided Confirmation':'ഇരുവശ സ്ഥിരീകരണം','A donation is completed only after both donor and requester confirm.':'ഡോണറും അഭ്യർത്ഥകനും സ്ഥിരീകരിച്ചതിന് ശേഷം മാത്രമേ രക്തദാനം പൂർത്തിയായതായി രേഖപ്പെടുത്തുകയുള്ളൂ.',
+    'Hospital Inventory':'ആശുപത്രി ഇൻവെന്ററി','Completed donations can automatically update the selected hospital\'s blood inventory.':'പൂർത്തിയായ രക്തദാനങ്ങൾ തിരഞ്ഞെടുത്ത ആശുപത്രിയുടെ രക്ത സ്റ്റോക്ക് സ്വയമേവ അപ്ഡേറ്റ് ചെയ്യാം.',
+    'Role-Based Dashboards':'റോൾ അടിസ്ഥാനത്തിലുള്ള ഡാഷ്ബോർഡുകൾ','Separate dashboards support donors, requesters and hospitals.':'ഡോണർമാർക്കും അഭ്യർത്ഥകർക്കും ആശുപത്രികൾക്കും പ്രത്യേകം ഡാഷ്ബോർഡുകൾ ലഭ്യമാണ്.',
+    'Donation History & Life Saved':'രക്തദാന ചരിത്രവും ജീവൻ രക്ഷിച്ചതും','Completed donations are recorded and donors receive a Life Saved confirmation.':'പൂർത്തിയായ രക്തദാനങ്ങൾ രേഖപ്പെടുത്തുകയും ഡോണർമാർക്ക് ലൈഫ് സേവ്‌ഡ് സ്ഥിരീകരണം ലഭിക്കുകയും ചെയ്യും.',
+    'From blood request to completed donation':'രക്ത അഭ്യർത്ഥനയിൽ നിന്ന് പൂർത്തിയായ രക്തദാനം വരെ','RakthSetu Flow':'രക്തസേതു പ്രവർത്തനക്രമം','A simple step-by-step flow connecting a requester, a compatible donor and the hospital.':'അഭ്യർത്ഥകനെയും അനുയോജ്യനായ ഡോണറെയും ആശുപത്രിയെയും ബന്ധിപ്പിക്കുന്ന ലളിതമായ ഘട്ടംഘട്ടമായ പ്രവർത്തനക്രമം.',
+    'Request Blood':'രക്തം അഭ്യർത്ഥിക്കുക','Requester selects blood group, units, district, hospital, needed-by date and priority.':'അഭ്യർത്ഥകൻ രക്തഗ്രൂപ്പ്, യൂണിറ്റുകൾ, ജില്ല, ആശുപത്രി, ആവശ്യമായ തീയതി, മുൻഗണന എന്നിവ തിരഞ്ഞെടുക്കുന്നു.',
+    'Smart Filtering & Matching':'സ്മാർട്ട് ഫിൽട്ടറിംഗും മാച്ചിംഗും','The system filters by local district and identifies eligible donors using compatibility and availability.':'സിസ്റ്റം പ്രാദേശിക ജില്ല അനുസരിച്ച് ഫിൽട്ടർ ചെയ്ത് അനുയോജ്യതയും ലഭ്യതയും ഉപയോഗിച്ച് യോഗ്യരായ ഡോണർമാരെ കണ്ടെത്തുന്നു.',
+    'Notify Matching Donors':'അനുയോജ്യരായ ഡോണർമാരെ അറിയിക്കുക','Matching donors receive the request and can review the anonymous request information.':'അനുയോജ്യരായ ഡോണർമാർക്ക് അഭ്യർത്ഥന ലഭിക്കുകയും വ്യക്തിഗത വിവരങ്ങളില്ലാത്ത അഭ്യർത്ഥന വിവരങ്ങൾ പരിശോധിക്കാനും കഴിയും.',
+    'Donor Accepts':'ഡോണർ സ്വീകരിക്കുന്നു','The donor accepts the request and the requester can see the accepted donor status.':'ഡോണർ അഭ്യർത്ഥന സ്വീകരിച്ചാൽ അഭ്യർത്ഥകന് സ്വീകരിച്ച ഡോണറുടെ നില കാണാം.',
+    'Live GPS Journey':'ലൈവ് GPS യാത്ര','After acceptance, the donor can share live GPS while travelling to the selected hospital.':'സ്വീകരിച്ചതിന് ശേഷം തിരഞ്ഞെടുത്ത ആശുപത്രിയിലേക്ക് യാത്ര ചെയ്യുമ്പോൾ ഡോണർക്ക് ലൈവ് GPS പങ്കിടാം.',
+    'Confirm Donation':'രക്തദാനം സ്ഥിരീകരിക്കുക','Donor and requester both confirm the completed donation. The record is then created.':'ഡോണറും അഭ്യർത്ഥകനും പൂർത്തിയായ രക്തദാനം സ്ഥിരീകരിക്കുന്നു. തുടർന്ന് രേഖ സൃഷ്ടിക്കുന്നു.',
+    'Hospital Inventory Updated':'ആശുപത്രി രക്ത സ്റ്റോക്ക് അപ്ഡേറ്റ് ചെയ്തു','The completed donation can automatically add the donated blood units to the selected hospital inventory.':'പൂർത്തിയായ രക്തദാനത്തിലെ യൂണിറ്റുകൾ തിരഞ്ഞെടുത്ത ആശുപത്രിയുടെ രക്ത സ്റ്റോക്കിലേക്ക് സ്വയമേവ ചേർക്കാം.'
+  },
+  hi:{
+    'Connecting Blood. Saving Lives.':'रक्त को जोड़ना, जीवन बचाना।','About RakthSetu':'रक्तसेतु के बारे में','RakthSetu is a smart blood-connect platform designed to connect people who need blood with eligible donors and hospitals. Our goal is to make blood requests faster, more organized, privacy-aware and easier to coordinate.':'रक्तसेतु एक स्मार्ट ब्लड-कनेक्ट प्लेटफ़ॉर्म है जो रक्त की जरूरत वाले लोगों को योग्य डोनर और अस्पतालों से जोड़ता है। हमारा लक्ष्य रक्त अनुरोधों को तेज़, व्यवस्थित, गोपनीयता-सचेत और समन्वय में आसान बनाना है।','Key Features':'मुख्य विशेषताएँ','Smart Blood Matching':'स्मार्ट ब्लड मैचिंग','Matches requests using blood-group compatibility, availability, location and estimated distance.':'रक्त समूह की अनुकूलता, उपलब्धता, स्थान और अनुमानित दूरी के आधार पर अनुरोधों का मिलान करता है।','District Filtering':'जिला फ़िल्टरिंग','Filters eligible donors and hospitals by the selected city or district for local coordination.':'स्थानीय समन्वय के लिए चुने गए शहर या जिले के आधार पर योग्य डोनर और अस्पताल फ़िल्टर करता है।','Emergency Alerts':'आपातकालीन अलर्ट','Urgent requests can alert matching donors immediately.':'जरूरी अनुरोध मिलान वाले डोनर को तुरंत सूचित कर सकते हैं।','Priority Requests':'प्राथमिकता अनुरोध','Requests can be marked Emergency, High or Normal according to urgency.':'तात्कालिकता के अनुसार अनुरोधों को आपातकालीन, उच्च या सामान्य के रूप में चिह्नित किया जा सकता है।','Privacy Protection':'गोपनीयता सुरक्षा','Donor live GPS is shared with the requester only after the donor accepts.':'डोनर के अनुरोध स्वीकार करने के बाद ही लाइव GPS अनुरोधकर्ता के साथ साझा किया जाता है।','Live GPS Tracking':'लाइव GPS ट्रैकिंग','Accepted donors can share live location while travelling to the hospital.':'स्वीकृत डोनर अस्पताल जाते समय अपना लाइव स्थान साझा कर सकते हैं।','Two-Sided Confirmation':'दोनों पक्षों की पुष्टि','A donation is completed only after both donor and requester confirm.':'डोनर और अनुरोधकर्ता दोनों की पुष्टि के बाद ही रक्तदान पूरा माना जाता है।','Hospital Inventory':'अस्पताल इन्वेंटरी','Completed donations can automatically update the selected hospital\'s blood inventory.':'पूरे हुए रक्तदान से चुने गए अस्पताल का रक्त स्टॉक अपने आप अपडेट हो सकता है।','Role-Based Dashboards':'भूमिका-आधारित डैशबोर्ड','Separate dashboards support donors, requesters and hospitals.':'डोनर, अनुरोधकर्ता और अस्पताल के लिए अलग-अलग डैशबोर्ड उपलब्ध हैं।','Donation History & Life Saved':'रक्तदान इतिहास और जीवन बचाया','Completed donations are recorded and donors receive a Life Saved confirmation.':'पूरे हुए रक्तदान दर्ज किए जाते हैं और डोनर को Life Saved की पुष्टि मिलती है।','From blood request to completed donation':'रक्त अनुरोध से पूर्ण रक्तदान तक','RakthSetu Flow':'रक्तसेतु प्रक्रिया','A simple step-by-step flow connecting a requester, a compatible donor and the hospital.':'अनुरोधकर्ता, संगत डोनर और अस्पताल को जोड़ने वाली सरल चरण-दर-चरण प्रक्रिया।','Request Blood':'रक्त अनुरोध करें','Requester selects blood group, units, district, hospital, needed-by date and priority.':'अनुरोधकर्ता रक्त समूह, यूनिट, जिला, अस्पताल, आवश्यक तिथि और प्राथमिकता चुनता है।','Smart Filtering & Matching':'स्मार्ट फ़िल्टरिंग और मैचिंग','The system filters by local district and identifies eligible donors using compatibility and availability.':'सिस्टम स्थानीय जिले के अनुसार फ़िल्टर करता है और अनुकूलता व उपलब्धता के आधार पर योग्य डोनर खोजता है।','Notify Matching Donors':'मिलान वाले डोनर को सूचित करें','Matching donors receive the request and can review the anonymous request information.':'मिलान वाले डोनर को अनुरोध मिलता है और वे बिना व्यक्तिगत पहचान वाली जानकारी देख सकते हैं।','Donor Accepts':'डोनर स्वीकार करता है','The donor accepts the request and the requester can see the accepted donor status.':'डोनर अनुरोध स्वीकार करता है और अनुरोधकर्ता स्वीकृत डोनर की स्थिति देख सकता है।','Live GPS Journey':'लाइव GPS यात्रा','After acceptance, the donor can share live GPS while travelling to the selected hospital.':'स्वीकार करने के बाद डोनर चुने गए अस्पताल की यात्रा के दौरान लाइव GPS साझा कर सकता है।','Confirm Donation':'रक्तदान की पुष्टि करें','Donor and requester both confirm the completed donation. The record is then created.':'डोनर और अनुरोधकर्ता दोनों पूर्ण रक्तदान की पुष्टि करते हैं। इसके बाद रिकॉर्ड बनाया जाता है।','Hospital Inventory Updated':'अस्पताल का रक्त स्टॉक अपडेट','The completed donation can automatically add the donated blood units to the selected hospital inventory.':'पूर्ण रक्तदान की यूनिट अपने आप चुने गए अस्पताल के रक्त स्टॉक में जोड़ी जा सकती हैं।'
+  },
+  ta:{
+    'Connecting Blood. Saving Lives.':'இரத்தத்தை இணைத்து, உயிர்களை காப்போம்.','About RakthSetu':'ரக்தசேது பற்றி','RakthSetu is a smart blood-connect platform designed to connect people who need blood with eligible donors and hospitals. Our goal is to make blood requests faster, more organized, privacy-aware and easier to coordinate.':'ரக்தசேது என்பது இரத்தம் தேவைப்படுபவர்களை தகுதியான நன்கொடையாளர்கள் மற்றும் மருத்துவமனைகளுடன் இணைக்கும் ஸ்மார்ட் இரத்த இணைப்பு தளமாகும். இரத்த கோரிக்கைகளை வேகமாகவும் ஒழுங்காகவும் தனியுரிமையை பாதுகாத்தும் ஒருங்கிணைக்க எளிதாகவும் செய்வதே எங்கள் நோக்கம்.','Key Features':'முக்கிய அம்சங்கள்','Smart Blood Matching':'ஸ்மார்ட் இரத்த பொருத்தம்','Matches requests using blood-group compatibility, availability, location and estimated distance.':'இரத்த வகை பொருத்தம், கிடைப்புத் தன்மை, இருப்பிடம் மற்றும் மதிப்பிடப்பட்ட தூரத்தைப் பயன்படுத்தி கோரிக்கைகளை பொருத்துகிறது.','District Filtering':'மாவட்ட வடிகட்டல்','Filters eligible donors and hospitals by the selected city or district for local coordination.':'உள்ளூர் ஒருங்கிணைப்பிற்காக தேர்ந்தெடுக்கப்பட்ட நகரம் அல்லது மாவட்டத்தின் அடிப்படையில் தகுதியான நன்கொடையாளர்கள் மற்றும் மருத்துவமனைகளை வடிகட்டுகிறது.','Emergency Alerts':'அவசர எச்சரிக்கைகள்','Urgent requests can alert matching donors immediately.':'அவசர கோரிக்கைகள் பொருத்தமான நன்கொடையாளர்களுக்கு உடனடியாக அறிவிக்கலாம்.','Priority Requests':'முன்னுரிமை கோரிக்கைகள்','Requests can be marked Emergency, High or Normal according to urgency.':'அவசரத்திற்கேற்ப கோரிக்கைகளை அவசரம், அதிகம் அல்லது சாதாரணம் என குறிக்கலாம்.','Privacy Protection':'தனியுரிமை பாதுகாப்பு','Donor live GPS is shared with the requester only after the donor accepts.':'நன்கொடையாளர் கோரிக்கையை ஏற்றுக்கொண்ட பிறகே நேரடி GPS கோரிக்கையாளருடன் பகிரப்படும்.','Live GPS Tracking':'நேரடி GPS கண்காணிப்பு','Accepted donors can share live location while travelling to the hospital.':'ஏற்றுக்கொண்ட நன்கொடையாளர்கள் மருத்துவமனைக்கு செல்லும் போது நேரடி இருப்பிடத்தைப் பகிரலாம்.','Two-Sided Confirmation':'இருதரப்பு உறுதிப்படுத்தல்','A donation is completed only after both donor and requester confirm.':'நன்கொடையாளர் மற்றும் கோரிக்கையாளர் இருவரும் உறுதிப்படுத்திய பிறகே இரத்ததானம் நிறைவடையும்.','Hospital Inventory':'மருத்துவமனை இருப்பு','Completed donations can automatically update the selected hospital\'s blood inventory.':'நிறைவடைந்த இரத்ததானங்கள் தேர்ந்தெடுக்கப்பட்ட மருத்துவமனையின் இரத்த இருப்பை தானாக புதுப்பிக்கலாம்.','Role-Based Dashboards':'பங்கு அடிப்படையிலான டாஷ்போர்டுகள்','Separate dashboards support donors, requesters and hospitals.':'நன்கொடையாளர்கள், கோரிக்கையாளர்கள் மற்றும் மருத்துவமனைகளுக்கு தனித்தனி டாஷ்போர்டுகள் உள்ளன.','Donation History & Life Saved':'இரத்ததான வரலாறு மற்றும் உயிர் காப்பு','Completed donations are recorded and donors receive a Life Saved confirmation.':'நிறைவடைந்த இரத்ததானங்கள் பதிவு செய்யப்பட்டு நன்கொடையாளர்களுக்கு உயிர் காப்பு உறுதிப்படுத்தல் கிடைக்கும்.','From blood request to completed donation':'இரத்த கோரிக்கையிலிருந்து நிறைவடைந்த இரத்ததானம் வரை','RakthSetu Flow':'ரக்தசேது செயல்முறை','A simple step-by-step flow connecting a requester, a compatible donor and the hospital.':'கோரிக்கையாளர், பொருத்தமான நன்கொடையாளர் மற்றும் மருத்துவமனையை இணைக்கும் எளிய படிப்படியான செயல்முறை.','Request Blood':'இரத்தம் கோரவும்','Requester selects blood group, units, district, hospital, needed-by date and priority.':'கோரிக்கையாளர் இரத்த வகை, யூனிட்கள், மாவட்டம், மருத்துவமனை, தேவையான தேதி மற்றும் முன்னுரிமையைத் தேர்ந்தெடுக்கிறார்.','Smart Filtering & Matching':'ஸ்மார்ட் வடிகட்டல் மற்றும் பொருத்தம்','The system filters by local district and identifies eligible donors using compatibility and availability.':'கணினி உள்ளூர் மாவட்டத்தின் அடிப்படையில் வடிகட்டி, பொருத்தம் மற்றும் கிடைப்புத் தன்மையைப் பயன்படுத்தி தகுதியான நன்கொடையாளர்களைக் கண்டறிகிறது.','Notify Matching Donors':'பொருத்தமான நன்கொடையாளர்களுக்கு அறிவிக்கவும்','Matching donors receive the request and can review the anonymous request information.':'பொருத்தமான நன்கொடையாளர்கள் கோரிக்கையைப் பெற்று, பெயரில்லா கோரிக்கை தகவலைப் பார்க்கலாம்.','Donor Accepts':'நன்கொடையாளர் ஏற்றுக்கொள்கிறார்','The donor accepts the request and the requester can see the accepted donor status.':'நன்கொடையாளர் கோரிக்கையை ஏற்றுக்கொண்டதும், கோரிக்கையாளர் ஏற்றுக்கொண்ட நன்கொடையாளரின் நிலையைப் பார்க்கலாம்.','Live GPS Journey':'நேரடி GPS பயணம்','After acceptance, the donor can share live GPS while travelling to the selected hospital.':'ஏற்றுக்கொண்ட பிறகு, தேர்ந்தெடுக்கப்பட்ட மருத்துவமனைக்கு செல்லும் போது நன்கொடையாளர் நேரடி GPS-ஐப் பகிரலாம்.','Confirm Donation':'இரத்ததானத்தை உறுதிப்படுத்தவும்','Donor and requester both confirm the completed donation. The record is then created.':'நன்கொடையாளர் மற்றும் கோரிக்கையாளர் இருவரும் நிறைவடைந்த இரத்ததானத்தை உறுதிப்படுத்துகின்றனர். பின்னர் பதிவு உருவாக்கப்படுகிறது.','Hospital Inventory Updated':'மருத்துவமனை இருப்பு புதுப்பிக்கப்பட்டது','The completed donation can automatically add the donated blood units to the selected hospital inventory.':'நிறைவடைந்த இரத்ததானத்தின் யூனிட்கள் தேர்ந்தெடுக்கப்பட்ட மருத்துவமனையின் இரத்த இருப்பில் தானாக சேர்க்கப்படலாம்.'
+  }
+};
+Object.keys(RS_ABOUT_HOW_I18N).forEach(lang=>Object.assign(RS_I18N[lang],RS_ABOUT_HOW_I18N[lang]));
+let rsLang='en';
+function toggleGlobalLanguage(e){if(e)e.stopPropagation();const p=g('globalLangPanel');if(p)p.classList.toggle('on');}
+function closeGlobalLanguage(e){const p=g('globalLangPanel'),b=g('globalLangBtn');if(p&&p.classList.contains('on')&&!p.contains(e.target)&&e.target!==b)p.classList.remove('on');}
+document.addEventListener('click',closeGlobalLanguage);
+function rsCleanText(v){return String(v||'').replace(/\\s+/g,' ').trim();}
+function translateGlobalText(){
+  const dict=RS_I18N[rsLang]||{};
+  // Do not depend only on the first text seen by a node. Dashboard screens are
+  // rendered dynamically, so a newly-created node may already contain the
+  // previous language. Resolve every known translation back to its English key
+  // before applying the newly selected language.
+  const reverse={};
+  Object.keys(RS_I18N).forEach(lang=>{
+    const d=RS_I18N[lang]||{};
+    Object.keys(d).forEach(k=>{if(d[k]) reverse[rsCleanText(d[k])]=k;});
+  });
+  const skipRoots=['#globalLangPanel','#globalLangBtn'];
+  const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(node){
+    const p=node.parentElement;
+    if(!p||skipRoots.some(sel=>p.closest(sel))||p.closest('script,style,option')) return NodeFilter.FILTER_REJECT;
+    if(!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT;
+  }});
+  let n;
+  while(n=walker.nextNode()){
+    const current=rsCleanText(n.nodeValue);
+    if(!current) continue;
+    // English source key, a translation from any supported language, or the
+    // node's remembered source text can all identify the same UI string.
+    const remembered=window.RS_TEXT_ORIGINALS&&window.RS_TEXT_ORIGINALS.get(n);
+    const key=RS_I18N.en[current]!==undefined?current:(reverse[current]||remembered||current);
+    if(!window.RS_TEXT_ORIGINALS) window.RS_TEXT_ORIGINALS=new WeakMap();
+    window.RS_TEXT_ORIGINALS.set(n,key);
+    const tr=dict[key]||key;
+    const leading=(n.nodeValue.match(/^\s*/)||[''])[0];
+    const trailing=(n.nodeValue.match(/\s*$/)||[''])[0];
+    n.nodeValue=leading+tr+trailing;
+  }
+  // Select options are separate UI text nodes, so translate them explicitly.
+  document.querySelectorAll('option').forEach(el=>{
+    const current=rsCleanText(el.textContent);
+    if(!current)return;
+    const remembered=el.getAttribute('data-rs-option-original');
+    const key=remembered||reverse[current]||current;
+    if(!el.hasAttribute('data-rs-option-original'))el.setAttribute('data-rs-option-original',key);
+    el.textContent=dict[key]||key;
+  });
+  document.querySelectorAll('input[placeholder],textarea[placeholder]').forEach(el=>{
+    const o=el.getAttribute('data-rs-placeholder')||el.getAttribute('placeholder')||'';
+    if(!el.hasAttribute('data-rs-placeholder'))el.setAttribute('data-rs-placeholder',o);
+    el.setAttribute('placeholder',dict[o]||o);
+  });
+  const sel=g('globalLangSelect');if(sel)sel.value=rsLang;
+  applyRoleLanguage();
+}
+function setGlobalLanguage(lang){
+  rsLang=RS_I18N[lang]?lang:'en';
+  localStorage.setItem(RS_LANG_KEY,rsLang);
+  translateGlobalText();
+  const p=g('globalLangPanel');if(p)p.classList.remove('on');
+  toast(rsLang==='en'?'Language: English':rsLang==='ml'?'ഭാഷ: മലയാളം':rsLang==='hi'?'भाषा: हिन्दी':'மொழி: தமிழ்');
+}
+function initGlobalLanguage(){
+  const saved=localStorage.getItem(RS_LANG_KEY)||'en';
+  rsLang=RS_I18N[saved]?saved:'en';
+  const sel=g('globalLangSelect');if(sel)sel.value=rsLang;
+  setTimeout(translateGlobalText,80);
+  // New dashboard cards/pages are rendered dynamically; re-apply translations after screen changes.
+  if(window.MutationObserver){
+    let busy=false;
+    const mo=new MutationObserver(()=>{if(busy)return;busy=true;setTimeout(()=>{translateGlobalText();busy=false},40)});
+    mo.observe(document.body,{childList:true,subtree:true});
+  }
+}
+
+function init(){
+popSels();
+DB.donors.forEach(d=>{DB.reqs.filter(r=>r.st==='pending').forEach(req=>{if(matchD(req).some(x=>x.id===d.id)&&!DB.notifs.find(n=>n.did===d.id&&n.qid===req.id))DB.notifs.push({did:d.id,qid:req.id,read:false,ts:Date.now()})})})
+saveDB();
+}
+init();
+populateSignupLocations();
+initGlobalLanguage();
+setInterval(()=>{if(S.role==='requester'){syncAllRequests();if(S.curPage==='tracking')rTrack(g('pc'));}},3000);
+</script>
+</body>
+</html>
